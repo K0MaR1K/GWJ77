@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c5illa811ulfr"]
+
+[node name="BaseScene" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DepthMap" type="PointLight2D" parent="."]
+position = Vector2(641, 362)
+scale = Vector2(1.75, 1.75)
+energy = 0.6
+blend_mode = 1

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi1tdycix281a"]
+
+[ext_resource type="Texture2D" uid="uid://ovg8vw8jjdfa" path="res://prototyping/light.webp" id="1_cv66k"]
+[ext_resource type="Script" path="res://prototyping/red_flickering_light.gd" id="2_5q3yg"]
+
+[node name="RedFlickeringLight" type="PointLight2D"]
+position = Vector2(199, 272)
+color = Color(1, 0, 0, 1)
+texture = ExtResource("1_cv66k")
+texture_scale = 0.5
+script = ExtResource("2_5q3yg")

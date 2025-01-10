@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://22pkyhe8p8r7"]
+
+[ext_resource type="Shader" path="res://prototyping/flash_light.gdshader" id="1_e3mkc"]
+[ext_resource type="Script" path="res://prototyping/test_scene.gd" id="1_o0bin"]
+[ext_resource type="PackedScene" uid="uid://bgow88yn0oav2" path="res://prototyping/corridor_scene.tscn" id="2_dllfj"]
+[ext_resource type="PackedScene" uid="uid://caxbefiukd68w" path="res://prototyping/common_room_scene.tscn" id="3_50026"]
+[ext_resource type="Texture2D" uid="uid://ciyhuv1r2wfb0" path="res://prototyping/corridor_depthmap.png" id="4_yej1o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aspvp"]
+shader = ExtResource("1_e3mkc")
+shader_parameter/light_position = null
+shader_parameter/resolution = Vector2(1280, 720)
+shader_parameter/dimming_factor = 3.441
+shader_parameter/depth_map = ExtResource("4_yej1o")
+
+[node name="TestScene" type="Node2D"]
+material = SubResource("ShaderMaterial_aspvp")
+script = ExtResource("1_o0bin")
+
+[node name="Black" type="DirectionalLight2D" parent="."]
+blend_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="CorridorScene" parent="." instance=ExtResource("2_dllfj")]
+
+[node name="CommonRoomScene" parent="." instance=ExtResource("3_50026")]
+position = Vector2(1638, 0)

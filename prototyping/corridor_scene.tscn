@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgow88yn0oav2"]
+
+[ext_resource type="Texture2D" uid="uid://c4l0ujnruqw2c" path="res://prototyping/corridor.jpg" id="1_c2gpk"]
+[ext_resource type="PackedScene" uid="uid://c5illa811ulfr" path="res://prototyping/base_scene.tscn" id="1_ftqtw"]
+[ext_resource type="PackedScene" uid="uid://bi1tdycix281a" path="res://prototyping/red_flickering_light.tscn" id="2_q8mad"]
+[ext_resource type="Texture2D" uid="uid://ciyhuv1r2wfb0" path="res://prototyping/corridor_depthmap.png" id="3_q1he6"]
+
+[node name="CorridorScene" instance=ExtResource("1_ftqtw")]
+
+[node name="TextureRect" parent="." index="0"]
+texture = ExtResource("1_c2gpk")
+
+[node name="DepthMap" parent="." index="1"]
+position = Vector2(640.335, 360.5)
+scale = Vector2(1.75, 1.60938)
+texture = ExtResource("3_q1he6")
+
+[node name="RedFlickeringLight" parent="." index="2" instance=ExtResource("2_q8mad")]
+position = Vector2(195, 272)
+energy = 0.535487
+base_energy = 0.322076
+
+[node name="RedFlickeringLight2" parent="." index="3" instance=ExtResource("2_q8mad")]
+position = Vector2(600, 324)
+energy = 0.427075
+base_energy = 0.25687
+
+[node name="RedFlickeringLight3" parent="." index="4" instance=ExtResource("2_q8mad")]
+position = Vector2(974, 143)
+energy = 1.39291
+base_energy = 0.837786

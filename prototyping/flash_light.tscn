@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d35jv64y83jk3"]
+
+[ext_resource type="Texture2D" uid="uid://ovg8vw8jjdfa" path="res://prototyping/light.webp" id="1_jb23y"]
+[ext_resource type="Script" path="res://prototyping/flash_light.gd" id="2_2iw63"]
+
+[node name="FlashLight" type="PointLight2D"]
+position = Vector2(-123.437, -143.377)
+energy = 0.0
+texture = ExtResource("1_jb23y")
+texture_scale = 2.0
+script = ExtResource("2_2iw63")

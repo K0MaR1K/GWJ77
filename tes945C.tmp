@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://22pkyhe8p8r7"]
+
+[ext_resource type="Texture2D" uid="uid://c4l0ujnruqw2c" path="res://corridor.jpg" id="1_dtnir"]
+[ext_resource type="Texture2D" uid="uid://ovg8vw8jjdfa" path="res://light.webp" id="2_f6hny"]
+[ext_resource type="PackedScene" uid="uid://bi1tdycix281a" path="res://red_flickering_light.tscn" id="3_2hgl0"]
+[ext_resource type="Script" path="res://flash_light.gd" id="3_kgm5n"]
+[ext_resource type="Texture2D" uid="uid://ciyhuv1r2wfb0" path="res://corridor_depthmap.png" id="4_yej1o"]
+
+[node name="TestScene" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_dtnir")
+
+[node name="FlashLight" type="PointLight2D" parent="."]
+position = Vector2(498.614, 357.018)
+energy = 0.434532
+texture = ExtResource("2_f6hny")
+texture_scale = 2.0
+script = ExtResource("3_kgm5n")
+
+[node name="RedFlickeringLight" parent="." instance=ExtResource("3_2hgl0")]
+position = Vector2(195, 272)
+energy = 0.0180441
+base_energy = 0.4
+
+[node name="RedFlickeringLight2" parent="." instance=ExtResource("3_2hgl0")]
+position = Vector2(600, 324)
+energy = 0.0180441
+base_energy = 0.4
+
+[node name="RedFlickeringLight3" parent="." instance=ExtResource("3_2hgl0")]
+position = Vector2(974, 143)
+energy = 0.0451103
+
+[node name="DepthMap" type="PointLight2D" parent="."]
+position = Vector2(641, 362)
+scale = Vector2(1.73842, 1.59821)
+energy = 0.6
+blend_mode = 1
+texture = ExtResource("4_yej1o")
+metadata/_edit_lock_ = true
+
+[node name="Black" type="DirectionalLight2D" parent="."]
+blend_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
