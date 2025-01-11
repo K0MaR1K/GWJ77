@@ -1,11 +1,12 @@
 extends Node2D
 
+var enemy_count := 0
 
-# Called when the node enters the scene tree for the first time.
+func enemy_killed():
+	enemy_count -= 1
+	print(enemy_count)
+
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	for child: Enemy in get_children():
+		child.killed.connect(enemy_killed)
+		enemy_count += 1

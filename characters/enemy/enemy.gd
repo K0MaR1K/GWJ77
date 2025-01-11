@@ -37,7 +37,6 @@ func _process(delta: float) -> void:
 
 # TODO: fix timer
 func _on_reaction_timer_timeout() -> void:
-	print("follow")
 	following_player = true
 
 

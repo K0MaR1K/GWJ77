@@ -1,6 +1,6 @@
 extends Node2D
 
-const TILESET = preload("res://tileset.tres")
+const TILESET = preload("res://tilesets/tileset.tres")
 
 var current_tileset = 0
 

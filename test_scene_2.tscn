@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://lemo73ysf3lo"]
+[gd_scene load_steps=5 format=4 uid="uid://lemo73ysf3lo"]
 
 [ext_resource type="TileSet" uid="uid://bnsia1ygro6ev" path="res://tilesets/tileset.tres" id="1_snsc8"]
 [ext_resource type="Script" path="res://test_scene_2.gd" id="1_w10y0"]
 [ext_resource type="Script" path="res://characters/enemy/enemy_holder.gd" id="3_778h3"]
-[ext_resource type="Script" path="res://ui/camera_2d.gd" id="4_hgpdd"]
-[ext_resource type="PackedScene" uid="uid://cpes88b8clwam" path="res://characters/player/player.tscn" id="5_iy102"]
 [ext_resource type="PackedScene" uid="uid://bmaikduukad0n" path="res://characters/enemy/enemy.tscn" id="5_liu6m"]
 
 [node name="TestScene2" type="Node2D"]
@@ -62,12 +60,3 @@ position = Vector2(256, -102)
 
 [node name="Enemy11" parent="EnemyHolder" instance=ExtResource("5_liu6m")]
 position = Vector2(156, -90)
-
-[node name="Player" parent="." instance=ExtResource("5_iy102")]
-unique_name_in_owner = true
-position = Vector2(161, 142)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(161, 142)
-position_smoothing_enabled = true
-script = ExtResource("4_hgpdd")
