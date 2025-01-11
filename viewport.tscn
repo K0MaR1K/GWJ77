@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://yy8eym2333dq"]
+
+[ext_resource type="Texture2D" uid="uid://dasfmobw11kc7" path="res://cursor_scope.png" id="1_3igp3"]
+[ext_resource type="PackedScene" uid="uid://lemo73ysf3lo" path="res://test_scene_2.tscn" id="1_a7ofp"]
+[ext_resource type="Shader" path="res://crt_shader.gdshader" id="2_5fug2"]
+[ext_resource type="Script" path="res://cursor.gd" id="5_i5p2v"]
+[ext_resource type="PackedScene" uid="uid://cpes88b8clwam" path="res://player/player.tscn" id="6_45b52"]
+[ext_resource type="Script" path="res://camera_2d.gd" id="6_j8yha"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i36vl"]
+shader = ExtResource("2_5fug2")
+shader_parameter/resolution = Vector2(1280, 720)
+shader_parameter/scan_line_amount = 1.0
+shader_parameter/warp_amount = 0.27
+shader_parameter/noise_amount = 0.118
+shader_parameter/interference_amount = 0.2
+shader_parameter/grille_amount = 0.1
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.714
+shader_parameter/vignette_intensity = 0.411
+shader_parameter/aberation_amount = 0.5
+shader_parameter/roll_line_amount = 0.3
+shader_parameter/roll_speed = 1.0
+shader_parameter/scan_line_strength = -4.375
+shader_parameter/pixel_strength = -2.0
+
+[node name="SubViewport" type="SubViewportContainer"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 4
+metadata/_edit_lock_ = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(320, 180)
+render_target_update_mode = 4
+
+[node name="TestScene2" parent="SubViewport" instance=ExtResource("1_a7ofp")]
+
+[node name="Player" parent="SubViewport" instance=ExtResource("6_45b52")]
+position = Vector2(161, 142)
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport"]
+position = Vector2(161, 142)
+position_smoothing_enabled = true
+script = ExtResource("6_j8yha")
+
+[node name="Cursor" type="Sprite2D" parent="SubViewport"]
+texture_filter = 1
+position = Vector2(104.45, 84.485)
+texture = ExtResource("1_3igp3")
+hframes = 4
+script = ExtResource("5_i5p2v")
+
+[node name="CRTEffect" type="ColorRect" parent="SubViewport"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_i36vl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
