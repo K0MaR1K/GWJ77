@@ -1,11 +1,15 @@
 extends Node2D
 
+const TILESET = preload("res://tileset.tres")
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var current_tileset = 0
 
+func change_tileset():	
+	TILESET.set_source_id(0, current_tileset+4)
+	TILESET.set_source_id(current_tileset+1, 0)
+	current_tileset = current_tileset+1
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		#change_tileset()
+		pass

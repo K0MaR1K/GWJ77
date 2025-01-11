@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nlv1efhe60im"
-path="res://.godot/imported/topdownpack.png-e9d9c7bea893656981f57a27f9270a44.ctex"
+uid="uid://c62l776rxg4g2"
+path="res://.godot/imported/cop_dead.png-b596c3949eca080942a9da04d5845f15.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://topdownpack.png"
-dest_files=["res://.godot/imported/topdownpack.png-e9d9c7bea893656981f57a27f9270a44.ctex"]
+source_file="res://characters/player/cop_dead.png"
+dest_files=["res://.godot/imported/cop_dead.png-b596c3949eca080942a9da04d5845f15.ctex"]
 
 [params]
 

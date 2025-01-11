@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://cus7ce23ibly1"]
+
+[ext_resource type="PackedScene" uid="uid://yy8eym2333dq" path="res://ui/CRTScreen.tscn" id="1_ph8g3"]
+[ext_resource type="PackedScene" uid="uid://lemo73ysf3lo" path="res://test_scene_2.tscn" id="3_x6273"]
+[ext_resource type="Script" path="res://ui/game_over.gd" id="4_y24bl"]
+[ext_resource type="FontFile" uid="uid://c58kiqdiy82fw" path="res://fonts/Phased.ttf" id="5_yap8j"]
+[ext_resource type="Texture2D" uid="uid://dasfmobw11kc7" path="res://ui/cursor_scope.png" id="6_4gbw4"]
+[ext_resource type="Script" path="res://ui/cursor.gd" id="7_v4k3e"]
+
+[node name="MainScene" instance=ExtResource("1_ph8g3")]
+
+[node name="TestScene2" parent="SubViewport" index="1" instance=ExtResource("3_x6273")]
+
+[node name="GameOver" type="Control" parent="SubViewport" index="2"]
+visible = false
+layout_mode = 3
+anchor_left = 0.062
+anchor_top = 0.295
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -3.05176e-05
+offset_bottom = -6.10352e-05
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+script = ExtResource("4_y24bl")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SubViewport/GameOver" index="0"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 1
+theme_override_fonts/normal_font = ExtResource("5_yap8j")
+theme_override_font_sizes/normal_font_size = 40
+text = "GAME OVER"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="SubViewport/GameOver" index="1"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.114
+anchor_top = 0.42
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 1
+theme_override_fonts/normal_font = ExtResource("5_yap8j")
+theme_override_font_sizes/normal_font_size = 12
+text = "press R to restart level"
+
+[node name="Cursor" type="Sprite2D" parent="SubViewport" index="3"]
+texture_filter = 1
+position = Vector2(104.45, 84.485)
+texture = ExtResource("6_4gbw4")
+hframes = 4
+script = ExtResource("7_v4k3e")

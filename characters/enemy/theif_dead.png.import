@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdx1ii6nq131"
-path="res://.godot/imported/Light.png-434aab4fe64b7d35096e8d62977f183c.ctex"
+uid="uid://bydb0c1ydycvl"
+path="res://.godot/imported/theif_dead.png-bd975ebcb7474216e172ca3c05e96986.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Light.png"
-dest_files=["res://.godot/imported/Light.png-434aab4fe64b7d35096e8d62977f183c.ctex"]
+source_file="res://characters/enemy/theif_dead.png"
+dest_files=["res://.godot/imported/theif_dead.png-bd975ebcb7474216e172ca3c05e96986.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bydb0c1ydycvl"
-path="res://.godot/imported/theif_dead.png-577efc402febc405523abead280b0a00.ctex"
+uid="uid://c4yaol40jbi4y"
+path="res://.godot/imported/thief.png-2f30a88d64f992579b1afcd383ef80c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/theif_dead.png"
-dest_files=["res://.godot/imported/theif_dead.png-577efc402febc405523abead280b0a00.ctex"]
+source_file="res://characters/enemy/thief.png"
+dest_files=["res://.godot/imported/thief.png-2f30a88d64f992579b1afcd383ef80c4.ctex"]
 
 [params]
 

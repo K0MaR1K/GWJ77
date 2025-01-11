@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c62l776rxg4g2"
-path="res://.godot/imported/cop_dead.png-711e0ba6f113dec54cc077114a62a8fe.ctex"
+uid="uid://bdx1ii6nq131"
+path="res://.godot/imported/Light.png-29474e2ab2154693de7e6167261b3a46.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/cop_dead.png"
-dest_files=["res://.godot/imported/cop_dead.png-711e0ba6f113dec54cc077114a62a8fe.ctex"]
+source_file="res://ui/Light.png"
+dest_files=["res://.godot/imported/Light.png-29474e2ab2154693de7e6167261b3a46.ctex"]
 
 [params]
 
