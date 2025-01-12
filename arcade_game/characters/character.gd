@@ -29,10 +29,10 @@ func _process(_delta: float) -> void:
 		velocity = direction * SPEED
 		animation_player.play("walking")
 		
+		$Legs.global_rotation = direction.angle()
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED / 10.0)
 		velocity.y = move_toward(velocity.y, 0, SPEED / 10.0)
 		animation_player.play("idle")
 
-	$Legs.global_rotation = direction.angle()
 	move_and_slide()

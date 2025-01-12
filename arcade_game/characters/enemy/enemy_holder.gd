@@ -2,10 +2,11 @@ extends Node2D
 
 signal level_clear
 
-var enemy_count:
+var enemy_count: int:
 	set(value):
+		if value < enemy_count:
+			$"..".set_enemy_count(value)
 		enemy_count = value
-		%EnemiesLeft.text = "enemies left: " + str(enemy_count)
 		
 
 func enemy_killed():

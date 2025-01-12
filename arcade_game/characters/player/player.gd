@@ -5,6 +5,7 @@ signal game_over
 
 func _ready() -> void:
 	SPEED = 100.0
+	global_position = Global.player_spawn_position
 
 func get_input():
 	return Input.get_vector("left", "right", "up", "down")
@@ -29,5 +30,5 @@ func _process(delta: float) -> void:
 	super._process(delta)
 
 
-func _on_arcade_scene_next_level(pos: Vector2) -> void:
-	global_position = pos
+func _on_arcade_scene_next_level() -> void:
+	global_position = Global.player_spawn_position

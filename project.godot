@@ -25,6 +25,18 @@ window/size/viewport_height=720
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 
+[file_customization]
+
+folder_colors={
+"res://arcade_game/": "pink",
+"res://fonts/": "yellow",
+"res://globals/": "purple",
+"res://room/": "orange",
+"res://shaders/": "blue",
+"res://sounds/": "green",
+"res://ui/": "gray"
+}
+
 [input]
 
 up={

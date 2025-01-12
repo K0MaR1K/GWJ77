@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddqh3lyrcvfji"]
+
+[ext_resource type="PackedScene" uid="uid://yy8eym2333dq" path="res://ui/CRTScreen.tscn" id="1_1vfux"]
+[ext_resource type="Texture2D" uid="uid://b0ynivbjwg1nh" path="res://ui/planet1.png" id="2_c75rk"]
+[ext_resource type="Script" path="res://planet.gd" id="3_02656"]
+
+[node name="Desktop" instance=ExtResource("1_1vfux")]
+
+[node name="Planet" type="Sprite2D" parent="SubViewport/CanvasLayer" index="0"]
+position = Vector2(152.73, 87.6)
+scale = Vector2(0.54, 0.54)
+texture = ExtResource("2_c75rk")
+hframes = 50
+vframes = 10
+frame = 185
+script = ExtResource("3_02656")
+
+[node name="Darken" type="ColorRect" parent="SubViewport/CanvasLayer" index="1"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.564706)

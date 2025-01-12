@@ -145,13 +145,8 @@ debug_color = Color(0.513808, 0.576734, 0, 0.42)
 
 [node name="PlayerEnemyLine" type="RayCast2D" parent="."]
 
-[node name="ReactionTimer" type="Timer" parent="."]
-wait_time = 0.001
-one_shot = true
-
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
 
-[connection signal="timeout" from="ReactionTimer" to="." method="_on_reaction_timer_timeout"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
