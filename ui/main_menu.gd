@@ -16,4 +16,4 @@ func _on_object_mouse_exited() -> void:
 
 
 func _on_play_button_pressed() -> void:
-	get_tree().change_scene_to_file.call_deferred("res://main_scene.tscn")
+	get_tree().change_scene_to_file.call_deferred("res://arcade_game/main_scene.tscn")

@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://cus7ce23ibly1"]
+
+[ext_resource type="PackedScene" uid="uid://yy8eym2333dq" path="res://ui/CRTScreen.tscn" id="1_5o4p1"]
+[ext_resource type="Script" path="res://ui/game_over.gd" id="2_2cmj5"]
+[ext_resource type="FontFile" uid="uid://c58kiqdiy82fw" path="res://fonts/Phased.ttf" id="3_fv0nq"]
+[ext_resource type="PackedScene" uid="uid://lemo73ysf3lo" path="res://arcade_game/arcade_scene.tscn" id="4_wg1jo"]
+[ext_resource type="PackedScene" uid="uid://cpes88b8clwam" path="res://arcade_game/characters/player/player.tscn" id="5_8tp4j"]
+[ext_resource type="Script" path="res://ui/camera_2d.gd" id="6_b107c"]
+[ext_resource type="PackedScene" uid="uid://bvfo0gqker8uq" path="res://ui/pointer.tscn" id="7_g6exb"]
+[ext_resource type="Texture2D" uid="uid://dasfmobw11kc7" path="res://ui/cursor_scope.png" id="8_kowbe"]
+
+[node name="MainScene" instance=ExtResource("1_5o4p1")]
+
+[node name="GameOver" type="Control" parent="SubViewport/CanvasLayer" index="0"]
+visible = false
+layout_mode = 3
+anchor_left = 0.062
+anchor_top = 0.295
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -3.05176e-05
+offset_bottom = -6.10352e-05
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+script = ExtResource("2_2cmj5")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SubViewport/CanvasLayer/GameOver" index="0"]
+modulate = Color(1, 0.133333, 0, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 1
+theme_override_fonts/normal_font = ExtResource("3_fv0nq")
+theme_override_font_sizes/normal_font_size = 40
+text = "GAME OVER"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="SubViewport/CanvasLayer/GameOver" index="1"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.114
+anchor_top = 0.42
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 1
+theme_override_fonts/normal_font = ExtResource("3_fv0nq")
+theme_override_font_sizes/normal_font_size = 12
+text = "press R to restart level"
+
+[node name="ArcadeScene" parent="SubViewport" index="1" instance=ExtResource("4_wg1jo")]
+
+[node name="Player" parent="SubViewport" index="2" instance=ExtResource("5_8tp4j")]
+unique_name_in_owner = true
+position = Vector2(161, 142)
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport" index="3"]
+position = Vector2(120, 120)
+position_smoothing_enabled = true
+script = ExtResource("6_b107c")
+
+[node name="Pointer" parent="SubViewport" index="4" instance=ExtResource("7_g6exb")]
+hframes = 4
+base_pointer = ExtResource("8_kowbe")
+
+[connection signal="next_level" from="SubViewport/ArcadeScene" to="SubViewport/Player" method="_on_arcade_scene_next_level"]
+[connection signal="game_over" from="SubViewport/Player" to="SubViewport/CanvasLayer/GameOver" method="_on_player_game_over"]
