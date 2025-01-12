@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciyhuv1r2wfb0"
-path="res://.godot/imported/corridor_depthmap.png-2dc7e36bc4825f48eaeb66dca2e0d36a.ctex"
+uid="uid://d0qsvlxj7kdhu"
+path="res://.godot/imported/open_drawer.jpg-a31a6a4cf0bfd1049a9e5e3fb60297ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://prototyping/corridor_depthmap.png"
-dest_files=["res://.godot/imported/corridor_depthmap.png-2dc7e36bc4825f48eaeb66dca2e0d36a.ctex"]
+source_file="res://open_drawer.jpg"
+dest_files=["res://.godot/imported/open_drawer.jpg-a31a6a4cf0bfd1049a9e5e3fb60297ec.ctex"]
 
 [params]
 

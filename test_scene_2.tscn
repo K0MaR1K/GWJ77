@@ -24,7 +24,7 @@ tile_map_data = PackedByteArray("AAABAAUAAAAHAAQAAAAGAP//AAAGAAMAAAAGAAMAAAAGAAM
 tile_set = ExtResource("1_snsc8")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.53, 0.53, 0.53, 1)
+color = Color(0.35, 0.35, 0.35, 1)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 editor_only = true
@@ -72,10 +72,8 @@ layer = 0
 [node name="LevelClear" type="Control" parent="CanvasLayer"]
 visible = false
 layout_mode = 3
-anchor_left = 0.032
-anchor_top = 0.065
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.054
+anchor_right = 0.054
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -103,6 +101,7 @@ fit_content = true
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
+anchor_bottom = 0.193
 offset_top = 69.0
 offset_right = 1280.0
 offset_bottom = 720.0

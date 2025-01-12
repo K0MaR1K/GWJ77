@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://ui/game_over.gd" id="4_y24bl"]
 [ext_resource type="FontFile" uid="uid://c58kiqdiy82fw" path="res://fonts/Phased.ttf" id="5_yap8j"]
 [ext_resource type="Texture2D" uid="uid://dasfmobw11kc7" path="res://ui/cursor_scope.png" id="6_4gbw4"]
+[ext_resource type="PackedScene" uid="uid://bvfo0gqker8uq" path="res://ui/pointer.tscn" id="7_7ej3e"]
 [ext_resource type="PackedScene" uid="uid://cpes88b8clwam" path="res://characters/player/player.tscn" id="7_cn5tc"]
-[ext_resource type="Script" path="res://ui/cursor.gd" id="7_v4k3e"]
 [ext_resource type="Script" path="res://ui/camera_2d.gd" id="8_vmqcm"]
 
 [node name="MainScene" instance=ExtResource("1_ph8g3")]
@@ -67,16 +67,13 @@ text = "press R to restart level"
 unique_name_in_owner = true
 position = Vector2(161, 142)
 
-[node name="Cursor" type="Sprite2D" parent="SubViewport" index="3"]
-texture_filter = 1
-position = Vector2(104.45, 84.485)
-texture = ExtResource("6_4gbw4")
-hframes = 4
-script = ExtResource("7_v4k3e")
-
-[node name="Camera2D" type="Camera2D" parent="SubViewport" index="4"]
+[node name="Camera2D" type="Camera2D" parent="SubViewport" index="3"]
 position = Vector2(120, 120)
 position_smoothing_enabled = true
 script = ExtResource("8_vmqcm")
+
+[node name="Pointer" parent="SubViewport" index="4" instance=ExtResource("7_7ej3e")]
+hframes = 4
+base_pointer = ExtResource("6_4gbw4")
 
 [connection signal="game_over" from="SubViewport/Player" to="SubViewport/CanvasLayer/GameOver" method="_on_player_game_over"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ovg8vw8jjdfa"
-path="res://.godot/imported/light.webp-c8b08e57dbbd59f1596d2fdb7c25bfc9.ctex"
+uid="uid://bd2oefwv1bc47"
+path="res://.godot/imported/palm.png-22385a9475bd3e0196b813dcbab1b630.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://prototyping/light.webp"
-dest_files=["res://.godot/imported/light.webp-c8b08e57dbbd59f1596d2fdb7c25bfc9.ctex"]
+source_file="res://ui/palm.png"
+dest_files=["res://.godot/imported/palm.png-22385a9475bd3e0196b813dcbab1b630.ctex"]
 
 [params]
 

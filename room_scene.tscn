@@ -1,0 +1,75 @@
+[gd_scene load_steps=13 format=3 uid="uid://dxii2akm3hgtv"]
+
+[ext_resource type="Texture2D" uid="uid://b5rd3hhmdyqew" path="res://room_maquette_v2.png" id="1_b87xb"]
+[ext_resource type="Shader" path="res://shaders/dither_screen.gdshader" id="1_edsf6"]
+[ext_resource type="Script" path="res://camera_3d.gd" id="3_qfd25"]
+[ext_resource type="Script" path="res://object_handler.gd" id="5_f00bv"]
+[ext_resource type="PackedScene" uid="uid://bvfo0gqker8uq" path="res://ui/pointer.tscn" id="5_ue8wk"]
+[ext_resource type="Texture2D" uid="uid://cyjg58erj61fs" path="res://ui/clicker.png" id="6_lp6by"]
+[ext_resource type="Texture2D" uid="uid://cqd64xmkq78py" path="res://ui/cursor.png" id="6_ry7wr"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_thjeg"]
+panorama = ExtResource("1_b87xb")
+
+[sub_resource type="Sky" id="Sky_exldh"]
+sky_material = SubResource("PanoramaSkyMaterial_thjeg")
+
+[sub_resource type="Environment" id="Environment_2maae"]
+background_mode = 2
+sky = SubResource("Sky_exldh")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7xvbu"]
+size = Vector3(1, 0.659534, 0.497491)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_306u8"]
+shader = ExtResource("1_edsf6")
+shader_parameter/quantize_size = 2.0
+shader_parameter/handle_scale = true
+shader_parameter/handle_subpixels = true
+shader_parameter/dither_enabled = true
+shader_parameter/bayer_pattern = 3.0
+shader_parameter/divisions = 8.0
+shader_parameter/contrast = 1.409
+shader_parameter/shift = -0.068
+shader_parameter/grayscale = false
+shader_parameter/use_palette = false
+
+[node name="RoomScene" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2maae")
+
+[node name="CameraHolder" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("3_qfd25")
+
+[node name="Camera3D" type="Camera3D" parent="CameraHolder"]
+current = true
+fov = 81.7
+
+[node name="ObjectHandler" type="Node3D" parent="."]
+script = ExtResource("5_f00bv")
+
+[node name="Computer" type="StaticBody3D" parent="ObjectHandler"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObjectHandler/Computer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.765988, 0.0846046)
+shape = SubResource("BoxShape3D_7xvbu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DitheringEffect" type="ColorRect" parent="CanvasLayer"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_306u8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Pointer" parent="CanvasLayer" instance=ExtResource("5_ue8wk")]
+base_pointer = ExtResource("6_ry7wr")
+select_pointer = ExtResource("6_lp6by")
+
+[connection signal="input_event" from="ObjectHandler/Computer" to="ObjectHandler" method="_on_computer_input_event"]
