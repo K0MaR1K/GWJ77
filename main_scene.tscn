@@ -27,6 +27,7 @@ size_flags_vertical = 6
 script = ExtResource("4_y24bl")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="SubViewport/CanvasLayer/GameOver" index="0"]
+modulate = Color(1, 0.133333, 0, 1)
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15

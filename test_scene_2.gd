@@ -13,3 +13,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
 		#change_tileset()
 		pass
+
+
+func _on_next_floor_area_body_entered(body: Node2D) -> void:
+	if $CanvasLayer/LevelClear.next_level_enabled:
+		get_tree().change_scene_to_file.call_deferred("res://main_scene.tscn")

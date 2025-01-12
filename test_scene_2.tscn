@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=4 uid="uid://lemo73ysf3lo"]
+[gd_scene load_steps=8 format=4 uid="uid://lemo73ysf3lo"]
 
 [ext_resource type="TileSet" uid="uid://bnsia1ygro6ev" path="res://tilesets/tileset.tres" id="1_snsc8"]
 [ext_resource type="Script" path="res://test_scene_2.gd" id="1_w10y0"]
 [ext_resource type="Script" path="res://characters/enemy/enemy_holder.gd" id="3_778h3"]
+[ext_resource type="Script" path="res://level_clear.gd" id="5_efr2d"]
 [ext_resource type="PackedScene" uid="uid://bmaikduukad0n" path="res://characters/enemy/enemy.tscn" id="5_liu6m"]
+[ext_resource type="FontFile" uid="uid://c58kiqdiy82fw" path="res://fonts/Phased.ttf" id="6_pgdwi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_akknf"]
+size = Vector2(51.5, 64)
 
 [node name="TestScene2" type="Node2D"]
 script = ExtResource("1_w10y0")
@@ -60,3 +65,91 @@ position = Vector2(256, -102)
 
 [node name="Enemy11" parent="EnemyHolder" instance=ExtResource("5_liu6m")]
 position = Vector2(156, -90)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LevelClear" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchor_left = 0.032
+anchor_top = 0.065
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+script = ExtResource("5_efr2d")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/LevelClear"]
+modulate = Color(0, 1, 0.566667, 1)
+texture_filter = 1
+layout_mode = 1
+offset_right = 1280.0
+offset_bottom = 65.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 1
+theme_override_fonts/normal_font = ExtResource("6_pgdwi")
+theme_override_font_sizes/normal_font_size = 35
+text = "Level clear"
+fit_content = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/LevelClear"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+offset_top = 69.0
+offset_right = 1280.0
+offset_bottom = 720.0
+size_flags_vertical = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 1
+theme_override_fonts/normal_font = ExtResource("6_pgdwi")
+theme_override_font_sizes/normal_font_size = 12
+text = "proceed to the next floor"
+
+[node name="EnemyCounter" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+
+[node name="EnemiesLeft" type="RichTextLabel" parent="CanvasLayer/EnemyCounter"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.65
+anchor_top = 0.9
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 1
+theme_override_fonts/normal_font = ExtResource("6_pgdwi")
+theme_override_font_sizes/normal_font_size = 8
+text = "enemies left: x"
+
+[node name="NextFloorArea" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NextFloorArea"]
+position = Vector2(314.25, 1)
+shape = SubResource("RectangleShape2D_akknf")
+
+[connection signal="level_clear" from="EnemyHolder" to="CanvasLayer/LevelClear" method="_on_enemy_holder_level_clear"]
+[connection signal="body_entered" from="NextFloorArea" to="." method="_on_next_floor_area_body_entered"]
