@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bmaikduukad0n"]
 
-[ext_resource type="Material" uid="uid://bq2mff8ncyalh" path="res://ui/lighted_only.tres" id="1_i10f6"]
+[ext_resource type="Material" uid="uid://bq2mff8ncyalh" path="res://effects/lighted_only.tres" id="1_i10f6"]
 [ext_resource type="Texture2D" uid="uid://c4yaol40jbi4y" path="res://characters/enemy/thief.png" id="1_reqgc"]
 [ext_resource type="Script" path="res://characters/enemy/enemy.gd" id="1_u4a5m"]
 [ext_resource type="Texture2D" uid="uid://bydb0c1ydycvl" path="res://characters/enemy/theif_dead.png" id="4_eeegv"]

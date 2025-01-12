@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o6vin0rolb3h"
-path="res://.godot/imported/Retro Impact Effect Pack 3 E.png-02e4541031299d0c8dfd1957e2503123.ctex"
+uid="uid://wisauy5xiyam"
+path="res://.godot/imported/blood spatter.png-6b5990d797874605efc59f7e832408e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bullet/Retro Impact Effect Pack 3 E.png"
-dest_files=["res://.godot/imported/Retro Impact Effect Pack 3 E.png-02e4541031299d0c8dfd1957e2503123.ctex"]
+source_file="res://effects/blood spatter.png"
+dest_files=["res://.godot/imported/blood spatter.png-6b5990d797874605efc59f7e832408e6.ctex"]
 
 [params]
 

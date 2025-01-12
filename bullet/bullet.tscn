@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bt57b02slos8n"]
+[gd_scene load_steps=9 format=3 uid="uid://bt57b02slos8n"]
 
 [ext_resource type="Texture2D" uid="uid://yqqkb5f0ddfy" path="res://bullet/bullet.png" id="1_76lbv"]
 [ext_resource type="Script" path="res://bullet/bullet.gd" id="1_wd2q4"]
-[ext_resource type="Texture2D" uid="uid://o6vin0rolb3h" path="res://bullet/Retro Impact Effect Pack 3 E.png" id="2_rt6d2"]
+[ext_resource type="Material" uid="uid://bq2mff8ncyalh" path="res://effects/lighted_only.tres" id="2_ah8k6"]
+[ext_resource type="Texture2D" uid="uid://o6vin0rolb3h" path="res://effects/Retro Impact Effect Pack 3 E.png" id="2_rt6d2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p7v0u"]
 custom_solver_bias = 1.0
@@ -129,6 +130,7 @@ shape = SubResource("RectangleShape2D_p7v0u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+material = ExtResource("2_ah8k6")
 texture = ExtResource("1_76lbv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

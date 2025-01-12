@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_plqsk"]
 [ext_resource type="Texture2D" uid="uid://ccny0d2p8ayku" path="res://characters/player/cop.png" id="2_t7b2t"]
-[ext_resource type="Texture2D" uid="uid://bdx1ii6nq131" path="res://ui/Light.png" id="3_55h5y"]
+[ext_resource type="Texture2D" uid="uid://bdx1ii6nq131" path="res://effects/Light.png" id="3_55h5y"]
 [ext_resource type="Texture2D" uid="uid://c62l776rxg4g2" path="res://characters/player/cop_dead.png" id="4_evlx7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_41v1l"]

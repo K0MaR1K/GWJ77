@@ -75,7 +75,7 @@ hframes = 4
 script = ExtResource("7_v4k3e")
 
 [node name="Camera2D" type="Camera2D" parent="SubViewport" index="4"]
-position = Vector2(322, 284)
+position = Vector2(120, 120)
 position_smoothing_enabled = true
 script = ExtResource("8_vmqcm")
 

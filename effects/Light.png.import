@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wisauy5xiyam"
-path="res://.godot/imported/blood spatter.png-4e8d2c5f8a96ea99dd4c3435a671c84d.ctex"
+uid="uid://bdx1ii6nq131"
+path="res://.godot/imported/Light.png-542fce7cdf3d2f44f9f69e2a505a0257.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://blood spatter.png"
-dest_files=["res://.godot/imported/blood spatter.png-4e8d2c5f8a96ea99dd4c3435a671c84d.ctex"]
+source_file="res://effects/Light.png"
+dest_files=["res://.godot/imported/Light.png-542fce7cdf3d2f44f9f69e2a505a0257.ctex"]
 
 [params]
 

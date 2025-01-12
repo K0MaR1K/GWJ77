@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdwy3gkriyhea"]
+[gd_scene load_steps=6 format=3 uid="uid://cdwy3gkriyhea"]
 
 [ext_resource type="PackedScene" uid="uid://yy8eym2333dq" path="res://ui/CRTScreen.tscn" id="1_fndsx"]
 [ext_resource type="Script" path="res://ui/main_menu.gd" id="2_4c532"]
-[ext_resource type="Script" path="res://ui/main_menu_camera.gd" id="2_x07a6"]
 [ext_resource type="Texture2D" uid="uid://b62txqqc6xpyy" path="res://ui/play_button.png" id="3_v88bk"]
 [ext_resource type="Texture2D" uid="uid://dasfmobw11kc7" path="res://ui/cursor_scope.png" id="5_aaid1"]
 [ext_resource type="Script" path="res://ui/cursor.gd" id="6_fb5eq"]
@@ -10,24 +9,38 @@
 [node name="MainMenu" instance=ExtResource("1_fndsx")]
 script = ExtResource("2_4c532")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
-layout_mode = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/CanvasLayer" index="0"]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_right = 50.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 alignment = 1
 
-[node name="PlayButton" type="TextureButton" parent="VBoxContainer" index="0"]
+[node name="PlayButton" type="TextureButton" parent="SubViewport/CanvasLayer/VBoxContainer" index="0"]
 texture_filter = 1
+custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 texture_normal = ExtResource("3_v88bk")
+stretch_mode = 4
 
-[node name="Cursor" type="Sprite2D" parent="SubViewport" index="1"]
+[node name="Cursor" type="Sprite2D" parent="SubViewport/CanvasLayer" index="1"]
+unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(104.45, 84.485)
 texture = ExtResource("5_aaid1")
 hframes = 4
 script = ExtResource("6_fb5eq")
 
-[node name="MainMenuCamera" type="Camera2D" parent="SubViewport" index="2"]
+[node name="CRTEffect" parent="SubViewport/CanvasLayer" index="2"]
+mouse_filter = 2
+
+[node name="MainMenuCamera" type="Camera2D" parent="SubViewport" index="1"]
 position = Vector2(161, 142)
 position_smoothing_enabled = true
-script = ExtResource("2_x07a6")
+
+[connection signal="pressed" from="SubViewport/CanvasLayer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
