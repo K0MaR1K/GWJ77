@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxjnqv0pd7ham"
-path="res://.godot/imported/mechanical-gears-.png-8116eedf4706e7fce45d934494395a05.ctex"
+uid="uid://kpyl4ea5khmb"
+path="res://.godot/imported/google-play.png-ecd9c90b10f5bdbaff985864944df219.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/mechanical-gears-.png"
-dest_files=["res://.godot/imported/mechanical-gears-.png-8116eedf4706e7fce45d934494395a05.ctex"]
+source_file="res://ui/google-play.png"
+dest_files=["res://.godot/imported/google-play.png-ecd9c90b10f5bdbaff985864944df219.ctex"]
 
 [params]
 

@@ -56,3 +56,9 @@ func _on_fork_input_event(event: InputEvent) -> void:
 func _on_food_stew_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if event.is_action("shoot") and not close_up:
 		Global.show_inventory()
+
+
+func _on_boombox_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if event.is_action("shoot") and not close_up:
+		$"../CanvasLayer/CloseUps/SubViewport/Boombox".show()
+		set_mouse_input(true)

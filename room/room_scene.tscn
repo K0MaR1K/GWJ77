@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://dxii2akm3hgtv"]
+[gd_scene load_steps=29 format=3 uid="uid://dxii2akm3hgtv"]
 
-[ext_resource type="Texture2D" uid="uid://b5rd3hhmdyqew" path="res://room/room_maquette_v2.png" id="1_b87xb"]
 [ext_resource type="Shader" path="res://shaders/dither_screen.gdshader" id="1_edsf6"]
+[ext_resource type="Texture2D" uid="uid://cniea1u7vuasg" path="res://room/room_01.png" id="1_f3an5"]
 [ext_resource type="Script" path="res://room/camera_3d.gd" id="3_qfd25"]
 [ext_resource type="Texture2D" uid="uid://d0qsvlxj7kdhu" path="res://room/objects/open_drawer.jpg" id="4_1avi3"]
 [ext_resource type="Script" path="res://room/object_handler.gd" id="5_f00bv"]
@@ -9,10 +9,55 @@
 [ext_resource type="PackedScene" uid="uid://bvfo0gqker8uq" path="res://ui/pointer.tscn" id="5_ue8wk"]
 [ext_resource type="Texture2D" uid="uid://cyjg58erj61fs" path="res://ui/clicker.png" id="6_lp6by"]
 [ext_resource type="Texture2D" uid="uid://cqd64xmkq78py" path="res://ui/cursor.png" id="6_ry7wr"]
+[ext_resource type="Texture2D" uid="uid://c8tf5gox5ekin" path="res://room/objects/bb_bg.png" id="7_voa4e"]
+[ext_resource type="Script" path="res://room/boombox.gd" id="8_go4y6"]
+[ext_resource type="Texture2D" uid="uid://2vbhyjspbcj2" path="res://room/objects/bb1_normal.png" id="8_r7cqd"]
+[ext_resource type="Texture2D" uid="uid://cp8bcdvdg2qne" path="res://room/objects/bb1_pressed.png" id="9_dkstd"]
+[ext_resource type="Texture2D" uid="uid://nr7sa8p1c38r" path="res://room/objects/bb2_normal.png" id="10_61gfc"]
 [ext_resource type="PackedScene" uid="uid://dhoqq10b6wh3g" path="res://room/objects/food_stew.gltf" id="10_oqlib"]
+[ext_resource type="Texture2D" uid="uid://dm8pv1g4wwemk" path="res://room/objects/bb2_pressed.png" id="11_tt0ej"]
+[ext_resource type="Texture2D" uid="uid://cqoossok6ttgn" path="res://room/objects/bb_slider.png" id="12_p2l4c"]
+
+[sub_resource type="Animation" id="Animation_hq8y4"]
+resource_name = "blink"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WorldEnvironment:environment:background_energy_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.233333, 0.266667, 0.4, 0.433333, 0.633333, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.5, 0.3, 1.0, 1.0, 0.5, 0.5, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_tmoh1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WorldEnvironment:environment:background_energy_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0a46y"]
+_data = {
+"RESET": SubResource("Animation_tmoh1"),
+"blink": SubResource("Animation_hq8y4")
+}
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_thjeg"]
-panorama = ExtResource("1_b87xb")
+panorama = ExtResource("1_f3an5")
 
 [sub_resource type="Sky" id="Sky_exldh"]
 sky_material = SubResource("PanoramaSkyMaterial_thjeg")
@@ -30,6 +75,9 @@ size = Vector3(0.122437, 1.16492, 1.09753)
 [sub_resource type="BoxShape3D" id="BoxShape3D_81cvf"]
 size = Vector3(0.882813, 0.217712, 0.887207)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ra7q"]
+size = Vector3(0.652832, 0.74231, 1.15088)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_306u8"]
 shader = ExtResource("1_edsf6")
 shader_parameter/quantize_size = 2.0
@@ -44,6 +92,12 @@ shader_parameter/grayscale = false
 shader_parameter/use_palette = false
 
 [node name="RoomScene" type="Node3D"]
+
+[node name="EnvironmentAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0a46y")
+}
+autoplay = "blink"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2maae")
@@ -71,6 +125,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.23147, -4.24503, 2.73757)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ObjectHandler/FoodStew"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0585938, 0.181366, 0.0563965)
 shape = SubResource("BoxShape3D_81cvf")
+
+[node name="Boombox" type="StaticBody3D" parent="ObjectHandler"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3277, 0, 1.3158)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObjectHandler/Boombox"]
+transform = Transform3D(0.920859, 0, -0.389896, 0, 1, 0, 0.389896, 0, 0.920859, 2.71893, -1.85978, 1.70871)
+shape = SubResource("BoxShape3D_6ra7q")
 
 [node name="CameraHolder" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -120,6 +181,73 @@ rotation = -0.434587
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_poctp")
 
+[node name="Boombox" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_voa4e")
+expand_mode = 1
+script = ExtResource("8_go4y6")
+
+[node name="TestSound" type="TextureButton" parent="CanvasLayer/CloseUps/SubViewport/Boombox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.78
+anchor_top = 0.102
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.35, 0.35)
+texture_normal = ExtResource("8_r7cqd")
+texture_pressed = ExtResource("9_dkstd")
+
+[node name="BackButton" type="TextureButton" parent="CanvasLayer/CloseUps/SubViewport/Boombox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.74
+anchor_top = 0.21
+anchor_right = 0.943
+anchor_bottom = 0.215
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.35, 0.35)
+texture_normal = ExtResource("10_61gfc")
+texture_pressed = ExtResource("11_tt0ej")
+
+[node name="MixKnob" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Boombox"]
+layout_mode = 0
+offset_left = 135.42
+offset_top = 63.0
+offset_right = 175.42
+offset_bottom = 103.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("12_p2l4c")
+expand_mode = 2
+
+[node name="SfxKnob" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Boombox"]
+layout_mode = 0
+offset_left = 192.915
+offset_top = 63.0
+offset_right = 232.915
+offset_bottom = 103.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("12_p2l4c")
+expand_mode = 2
+
+[node name="MusicKnob" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Boombox"]
+layout_mode = 0
+offset_left = 250.685
+offset_top = 63.0
+offset_right = 290.685
+offset_bottom = 103.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("12_p2l4c")
+expand_mode = 2
+
 [node name="DitheringEffect" type="ColorRect" parent="CanvasLayer"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_306u8")
@@ -135,9 +263,29 @@ metadata/_edit_use_anchors_ = true
 base_pointer = ExtResource("6_ry7wr")
 select_pointer = ExtResource("6_lp6by")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.985458, 7.42731e-09, -0.169917, 0.169917, -4.30758e-08, 0.985458, 0, -1, -4.37114e-08, 0, 0, 0)
+light_color = Color(1, 0.9, 0.7, 1)
+light_energy = 0.7
+
 [connection signal="input_event" from="ObjectHandler/Computer" to="ObjectHandler" method="_on_computer_input_event"]
 [connection signal="input_event" from="ObjectHandler/Drawer" to="ObjectHandler" method="_on_drawer_input_event"]
 [connection signal="input_event" from="ObjectHandler/FoodStew" to="ObjectHandler" method="_on_food_stew_input_event"]
+[connection signal="input_event" from="ObjectHandler/Boombox" to="ObjectHandler" method="_on_boombox_input_event"]
 [connection signal="gui_input" from="CanvasLayer/CloseUps/SubViewport/Drawer/Fork" to="ObjectHandler" method="_on_fork_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Drawer/Fork" to="ObjectHandler" method="_on_object_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Drawer/Fork" to="ObjectHandler" method="_on_object_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Boombox/TestSound" to="ObjectHandler" method="_on_object_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Boombox/TestSound" to="ObjectHandler" method="_on_object_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Boombox/BackButton" to="ObjectHandler" method="_on_object_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Boombox/BackButton" to="ObjectHandler" method="_on_object_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/CloseUps/SubViewport/Boombox/BackButton" to="CanvasLayer/CloseUps/SubViewport/Boombox" method="_on_back_button_pressed"]
+[connection signal="gui_input" from="CanvasLayer/CloseUps/SubViewport/Boombox/MixKnob" to="CanvasLayer/CloseUps/SubViewport/Boombox" method="_on_mix_knob_gui_input"]
+[connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Boombox/MixKnob" to="ObjectHandler" method="_on_object_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Boombox/MixKnob" to="ObjectHandler" method="_on_object_mouse_exited"]
+[connection signal="gui_input" from="CanvasLayer/CloseUps/SubViewport/Boombox/SfxKnob" to="CanvasLayer/CloseUps/SubViewport/Boombox" method="_on_sfx_knob_gui_input"]
+[connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Boombox/SfxKnob" to="ObjectHandler" method="_on_object_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Boombox/SfxKnob" to="ObjectHandler" method="_on_object_mouse_exited"]
+[connection signal="gui_input" from="CanvasLayer/CloseUps/SubViewport/Boombox/MusicKnob" to="CanvasLayer/CloseUps/SubViewport/Boombox" method="_on_music_knob_gui_input"]
+[connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Boombox/MusicKnob" to="ObjectHandler" method="_on_object_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Boombox/MusicKnob" to="ObjectHandler" method="_on_object_mouse_exited"]

@@ -3,12 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://yy8eym2333dq" path="res://ui/CRTScreen.tscn" id="1_fndsx"]
 [ext_resource type="Script" path="res://ui/main_menu.gd" id="2_4c532"]
 [ext_resource type="Texture2D" uid="uid://b0ynivbjwg1nh" path="res://ui/planet1.png" id="3_fgaae"]
-[ext_resource type="Texture2D" uid="uid://b62txqqc6xpyy" path="res://ui/play_button.png" id="3_v88bk"]
 [ext_resource type="PackedScene" uid="uid://bvfo0gqker8uq" path="res://ui/pointer.tscn" id="4_jk76e"]
 [ext_resource type="Script" path="res://ui/planet.gd" id="4_lk6ov"]
 [ext_resource type="Texture2D" uid="uid://cyjg58erj61fs" path="res://ui/clicker.png" id="5_8l7wa"]
+[ext_resource type="Texture2D" uid="uid://kpyl4ea5khmb" path="res://ui/google-play.png" id="5_flve0"]
 [ext_resource type="Texture2D" uid="uid://cqd64xmkq78py" path="res://ui/cursor.png" id="5_q4hgv"]
-[ext_resource type="Texture2D" uid="uid://cxjnqv0pd7ham" path="res://ui/mechanical-gears-.png" id="6_mn27v"]
+[ext_resource type="Texture2D" uid="uid://bork6co4p6jry" path="res://ui/settings.png" id="6_r4sdo"]
 
 [node name="MainMenu" instance=ExtResource("1_fndsx")]
 script = ExtResource("2_4c532")
@@ -27,7 +27,7 @@ scale = Vector2(0.54, 0.54)
 texture = ExtResource("3_fgaae")
 hframes = 50
 vframes = 10
-frame = 296
+frame = 487
 script = ExtResource("4_lk6ov")
 
 [node name="Darken" type="ColorRect" parent="SubViewport/CanvasLayer" index="2"]
@@ -38,30 +38,28 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.564706)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/CanvasLayer" index="3"]
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
+[node name="VBoxContainer" type="HBoxContainer" parent="SubViewport/CanvasLayer" index="3"]
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -50.0
-offset_right = 50.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-alignment = 1
+size_flags_horizontal = 0
 
 [node name="PlayButton" type="TextureButton" parent="SubViewport/CanvasLayer/VBoxContainer" index="0"]
 texture_filter = 1
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-texture_normal = ExtResource("3_v88bk")
+texture_normal = ExtResource("5_flve0")
 stretch_mode = 4
 
-[node name="PlayButton2" type="TextureButton" parent="SubViewport/CanvasLayer/VBoxContainer" index="1"]
+[node name="SettingsButton" type="TextureButton" parent="SubViewport/CanvasLayer/VBoxContainer" index="1"]
 texture_filter = 1
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-texture_normal = ExtResource("6_mn27v")
+texture_normal = ExtResource("6_r4sdo")
 ignore_texture_size = true
 stretch_mode = 4
 
@@ -76,4 +74,3 @@ position = Vector2(161, 142)
 position_smoothing_enabled = true
 
 [connection signal="pressed" from="SubViewport/CanvasLayer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="SubViewport/CanvasLayer/VBoxContainer/PlayButton2" to="." method="_on_play_button_pressed"]
