@@ -1,6 +1,7 @@
 extends Node2D
 
 signal next_level
+signal time_out
 
 const TILESET = preload("res://arcade_game/tilesets/tileset.tres")
 
@@ -41,3 +42,11 @@ func _on_next_floor_area_2_body_entered(_body: Node2D) -> void:
 	if $CanvasLayer/LevelClear.next_level_enabled:
 		Global.player_spawn_position = $Level3.global_position
 		next_level.emit()
+
+
+func _on_timer_time_out() -> void:
+	time_out.emit()
+
+
+func _on_player_game_over() -> void:
+	$CanvasLayer/Timer.pause = true

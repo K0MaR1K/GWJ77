@@ -26,8 +26,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 6
 script = ExtResource("2_2cmj5")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="SubViewport/CanvasLayer/GameOver" index="0"]
-modulate = Color(1, 0.133333, 0, 1)
+[node name="GameOverText" type="RichTextLabel" parent="SubViewport/CanvasLayer/GameOver" index="0"]
+self_modulate = Color(1, 0.133333, 0, 1)
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -43,7 +43,43 @@ theme_override_fonts/normal_font = ExtResource("3_fv0nq")
 theme_override_font_sizes/normal_font_size = 40
 text = "GAME OVER"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="SubViewport/CanvasLayer/GameOver" index="1"]
+[node name="TimeOutText" type="RichTextLabel" parent="SubViewport/CanvasLayer/GameOver/GameOverText" index="1"]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.137
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 1
+theme_override_fonts/normal_font = ExtResource("3_fv0nq")
+theme_override_font_sizes/normal_font_size = 12
+text = "your time has run out!"
+
+[node name="YouDiedText" type="RichTextLabel" parent="SubViewport/CanvasLayer/GameOver/GameOverText" index="2"]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.33
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 1
+theme_override_fonts/normal_font = ExtResource("3_fv0nq")
+theme_override_font_sizes/normal_font_size = 12
+text = "you died!"
+
+[node name="RestartText" type="RichTextLabel" parent="SubViewport/CanvasLayer/GameOver" index="1"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -77,4 +113,7 @@ hframes = 4
 base_pointer = ExtResource("8_kowbe")
 
 [connection signal="next_level" from="SubViewport/ArcadeScene" to="SubViewport/Player" method="_on_arcade_scene_next_level"]
+[connection signal="time_out" from="SubViewport/ArcadeScene" to="SubViewport/CanvasLayer/GameOver" method="_on_arcade_scene_time_out"]
+[connection signal="time_out" from="SubViewport/ArcadeScene" to="SubViewport/Player" method="_on_arcade_scene_time_out"]
 [connection signal="game_over" from="SubViewport/Player" to="SubViewport/CanvasLayer/GameOver" method="_on_player_game_over"]
+[connection signal="game_over" from="SubViewport/Player" to="SubViewport/ArcadeScene" method="_on_player_game_over"]

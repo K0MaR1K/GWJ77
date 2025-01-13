@@ -6,7 +6,7 @@ var next_level_enabled := false
 
 func _process(_delta: float) -> void:
 	if Engine.get_process_frames() % 50 == 0:
-		$RichTextLabel.visible = not $RichTextLabel.visible
+		$LevelClearText.visible = not $LevelClearText.visible
 
 func _on_enemy_holder_level_clear() -> void:
 	show()

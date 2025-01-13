@@ -10,9 +10,15 @@ func _input(event: InputEvent) -> void:
 
 func _process(_delta: float) -> void:
 	if Engine.get_process_frames() % 50 == 0:
-		$RichTextLabel.visible = not $RichTextLabel.visible
+		$GameOverText.visible = not $GameOverText.visible
 
 
 func _on_player_game_over() -> void:
 	restart_enabled = true
 	show()
+	$GameOverText/YouDiedText.show()
+
+func _on_arcade_scene_time_out() -> void:
+	restart_enabled = true
+	show()
+	$GameOverText/TimeOutText.show()

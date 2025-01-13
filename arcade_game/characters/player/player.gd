@@ -32,3 +32,7 @@ func _process(delta: float) -> void:
 
 func _on_arcade_scene_next_level() -> void:
 	global_position = Global.player_spawn_position
+
+
+func _on_arcade_scene_time_out() -> void:
+	super.kill(Vector2.ZERO)
