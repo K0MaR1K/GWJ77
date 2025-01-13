@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://yy8eym2333dq" path="res://ui/CRTScreen.tscn" id="1_1vfux"]
 [ext_resource type="Texture2D" uid="uid://b0ynivbjwg1nh" path="res://ui/planet1.png" id="2_c75rk"]
-[ext_resource type="Script" path="res://planet.gd" id="3_02656"]
+[ext_resource type="Script" path="res://ui/planet.gd" id="3_02656"]
 
 [node name="Desktop" instance=ExtResource("1_1vfux")]
 
@@ -12,7 +12,7 @@ scale = Vector2(0.54, 0.54)
 texture = ExtResource("2_c75rk")
 hframes = 50
 vframes = 10
-frame = 185
+frame = 94
 script = ExtResource("3_02656")
 
 [node name="Darken" type="ColorRect" parent="SubViewport/CanvasLayer" index="1"]

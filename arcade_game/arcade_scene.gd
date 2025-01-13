@@ -31,9 +31,12 @@ func set_enemy_count(enemy_count: int):
 	%EnemiesLeft.text = "enemies left: " + str(enemy_count)
 
 func _on_next_floor_area_body_entered(_body: Node2D) -> void:
-	Global.player_spawn_position = $Level2.global_position
-	next_level.emit()
-	set_enemy_count.call_deferred($EnemyHolder2.enemy_count)
+	if $CanvasLayer/LevelClear.next_level_enabled:
+		Global.player_spawn_position = $Level2.global_position
+		next_level.emit()
+		set_enemy_count.call_deferred($EnemyHolder2.enemy_count)
 
 func _on_next_floor_area_2_body_entered(_body: Node2D) -> void:
-	next_level.emit($Level3.global_position)
+	if $CanvasLayer/LevelClear.next_level_enabled:
+		Global.player_spawn_position = $Level3.global_position
+		next_level.emit()

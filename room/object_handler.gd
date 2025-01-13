@@ -23,7 +23,7 @@ func set_mouse_input(close_up: bool):
 
 func _on_object_mouse_entered() -> void:
 	pointer.set_select_pointer()
-
+	
 func _on_object_mouse_exited() -> void:
 	pointer.set_base_pointer()
 
@@ -32,6 +32,9 @@ func _input(event: InputEvent) -> void:
 		set_mouse_input(false)
 		for child in sub_viewport.get_children():
 			child.hide()
+			
+	if close_up:
+		sub_viewport.push_input(event)
 
 func _on_computer_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event.is_action("shoot") and not close_up:
@@ -42,3 +45,14 @@ func _on_drawer_input_event(_camera: Node, event: InputEvent, _event_position: V
 	if event.is_action("shoot") and not close_up:
 		$"../CanvasLayer/CloseUps/SubViewport/Drawer".show()
 		set_mouse_input(true)
+
+
+func _on_fork_input_event(event: InputEvent) -> void:
+	if event.is_action("shoot") and close_up:
+		$"../CanvasLayer/CloseUps/SubViewport/Drawer/Fork".hide()
+		Global.add_to_inventory(preload("res://resources/fork/fork.tres"))
+
+
+func _on_food_stew_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if event.is_action("shoot") and not close_up:
+		Global.show_inventory()

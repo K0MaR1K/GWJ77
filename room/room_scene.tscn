@@ -1,13 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://dxii2akm3hgtv"]
+[gd_scene load_steps=18 format=3 uid="uid://dxii2akm3hgtv"]
 
 [ext_resource type="Texture2D" uid="uid://b5rd3hhmdyqew" path="res://room/room_maquette_v2.png" id="1_b87xb"]
 [ext_resource type="Shader" path="res://shaders/dither_screen.gdshader" id="1_edsf6"]
 [ext_resource type="Script" path="res://room/camera_3d.gd" id="3_qfd25"]
-[ext_resource type="Texture2D" uid="uid://d0qsvlxj7kdhu" path="res://room/open_drawer.jpg" id="4_1avi3"]
+[ext_resource type="Texture2D" uid="uid://d0qsvlxj7kdhu" path="res://room/objects/open_drawer.jpg" id="4_1avi3"]
 [ext_resource type="Script" path="res://room/object_handler.gd" id="5_f00bv"]
+[ext_resource type="Texture2D" uid="uid://bxa6wwuddb31b" path="res://resources/fork/fork.png" id="5_poctp"]
 [ext_resource type="PackedScene" uid="uid://bvfo0gqker8uq" path="res://ui/pointer.tscn" id="5_ue8wk"]
 [ext_resource type="Texture2D" uid="uid://cyjg58erj61fs" path="res://ui/clicker.png" id="6_lp6by"]
 [ext_resource type="Texture2D" uid="uid://cqd64xmkq78py" path="res://ui/cursor.png" id="6_ry7wr"]
+[ext_resource type="PackedScene" uid="uid://dhoqq10b6wh3g" path="res://room/objects/food_stew.gltf" id="10_oqlib"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_thjeg"]
 panorama = ExtResource("1_b87xb")
@@ -24,6 +26,9 @@ size = Vector3(1, 0.659534, 0.497491)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h1223"]
 size = Vector3(0.122437, 1.16492, 1.09753)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_81cvf"]
+size = Vector3(0.882813, 0.217712, 0.887207)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_306u8"]
 shader = ExtResource("1_edsf6")
@@ -43,14 +48,6 @@ shader_parameter/use_palette = false
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2maae")
 
-[node name="CameraHolder" type="Node3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-script = ExtResource("3_qfd25")
-
-[node name="Camera3D" type="Camera3D" parent="CameraHolder"]
-current = true
-fov = 81.7
-
 [node name="ObjectHandler" type="Node3D" parent="."]
 script = ExtResource("5_f00bv")
 
@@ -66,7 +63,25 @@ shape = SubResource("BoxShape3D_7xvbu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86838, -2.90576, 1.32593)
 shape = SubResource("BoxShape3D_h1223")
 
+[node name="FoodStew" type="StaticBody3D" parent="ObjectHandler"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.23147, -4.24503, 2.73757)
+
+[node name="food_stew2" parent="ObjectHandler/FoodStew" instance=ExtResource("10_oqlib")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObjectHandler/FoodStew"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0585938, 0.181366, 0.0563965)
+shape = SubResource("BoxShape3D_81cvf")
+
+[node name="CameraHolder" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("3_qfd25")
+
+[node name="Camera3D" type="Camera3D" parent="CameraHolder"]
+current = true
+fov = 81.7
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
 
 [node name="CloseUps" type="SubViewportContainer" parent="CanvasLayer"]
 anchors_preset = 15
@@ -75,11 +90,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
+stretch_shrink = 2
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/CloseUps"]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(1280, 720)
+size = Vector2i(640, 360)
 render_target_update_mode = 4
 
 [node name="Drawer" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport"]
@@ -89,8 +105,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 texture = ExtResource("4_1avi3")
 expand_mode = 1
+
+[node name="Fork" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Drawer"]
+modulate = Color(0.73, 0.663813, 0.6059, 1)
+layout_mode = 0
+offset_left = 168.807
+offset_top = 42.622
+offset_right = 3599.81
+offset_bottom = 978.622
+rotation = -0.434587
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("5_poctp")
 
 [node name="DitheringEffect" type="ColorRect" parent="CanvasLayer"]
 texture_filter = 1
@@ -101,6 +129,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Pointer" parent="CanvasLayer" instance=ExtResource("5_ue8wk")]
 base_pointer = ExtResource("6_ry7wr")
@@ -108,3 +137,7 @@ select_pointer = ExtResource("6_lp6by")
 
 [connection signal="input_event" from="ObjectHandler/Computer" to="ObjectHandler" method="_on_computer_input_event"]
 [connection signal="input_event" from="ObjectHandler/Drawer" to="ObjectHandler" method="_on_drawer_input_event"]
+[connection signal="input_event" from="ObjectHandler/FoodStew" to="ObjectHandler" method="_on_food_stew_input_event"]
+[connection signal="gui_input" from="CanvasLayer/CloseUps/SubViewport/Drawer/Fork" to="ObjectHandler" method="_on_fork_input_event"]
+[connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Drawer/Fork" to="ObjectHandler" method="_on_object_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Drawer/Fork" to="ObjectHandler" method="_on_object_mouse_exited"]
