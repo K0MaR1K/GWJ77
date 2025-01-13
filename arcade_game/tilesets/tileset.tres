@@ -1,6 +1,7 @@
 [gd_resource type="TileSet" load_steps=28 format=3 uid="uid://bnsia1ygro6ev"]
 
 [ext_resource type="Texture2D" uid="uid://bwcobfw1jf4po" path="res://arcade_game/tilesets/tileset_blue.png" id="1_3vvd1"]
+[ext_resource type="Texture2D" uid="uid://np7jexyoiqa8" path="res://arcade_game/tilesets/tileset_pink.png" id="1_s2850"]
 [ext_resource type="Texture2D" uid="uid://cxmf74dkxbpue" path="res://arcade_game/tilesets/tileset_green.png" id="2_vq2ul"]
 [ext_resource type="Texture2D" uid="uid://bc0h18m8ut4yx" path="res://arcade_game/tilesets/tileset_brown.png" id="3_uwh8q"]
 
@@ -61,11 +62,8 @@ polygon = PackedVector2Array(8, -2.66667, 8, -8, -8, -8, -8, -2.66667)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hvh46"]
 polygon = PackedVector2Array(8, -8, 2.66667, -8, 2.66667, 8, 8, 8)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_upj8y"]
-load_path = "res://.godot/imported/tileset_pink.png-25baa7fbc209321ce1cca420d4458f23.ctex"
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_20t0v"]
-texture = SubResource("CompressedTexture2D_upj8y")
+texture = ExtResource("1_s2850")
 0:0/0 = 0
 0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_4eqbq")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)

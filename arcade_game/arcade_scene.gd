@@ -25,6 +25,7 @@ func change_tileset(tileset: int = -1):
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
+		return
 		change_tileset()
 		
 func set_enemy_count(enemy_count: int):
