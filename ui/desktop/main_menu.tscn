@@ -1,30 +1,37 @@
-[gd_scene load_steps=12 format=3 uid="uid://cdwy3gkriyhea"]
+[gd_scene load_steps=13 format=3 uid="uid://cdwy3gkriyhea"]
 
 [ext_resource type="PackedScene" uid="uid://yy8eym2333dq" path="res://ui/CRTScreen.tscn" id="1_fndsx"]
-[ext_resource type="Script" path="res://ui/main_menu.gd" id="2_4c532"]
-[ext_resource type="Texture2D" uid="uid://b0ynivbjwg1nh" path="res://ui/planet1.png" id="3_fgaae"]
-[ext_resource type="PackedScene" uid="uid://bvfo0gqker8uq" path="res://ui/pointer.tscn" id="4_jk76e"]
-[ext_resource type="Script" path="res://ui/planet.gd" id="4_lk6ov"]
-[ext_resource type="Texture2D" uid="uid://cyjg58erj61fs" path="res://ui/clicker.png" id="5_8l7wa"]
-[ext_resource type="Texture2D" uid="uid://kpyl4ea5khmb" path="res://ui/google-play.png" id="5_flve0"]
-[ext_resource type="Texture2D" uid="uid://cqd64xmkq78py" path="res://ui/cursor.png" id="5_q4hgv"]
-[ext_resource type="Texture2D" uid="uid://bork6co4p6jry" path="res://ui/settings.png" id="6_r4sdo"]
-[ext_resource type="Texture2D" uid="uid://bcgkk2t4ds1no" path="res://ui/power-on.png" id="7_mc13p"]
-[ext_resource type="PackedScene" uid="uid://bxdjihgaivdm6" path="res://ui/loading_screen.tscn" id="11_2h8ch"]
+[ext_resource type="Script" path="res://ui/desktop/main_menu.gd" id="2_4c532"]
+[ext_resource type="Texture2D" uid="uid://b0ynivbjwg1nh" path="res://ui/desktop/planet1.png" id="3_fgaae"]
+[ext_resource type="Texture2D" uid="uid://coihnxtjlb2g0" path="res://ui/desktop/stars.jpg" id="3_j6gwp"]
+[ext_resource type="PackedScene" uid="uid://bvfo0gqker8uq" path="res://ui/cursor/pointer.tscn" id="4_jk76e"]
+[ext_resource type="Script" path="res://ui/desktop/planet.gd" id="4_lk6ov"]
+[ext_resource type="Texture2D" uid="uid://cyjg58erj61fs" path="res://ui/cursor/clicker.png" id="5_8l7wa"]
+[ext_resource type="Texture2D" uid="uid://kpyl4ea5khmb" path="res://ui/desktop/google-play.png" id="5_flve0"]
+[ext_resource type="Texture2D" uid="uid://cqd64xmkq78py" path="res://ui/cursor/cursor.png" id="5_q4hgv"]
+[ext_resource type="Texture2D" uid="uid://bork6co4p6jry" path="res://ui/desktop/settings.png" id="6_r4sdo"]
+[ext_resource type="Texture2D" uid="uid://bcgkk2t4ds1no" path="res://ui/desktop/power-on.png" id="7_mc13p"]
+[ext_resource type="PackedScene" uid="uid://bxdjihgaivdm6" path="res://ui/desktop/loading_screen.tscn" id="11_2h8ch"]
 
 [node name="MainMenu" instance=ExtResource("1_fndsx")]
 script = ExtResource("2_4c532")
 
-[node name="Planet" type="Sprite2D" parent="SubViewport/CanvasLayer" index="0"]
+[node name="Stars" type="TextureRect" parent="SubViewport/CanvasLayer" index="0"]
+modulate = Color(0.36, 0.36, 0.36, 1)
+offset_right = 622.0
+offset_bottom = 360.0
+texture = ExtResource("3_j6gwp")
+
+[node name="Planet" type="Sprite2D" parent="SubViewport/CanvasLayer" index="1"]
 position = Vector2(152.73, 87.6)
 scale = Vector2(0.54, 0.54)
 texture = ExtResource("3_fgaae")
 hframes = 50
 vframes = 10
-frame = 275
+frame = 354
 script = ExtResource("4_lk6ov")
 
-[node name="Darken" type="ColorRect" parent="SubViewport/CanvasLayer" index="1"]
+[node name="Darken" type="ColorRect" parent="SubViewport/CanvasLayer" index="2"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -32,7 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.564706)
 
-[node name="VBoxContainer" type="HBoxContainer" parent="SubViewport/CanvasLayer" index="2"]
+[node name="VBoxContainer" type="HBoxContainer" parent="SubViewport/CanvasLayer" index="3"]
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 30.0
@@ -58,7 +65,7 @@ texture_normal = ExtResource("6_r4sdo")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="PowerButton" type="TextureButton" parent="SubViewport/CanvasLayer" index="3"]
+[node name="PowerButton" type="TextureButton" parent="SubViewport/CanvasLayer" index="4"]
 texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 anchors_preset = 3
@@ -74,9 +81,9 @@ texture_normal = ExtResource("7_mc13p")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="LoadingScreen" parent="SubViewport/CanvasLayer" index="4" instance=ExtResource("11_2h8ch")]
+[node name="LoadingScreen" parent="SubViewport/CanvasLayer" index="5" instance=ExtResource("11_2h8ch")]
 
-[node name="Pointer" parent="SubViewport/CanvasLayer" index="5" instance=ExtResource("4_jk76e")]
+[node name="Pointer" parent="SubViewport/CanvasLayer" index="6" instance=ExtResource("4_jk76e")]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_q4hgv")
 base_pointer = ExtResource("5_q4hgv")

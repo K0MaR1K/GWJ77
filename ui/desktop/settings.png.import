@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyjg58erj61fs"
-path="res://.godot/imported/clicker.png-1f83bc7a820eaa0a5fa7adbd2fdb3df8.ctex"
+uid="uid://bork6co4p6jry"
+path="res://.godot/imported/settings.png-c71ed626c35e83df76e74b333203f1ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/clicker.png"
-dest_files=["res://.godot/imported/clicker.png-1f83bc7a820eaa0a5fa7adbd2fdb3df8.ctex"]
+source_file="res://ui/desktop/settings.png"
+dest_files=["res://.godot/imported/settings.png-c71ed626c35e83df76e74b333203f1ec.ctex"]
 
 [params]
 

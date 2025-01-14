@@ -18,6 +18,7 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 
 Global="*res://globals/global.tscn"
 PhaseManager="*res://globals/phase_manager.gd"
+GlobalSpeech="*res://globals/global_speech.tscn"
 
 [display]
 

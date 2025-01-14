@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bydb0c1ydycvl"
-path="res://.godot/imported/theif_dead.png-5c70e413050d6df32f269d313c3c94b1.ctex"
+path="res://.godot/imported/human_dead.png-3e52f3749eeee585fa51a408bea1f4bb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://arcade_game/characters/enemy/theif_dead.png"
-dest_files=["res://.godot/imported/theif_dead.png-5c70e413050d6df32f269d313c3c94b1.ctex"]
+source_file="res://arcade_game/characters/enemy/human_dead.png"
+dest_files=["res://.godot/imported/human_dead.png-3e52f3749eeee585fa51a408bea1f4bb.ctex"]
 
 [params]
 

@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://bmaikduukad0n"]
 
 [ext_resource type="Material" uid="uid://bq2mff8ncyalh" path="res://arcade_game/effects/lighted_only.tres" id="1_i10f6"]
-[ext_resource type="Texture2D" uid="uid://c4yaol40jbi4y" path="res://arcade_game/characters/enemy/thief.png" id="1_reqgc"]
 [ext_resource type="Script" path="res://arcade_game/characters/enemy/enemy.gd" id="1_u4a5m"]
-[ext_resource type="Texture2D" uid="uid://bydb0c1ydycvl" path="res://arcade_game/characters/enemy/theif_dead.png" id="4_eeegv"]
+[ext_resource type="Texture2D" uid="uid://ct5t8nfdc7bif" path="res://arcade_game/characters/enemy/dummy.png" id="3_lo5c3"]
+[ext_resource type="Texture2D" uid="uid://brr2t7f8vy2i8" path="res://arcade_game/characters/enemy/dummy_corpse.png" id="4_hd0ty"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5hmw0"]
 radius = 5.0
@@ -112,7 +112,7 @@ shape = SubResource("CircleShape2D_5hmw0")
 [node name="Legs" type="Sprite2D" parent="."]
 texture_filter = 1
 material = ExtResource("1_i10f6")
-texture = ExtResource("1_reqgc")
+texture = ExtResource("3_lo5c3")
 hframes = 3
 vframes = 5
 frame = 2
@@ -120,20 +120,20 @@ frame = 2
 [node name="Torso" type="Sprite2D" parent="."]
 texture_filter = 1
 material = ExtResource("1_i10f6")
-texture = ExtResource("1_reqgc")
+texture = ExtResource("3_lo5c3")
 hframes = 3
 vframes = 5
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_n1ga6")
-}
 
 [node name="DeathSprite" type="Sprite2D" parent="."]
 visible = false
 texture_filter = 1
 material = ExtResource("1_i10f6")
-texture = ExtResource("4_eeegv")
+texture = ExtResource("4_hd0ty")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_n1ga6")
+}
 
 [node name="VisibilityZone" type="Area2D" parent="."]
 collision_layer = 16

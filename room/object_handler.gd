@@ -1,5 +1,7 @@
 extends Node3D
 
+signal update_items
+
 @onready var pointer: Pointer = $"../CanvasLayer/Pointer"
 @onready var sub_viewport: SubViewport = $"../CanvasLayer/CloseUps/SubViewport"
 @onready var close_ups: SubViewportContainer = $"../CanvasLayer/CloseUps"
@@ -39,7 +41,10 @@ func _input(event: InputEvent) -> void:
 
 func _on_computer_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event.is_action("shoot") and not close_up:
-		get_tree().change_scene_to_file.call_deferred("res://ui/main_menu.tscn")
+		if PhaseManager.can_play_game:
+			PhaseManager.next_phase()
+		else:
+			get_tree().change_scene_to_file.call_deferred("res://ui/main_menu.tscn")
 
 
 func _on_drawer_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
@@ -50,16 +55,24 @@ func _on_drawer_input_event(_camera: Node, event: InputEvent, _event_position: V
 
 func _on_fork_input_event(event: InputEvent) -> void:
 	if event.is_action("shoot") and close_up:
-		$"../CanvasLayer/CloseUps/SubViewport/Drawer/Fork".hide()
+		PhaseManager.fork_drawer = false
+		update_items.emit()
 		Global.add_to_inventory(preload("res://resources/fork/fork.tres"))
 
 
-func _on_food_stew_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+func _on_food_stew_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event.is_action("shoot") and not close_up:
 		Global.show_inventory()
 
 
-func _on_boombox_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+func _on_boombox_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event.is_action("shoot") and not close_up:
 		$"../CanvasLayer/CloseUps/SubViewport/Boombox".show()
 		set_mouse_input(true)
+
+
+func _on_door_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	if event.is_action("shoot") and not close_up:
+		if PhaseManager.mother_at_door:
+			PhaseManager.next_phase()
+			update_items.emit()

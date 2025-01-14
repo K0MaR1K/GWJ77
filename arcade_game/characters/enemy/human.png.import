@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bd2oefwv1bc47"
-path="res://.godot/imported/palm.png-22385a9475bd3e0196b813dcbab1b630.ctex"
+uid="uid://c4yaol40jbi4y"
+path="res://.godot/imported/human.png-a0667643a418bb657c8399ffa102811f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/palm.png"
-dest_files=["res://.godot/imported/palm.png-22385a9475bd3e0196b813dcbab1b630.ctex"]
+source_file="res://arcade_game/characters/enemy/human.png"
+dest_files=["res://.godot/imported/human.png-a0667643a418bb657c8399ffa102811f.ctex"]
 
 [params]
 

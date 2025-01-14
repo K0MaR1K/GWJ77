@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dasfmobw11kc7"
-path="res://.godot/imported/cursor_scope.png-7f6da31e48a3714259f1ca5347385dc7.ctex"
+uid="uid://brr2t7f8vy2i8"
+path="res://.godot/imported/dummy_corpse.png-cb9ee9f62a9c7a506c160a377247f877.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/cursor_scope.png"
-dest_files=["res://.godot/imported/cursor_scope.png-7f6da31e48a3714259f1ca5347385dc7.ctex"]
+source_file="res://arcade_game/characters/enemy/dummy_corpse.png"
+dest_files=["res://.godot/imported/dummy_corpse.png-cb9ee9f62a9c7a506c160a377247f877.ctex"]
 
 [params]
 

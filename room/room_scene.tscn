@@ -1,14 +1,15 @@
-[gd_scene load_steps=29 format=3 uid="uid://dxii2akm3hgtv"]
+[gd_scene load_steps=32 format=3 uid="uid://dxii2akm3hgtv"]
 
+[ext_resource type="Script" path="res://room/object_spawner.gd" id="1_6qrsc"]
 [ext_resource type="Shader" path="res://shaders/dither_screen.gdshader" id="1_edsf6"]
 [ext_resource type="Texture2D" uid="uid://cniea1u7vuasg" path="res://room/room_01.png" id="1_f3an5"]
 [ext_resource type="Script" path="res://room/camera_3d.gd" id="3_qfd25"]
 [ext_resource type="Texture2D" uid="uid://d0qsvlxj7kdhu" path="res://room/objects/open_drawer.jpg" id="4_1avi3"]
 [ext_resource type="Script" path="res://room/object_handler.gd" id="5_f00bv"]
 [ext_resource type="Texture2D" uid="uid://bxa6wwuddb31b" path="res://resources/fork/fork.png" id="5_poctp"]
-[ext_resource type="PackedScene" uid="uid://bvfo0gqker8uq" path="res://ui/pointer.tscn" id="5_ue8wk"]
-[ext_resource type="Texture2D" uid="uid://cyjg58erj61fs" path="res://ui/clicker.png" id="6_lp6by"]
-[ext_resource type="Texture2D" uid="uid://cqd64xmkq78py" path="res://ui/cursor.png" id="6_ry7wr"]
+[ext_resource type="PackedScene" uid="uid://bvfo0gqker8uq" path="res://ui/cursor/pointer.tscn" id="5_ue8wk"]
+[ext_resource type="Texture2D" uid="uid://cyjg58erj61fs" path="res://ui/cursor/clicker.png" id="6_lp6by"]
+[ext_resource type="Texture2D" uid="uid://cqd64xmkq78py" path="res://ui/cursor/cursor.png" id="6_ry7wr"]
 [ext_resource type="Texture2D" uid="uid://c8tf5gox5ekin" path="res://room/objects/bb_bg.png" id="7_voa4e"]
 [ext_resource type="Script" path="res://room/objects/boombox.gd" id="8_go4y6"]
 [ext_resource type="Texture2D" uid="uid://2vbhyjspbcj2" path="res://room/objects/bb1_normal.png" id="8_r7cqd"]
@@ -102,6 +103,12 @@ size = Vector3(0.882813, 0.217712, 0.887207)
 [sub_resource type="BoxShape3D" id="BoxShape3D_6ra7q"]
 size = Vector3(0.652832, 0.74231, 1.15088)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_qvvon"]
+size = Vector3(0.32666, 4.65875, 1.73633)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0nbse"]
+size = Vector3(0.32666, 4.65875, 2.35498)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_306u8"]
 shader = ExtResource("1_edsf6")
 shader_parameter/quantize_size = 2.0
@@ -116,6 +123,7 @@ shader_parameter/grayscale = false
 shader_parameter/use_palette = false
 
 [node name="RoomScene" type="Node3D"]
+script = ExtResource("1_6qrsc")
 
 [node name="EnvironmentAnimator" type="AnimationPlayer" parent="."]
 libraries = {
@@ -156,6 +164,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3277, 0, 1.3158)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ObjectHandler/Boombox"]
 transform = Transform3D(0.920859, 0, -0.389896, 0, 1, 0, 0.389896, 0, 0.920859, 2.71893, -1.85978, 1.70871)
 shape = SubResource("BoxShape3D_6ra7q")
+
+[node name="Door" type="StaticBody3D" parent="ObjectHandler"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObjectHandler/Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.33667, -1.53201, 0.689682)
+shape = SubResource("BoxShape3D_qvvon")
+
+[node name="BookShelf" type="StaticBody3D" parent="ObjectHandler"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObjectHandler/BookShelf"]
+transform = Transform3D(0.000750437, 0, 1, 0, 1, 0, -1, 0, 0.000750437, 1.35983, -1.53201, 2.81765)
+shape = SubResource("BoxShape3D_0nbse")
 
 [node name="CameraHolder" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -302,10 +324,12 @@ transform = Transform3D(0.985458, 7.42731e-09, -0.169917, 0.169917, -4.30758e-08
 light_color = Color(1, 0.9, 0.7, 1)
 light_energy = 0.7
 
+[connection signal="update_items" from="ObjectHandler" to="." method="update"]
 [connection signal="input_event" from="ObjectHandler/Computer" to="ObjectHandler" method="_on_computer_input_event"]
 [connection signal="input_event" from="ObjectHandler/Drawer" to="ObjectHandler" method="_on_drawer_input_event"]
 [connection signal="input_event" from="ObjectHandler/FoodStew" to="ObjectHandler" method="_on_food_stew_input_event"]
 [connection signal="input_event" from="ObjectHandler/Boombox" to="ObjectHandler" method="_on_boombox_input_event"]
+[connection signal="input_event" from="ObjectHandler/Door" to="ObjectHandler" method="_on_door_input_event"]
 [connection signal="gui_input" from="CanvasLayer/CloseUps/SubViewport/Drawer/Fork" to="ObjectHandler" method="_on_fork_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Drawer/Fork" to="ObjectHandler" method="_on_object_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Drawer/Fork" to="ObjectHandler" method="_on_object_mouse_exited"]

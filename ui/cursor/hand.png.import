@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4yaol40jbi4y"
-path="res://.godot/imported/thief.png-72c63735e1302157e7ad0f55ac0c8103.ctex"
+uid="uid://cb82de5kp5nlv"
+path="res://.godot/imported/hand.png-2e80c3a236dda0cd2a32d864b8304ff8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://arcade_game/characters/enemy/thief.png"
-dest_files=["res://.godot/imported/thief.png-72c63735e1302157e7ad0f55ac0c8103.ctex"]
+source_file="res://ui/cursor/hand.png"
+dest_files=["res://.godot/imported/hand.png-2e80c3a236dda0cd2a32d864b8304ff8.ctex"]
 
 [params]
 

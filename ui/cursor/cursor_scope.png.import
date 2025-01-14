@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcgkk2t4ds1no"
-path="res://.godot/imported/power-on.png-d885e697e3e10fededd5944339b0a99d.ctex"
+uid="uid://dasfmobw11kc7"
+path="res://.godot/imported/cursor_scope.png-40e4076fce5066d31010a0f62ecb58e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/power-on.png"
-dest_files=["res://.godot/imported/power-on.png-d885e697e3e10fededd5944339b0a99d.ctex"]
+source_file="res://ui/cursor/cursor_scope.png"
+dest_files=["res://.godot/imported/cursor_scope.png-40e4076fce5066d31010a0f62ecb58e5.ctex"]
 
 [params]
 

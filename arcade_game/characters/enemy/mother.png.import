@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kpyl4ea5khmb"
-path="res://.godot/imported/google-play.png-ecd9c90b10f5bdbaff985864944df219.ctex"
+uid="uid://brv68ifp3nr5f"
+path="res://.godot/imported/mother.png-700451fd8b48ebb713d3a73bf9472a16.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/google-play.png"
-dest_files=["res://.godot/imported/google-play.png-ecd9c90b10f5bdbaff985864944df219.ctex"]
+source_file="res://arcade_game/characters/enemy/mother.png"
+dest_files=["res://.godot/imported/mother.png-700451fd8b48ebb713d3a73bf9472a16.ctex"]
 
 [params]
 

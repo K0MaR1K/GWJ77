@@ -34,15 +34,22 @@ func set_enemy_count(enemy_count: int):
 
 func _on_next_floor_area_body_entered(_body: Node2D) -> void:
 	if $CanvasLayer/LevelClear.next_level_enabled:
-		Global.player_spawn_position = $Level2.global_position
-		next_level.emit()
-		set_enemy_count.call_deferred($EnemyHolder2.enemy_count)
+		if PhaseManager.level2:
+			Global.player_spawn_position = $Level2.global_position
+			next_level.emit()
+			set_enemy_count.call_deferred($EnemyHolder2.enemy_count)
+		else:
+			PhaseManager.next_phase()
+			Global.reset_spawn_position()
 
 func _on_next_floor_area_2_body_entered(_body: Node2D) -> void:
 	if $CanvasLayer/LevelClear.next_level_enabled:
-		Global.player_spawn_position = $Level3.global_position
-		next_level.emit()
-
+		if PhaseManager.level3:
+			Global.player_spawn_position = $Level3.global_position
+			next_level.emit()
+		else:
+			PhaseManager.next_phase()
+			Global.reset_spawn_position()
 
 func _on_timer_time_out() -> void:
 	time_out.emit()

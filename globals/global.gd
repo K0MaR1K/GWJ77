@@ -2,9 +2,13 @@ extends Node
 
 var arcade_stage: int = 0
 
-var player_spawn_position: Vector2 = Vector2(160, 145)
+var level1_spawn_position := Vector2(160, 145)
+var player_spawn_position: Vector2 = level1_spawn_position
 
 @onready var inventory: ItemList = $CanvasLayer/Inventory
+
+func reset_spawn_position():
+	player_spawn_position = level1_spawn_position
 
 func _ready() -> void:
 	inventory.clear()

@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://lemo73ysf3lo" path="res://arcade_game/arcade_scene.tscn" id="4_wg1jo"]
 [ext_resource type="PackedScene" uid="uid://cpes88b8clwam" path="res://arcade_game/characters/player/player.tscn" id="5_8tp4j"]
 [ext_resource type="Script" path="res://ui/camera_2d.gd" id="6_b107c"]
-[ext_resource type="PackedScene" uid="uid://bvfo0gqker8uq" path="res://ui/pointer.tscn" id="7_g6exb"]
-[ext_resource type="Texture2D" uid="uid://dasfmobw11kc7" path="res://ui/cursor_scope.png" id="8_kowbe"]
+[ext_resource type="PackedScene" uid="uid://bvfo0gqker8uq" path="res://ui/cursor/pointer.tscn" id="7_g6exb"]
+[ext_resource type="Texture2D" uid="uid://dasfmobw11kc7" path="res://ui/cursor/cursor_scope.png" id="8_kowbe"]
 
 [node name="MainScene" instance=ExtResource("1_5o4p1")]
 

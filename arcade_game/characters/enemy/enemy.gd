@@ -3,6 +3,13 @@ extends Character
 
 signal killed
 
+const DUMMY = preload("res://arcade_game/characters/enemy/dummy.png")
+const DUMMY_CORPSE = preload("res://arcade_game/characters/enemy/dummy_corpse.png")
+const MOTHER = preload("res://arcade_game/characters/enemy/mother.png")
+const MOTHER_CORPSE = preload("res://arcade_game/characters/enemy/mother_corpse.png")
+const HUMAN = preload("res://arcade_game/characters/enemy/human.png")
+const HUMAN_DEAD = preload("res://arcade_game/characters/enemy/human_dead.png")
+
 var following_player: bool = false
 var _start_position: Vector2
 
@@ -11,6 +18,11 @@ var _start_position: Vector2
 
 func _ready() -> void:
 	_start_position = global_position
+	if PhaseManager.human_enemy:
+		$Legs.texture = HUMAN
+		$Torso.texture = HUMAN
+		$DeathSprite.texture = HUMAN_DEAD
+	
 
 func kill(knockback: Vector2):
 	super.kill(knockback)
