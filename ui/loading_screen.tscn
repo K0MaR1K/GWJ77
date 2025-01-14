@@ -1,0 +1,257 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxdjihgaivdm6"]
+
+[ext_resource type="Script" path="res://ui/loading_screen.gd" id="1_pigt3"]
+[ext_resource type="FontFile" uid="uid://q7jplpg6lwyk" path="res://fonts/Abaddon Bold.ttf" id="1_pj3n5"]
+
+[sub_resource type="Animation" id="Animation_esntq"]
+resource_name = "load"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Driver:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5.06667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/LoadingSektor:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Underscore:anchor_top")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5.06667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0.079, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Prepare:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 6.06667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/Select:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 7.06667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 8.06667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_volwr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Driver:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/LoadingSektor:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Underscore:anchor_top")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.079]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Prepare:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/Select:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mmg07"]
+_data = {
+"RESET": SubResource("Animation_volwr"),
+"load": SubResource("Animation_esntq")
+}
+
+[node name="LoadingScreen" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pigt3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.054
+anchor_top = 0.064
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LoadingSektor" type="Label" parent="Control"]
+layout_mode = 1
+offset_right = 134.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("1_pj3n5")
+theme_override_font_sizes/font_size = 10
+text = "Loading Sektor 45..."
+
+[node name="Underscore" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.079
+anchor_bottom = 0.079
+offset_right = 6.0
+offset_bottom = 12.0
+theme_override_fonts/font = ExtResource("1_pj3n5")
+theme_override_font_sizes/font_size = 10
+text = "_"
+
+[node name="Driver" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.078
+anchor_bottom = 0.397
+offset_right = 218.0
+offset_bottom = 102.0
+theme_override_fonts/font = ExtResource("1_pj3n5")
+theme_override_font_sizes/font_size = 10
+text = "This driver is provided by Miis Technology, Inc..
+OTI-94Y AOURI CD-ROM device driver, Rev D94YV691
+(C)Copyright Miis Technology Inc. 1991-1992
+  Device Name       :   MISCD0303
+  Transfer Mode     :   Programmed I/O
+  Number of drives   :  1
+
+"
+
+[node name="Prepare" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.578
+anchor_bottom = 0.635
+offset_right = 105.0
+offset_bottom = 12.0
+theme_override_fonts/font = ExtResource("1_pj3n5")
+theme_override_font_sizes/font_size = 10
+text = "MODE prepare completed."
+
+[node name="Select" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.658
+anchor_bottom = 0.795
+offset_right = 98.0
+offset_bottom = 12.0
+theme_override_fonts/font = ExtResource("1_pj3n5")
+theme_override_font_sizes/font_size = 10
+text = "MODE select completed."
+
+[node name="LoadingAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mmg07")
+}
+autoplay = "load"

@@ -10,30 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://cyjg58erj61fs" path="res://ui/clicker.png" id="6_lp6by"]
 [ext_resource type="Texture2D" uid="uid://cqd64xmkq78py" path="res://ui/cursor.png" id="6_ry7wr"]
 [ext_resource type="Texture2D" uid="uid://c8tf5gox5ekin" path="res://room/objects/bb_bg.png" id="7_voa4e"]
-[ext_resource type="Script" path="res://room/boombox.gd" id="8_go4y6"]
+[ext_resource type="Script" path="res://room/objects/boombox.gd" id="8_go4y6"]
 [ext_resource type="Texture2D" uid="uid://2vbhyjspbcj2" path="res://room/objects/bb1_normal.png" id="8_r7cqd"]
 [ext_resource type="Texture2D" uid="uid://cp8bcdvdg2qne" path="res://room/objects/bb1_pressed.png" id="9_dkstd"]
 [ext_resource type="Texture2D" uid="uid://nr7sa8p1c38r" path="res://room/objects/bb2_normal.png" id="10_61gfc"]
 [ext_resource type="PackedScene" uid="uid://dhoqq10b6wh3g" path="res://room/objects/food_stew.gltf" id="10_oqlib"]
 [ext_resource type="Texture2D" uid="uid://dm8pv1g4wwemk" path="res://room/objects/bb2_pressed.png" id="11_tt0ej"]
 [ext_resource type="Texture2D" uid="uid://cqoossok6ttgn" path="res://room/objects/bb_slider.png" id="12_p2l4c"]
-
-[sub_resource type="Animation" id="Animation_hq8y4"]
-resource_name = "blink"
-length = 10.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WorldEnvironment:environment:background_energy_multiplier")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.233333, 0.266667, 0.4, 0.433333, 0.633333, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [1.0, 0.5, 0.3, 1.0, 1.0, 0.5, 0.5, 1.0]
-}
 
 [sub_resource type="Animation" id="Animation_tmoh1"]
 length = 0.001
@@ -48,6 +31,47 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/CloseUps/SubViewport/ModulateRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hq8y4"]
+resource_name = "blink"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WorldEnvironment:environment:background_energy_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.06667, 1.13333, 1.3, 1.33333, 1.46667, 1.5, 1.7, 1.76667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.5, 0.3, 1.0, 1.0, 0.5, 0.5, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/CloseUps/SubViewport/ModulateRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.06667, 1.13333, 1.3, 1.33333, 1.46667, 1.5, 1.7, 1.76667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.482353), Color(0, 0, 0, 0.666667), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 0.482353), Color(0, 0, 0, 0.482353), Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0a46y"]
@@ -247,6 +271,16 @@ offset_bottom = 103.0
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("12_p2l4c")
 expand_mode = 2
+
+[node name="ModulateRect" type="ColorRect" parent="CanvasLayer/CloseUps/SubViewport"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
 
 [node name="DitheringEffect" type="ColorRect" parent="CanvasLayer"]
 texture_filter = 1

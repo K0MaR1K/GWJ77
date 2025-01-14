@@ -12,6 +12,7 @@ func _ready() -> void:
 		object.mouse_exited.connect(_on_object_mouse_exited)
 
 func set_mouse_input(close_up: bool):
+	$"../CanvasLayer/CloseUps/SubViewport/ModulateRect".visible = close_up
 	pointer.set_base_pointer()
 	sub_viewport.handle_input_locally = close_up
 	self.close_up = close_up
