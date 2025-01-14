@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 [autoload]
 
 Global="*res://globals/global.tscn"
+PhaseManager="*res://globals/phase_manager.gd"
 
 [display]
 
