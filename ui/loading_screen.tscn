@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxdjihgaivdm6"]
+[gd_scene load_steps=7 format=3 uid="uid://bxdjihgaivdm6"]
 
 [ext_resource type="Script" path="res://ui/loading_screen.gd" id="1_pigt3"]
 [ext_resource type="FontFile" uid="uid://q7jplpg6lwyk" path="res://fonts/Abaddon Bold.ttf" id="1_pj3n5"]
+[ext_resource type="AudioStream" uid="uid://b6jt2x8q3ky5e" path="res://sounds/load_1.wav" id="3_v1oos"]
 
 [sub_resource type="Animation" id="Animation_esntq"]
 resource_name = "load"
@@ -13,7 +14,7 @@ tracks/0/path = NodePath("Control/Driver:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 5.06667),
+"times": PackedFloat32Array(0, 3.73333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -37,7 +38,7 @@ tracks/2/path = NodePath("Control/Underscore:anchor_top")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 5.06667),
+"times": PackedFloat32Array(0, 3.73333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0.079, 0.0]
@@ -49,7 +50,7 @@ tracks/3/path = NodePath("Control/Prepare:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 6.06667),
+"times": PackedFloat32Array(0, 4.73333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -61,7 +62,7 @@ tracks/4/path = NodePath("Control/Select:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 7.06667),
+"times": PackedFloat32Array(0, 5.73333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -77,6 +78,42 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioStreamPlayer:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(7.56667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Control:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BlackBackground:anchor_bottom")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(6.96667, 8.03333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_volwr"]
@@ -153,6 +190,42 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioStreamPlayer:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Control:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BlackBackground:anchor_bottom")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mmg07"]
 _data = {
@@ -170,9 +243,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pigt3")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="BlackBackground" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -180,6 +253,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Control" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchor_left = 0.054
 anchor_top = 0.064
@@ -255,3 +329,6 @@ libraries = {
 "": SubResource("AnimationLibrary_mmg07")
 }
 autoplay = "load"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_v1oos")
