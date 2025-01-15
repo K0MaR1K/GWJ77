@@ -1,10 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://dxii2akm3hgtv"]
+[gd_scene load_steps=32 format=3 uid="uid://dxii2akm3hgtv"]
 
 [ext_resource type="Script" path="res://room/object_spawner.gd" id="1_6qrsc"]
 [ext_resource type="Shader" path="res://shaders/dither_screen.gdshader" id="1_edsf6"]
 [ext_resource type="Texture2D" uid="uid://cniea1u7vuasg" path="res://room/room_01.png" id="1_f3an5"]
 [ext_resource type="Script" path="res://room/camera_3d.gd" id="3_qfd25"]
 [ext_resource type="Texture2D" uid="uid://d0qsvlxj7kdhu" path="res://room/objects/open_drawer.jpg" id="4_1avi3"]
+[ext_resource type="Script" path="res://room/food_stew.gd" id="4_t6cm6"]
 [ext_resource type="Script" path="res://room/object_handler.gd" id="5_f00bv"]
 [ext_resource type="Texture2D" uid="uid://bxa6wwuddb31b" path="res://resources/fork/fork.png" id="5_poctp"]
 [ext_resource type="PackedScene" uid="uid://bvfo0gqker8uq" path="res://ui/cursor/pointer.tscn" id="5_ue8wk"]
@@ -150,6 +151,7 @@ shape = SubResource("BoxShape3D_h1223")
 
 [node name="FoodStew" type="StaticBody3D" parent="ObjectHandler"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.23147, -4.24503, 2.73757)
+script = ExtResource("4_t6cm6")
 
 [node name="food_stew2" parent="ObjectHandler/FoodStew" instance=ExtResource("10_oqlib")]
 
@@ -328,7 +330,7 @@ light_energy = 0.7
 [connection signal="update_items" from="ObjectHandler" to="." method="update"]
 [connection signal="input_event" from="ObjectHandler/Computer" to="ObjectHandler" method="_on_computer_input_event"]
 [connection signal="input_event" from="ObjectHandler/Drawer" to="ObjectHandler" method="_on_drawer_input_event"]
-[connection signal="input_event" from="ObjectHandler/FoodStew" to="ObjectHandler" method="_on_food_stew_input_event"]
+[connection signal="input_event" from="ObjectHandler/FoodStew" to="ObjectHandler/FoodStew" method="_on_input_event"]
 [connection signal="input_event" from="ObjectHandler/Boombox" to="ObjectHandler" method="_on_boombox_input_event"]
 [connection signal="input_event" from="ObjectHandler/Door" to="ObjectHandler" method="_on_door_input_event"]
 [connection signal="gui_input" from="CanvasLayer/CloseUps/SubViewport/Drawer/Fork" to="ObjectHandler" method="_on_fork_input_event"]

@@ -1,6 +1,6 @@
 extends Node
 
-enum Phase {INTRO, ROOM1, ROOM2, GAME2, ROOM3, GAME3}
+enum Phase {INTRO, ROOM1_1, ROOM1_2, ROOM1_3, GAME2, ROOM2_1, GAME3}
 enum LDJ {HAPPY, SAD, MYSTERIOUS}
 
 var current_phase : Phase
@@ -22,35 +22,21 @@ var level3 := false
 var human_enemy := false
 
 func _ready() -> void:
-	change_phase(Phase.ROOM1)
+	change_phase(Phase.ROOM1_1)
 
 func next_phase():
 	change_phase(current_phase + 1)
 
 func is_room_phase():
-	return current_phase in [Phase.ROOM1, Phase.ROOM2, Phase.ROOM3,]
+	return current_phase in [Phase.ROOM1_1, Phase.ROOM1_2, Phase.ROOM1_3,]
 	
 func is_game_phase():
 	return current_phase in [Phase.GAME2, Phase.GAME3]
 
-func change_phase(next_phase: Phase):
-	current_phase = next_phase
+func change_phase(next: Phase):
+	current_phase = next
 	print(current_phase)
-	#
-	## game logic
-	#can_leave_computer = current_phase in [Phase.ROOM1, ]
-	#can_play_game = current_phase in [Phase.INTRO, Phase.ROOM2]
-	#loading_jingle = LDJ.HAPPY
-	#mother_at_door = false
-#
-	## objects spawning
-	#plate = false
-	#fork_drawer = false
-#
-	## levels
-	#level2 = false
-	#level3 = false
-	#
+
 	match current_phase:
 		Phase.INTRO:
 			get_tree().change_scene_to_file.call_deferred("res://ui/desktop/main_menu.tscn")
@@ -62,14 +48,14 @@ func change_phase(next_phase: Phase):
 			level3 = false
 			human_enemy = false
 			loading_jingle = LDJ.HAPPY
-		Phase.ROOM1:
+		Phase.ROOM1_1:
 			get_tree().change_scene_to_file.call_deferred("res://room/room_scene.tscn")
 			computer_on = false
 			can_leave_computer = true
 			can_play_game = false
 			fork_drawer = true
 			mother_at_door = true
-		Phase.ROOM2:
+		Phase.ROOM1_2:
 			plate = true
 			can_leave_computer = true
 			can_play_game = true

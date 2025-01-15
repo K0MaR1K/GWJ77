@@ -9,7 +9,8 @@ var current_tileset = 0
 
 func _ready() -> void:
 	if PhaseManager.is_game_phase():
-		change_tileset()
+		pass
+		#change_tileset()
 		
 	if Global.player_spawn_position == $Level1.global_position:
 		set_enemy_count.call_deferred($EnemyHolder.enemy_count)
@@ -26,11 +27,6 @@ func change_tileset(tileset: int = -1):
 	else:
 		TILESET.set_source_id(tileset, 0)
 		current_tileset = tileset
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		return
-		change_tileset()
 		
 func set_enemy_count(enemy_count: int):
 	%EnemiesLeft.text = "enemies left: " + str(enemy_count)

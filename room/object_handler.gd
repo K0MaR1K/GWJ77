@@ -41,28 +41,34 @@ func _input(event: InputEvent) -> void:
 
 func _on_computer_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event.is_action("shoot") and not close_up:
-		if PhaseManager.can_play_game:
-			PhaseManager.next_phase()
+		if PhaseManager.mother_at_door:
+			GlobalSpeech.mother_at_door()
 		else:
-			get_tree().change_scene_to_file.call_deferred("res://ui/desktop/main_menu.tscn")
+			if PhaseManager.can_play_game:
+				PhaseManager.next_phase()
+			else:
+				get_tree().change_scene_to_file.call_deferred("res://ui/desktop/main_menu.tscn")
 
 
 func _on_drawer_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event.is_action("shoot") and not close_up:
-		$"../CanvasLayer/CloseUps/SubViewport/Drawer".show()
-		set_mouse_input(true)
+		if PhaseManager.mother_at_door:
+			GlobalSpeech.mother_at_door()
+		else:
+			$"../CanvasLayer/CloseUps/SubViewport/Drawer".show()
+			set_mouse_input(true)
 
 
 func _on_fork_input_event(event: InputEvent) -> void:
 	if event.is_action("shoot") and close_up:
-		PhaseManager.fork_drawer = false
-		update_items.emit()
-		Global.add_to_inventory(preload("res://resources/fork/fork.tres"))
+		if PhaseManager.mother_at_door:
+			GlobalSpeech.mother_at_door()
+		else:
+			PhaseManager.fork_drawer = false
+			update_items.emit()
+			Global.add_to_inventory(preload("res://resources/fork/fork.tres"))
 
 
-func _on_food_stew_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	if event.is_action("shoot") and not close_up:
-		Global.show_inventory()
 
 
 func _on_boombox_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:

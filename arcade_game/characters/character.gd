@@ -21,12 +21,13 @@ func kill(knockback: Vector2):
 	$Torso.hide()
 	$DeathSprite.show()
 	
-	for i in range(3):
-		var sprite := Sprite2D.new()
-		get_node("/root/MainScene/SubViewport/ArcadeScene").add_child(sprite)
-		sprite.texture = BLOOD_SPATTER
-		sprite.z_index = i % 2
-		sprite.global_position = global_position + knockback * randf_range(8, 16) + knockback.rotated(PI/2) * randf_range(-5, 5)
+	if PhaseManager.human_enemy:
+		for i in range(3):
+			var sprite := Sprite2D.new()
+			get_node("/root/MainScene/SubViewport/ArcadeScene").add_child(sprite)
+			sprite.texture = BLOOD_SPATTER
+			sprite.z_index = i % 2
+			sprite.global_position = global_position + knockback * randf_range(8, 16) + knockback.rotated(PI/2) * randf_range(-5, 5)
 	
 	dead = true
 	set_process(false)
