@@ -2,6 +2,7 @@ class_name Character
 extends CharacterBody2D
 
 const BULLET = preload("res://arcade_game/bullet/bullet.tscn")
+const BLOOD_SPATTER = preload("res://arcade_game/effects/blood spatter.png")
 
 var SPEED := 50.0
 var KNOCKBACK := 10.0
@@ -19,6 +20,13 @@ func kill(knockback: Vector2):
 	$Legs.hide()
 	$Torso.hide()
 	$DeathSprite.show()
+	
+	for i in range(3):
+		var sprite := Sprite2D.new()
+		get_node("/root/MainScene/SubViewport/ArcadeScene").add_child(sprite)
+		sprite.texture = BLOOD_SPATTER
+		sprite.z_index = i % 2
+		sprite.global_position = global_position + knockback * randf_range(8, 16) + knockback.rotated(PI/2) * randf_range(-5, 5)
 	
 	dead = true
 	set_process(false)

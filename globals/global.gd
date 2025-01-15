@@ -23,8 +23,9 @@ func show_inventory():
 	inventory.show()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		show_inventory()
-		
-	if event.is_action_pressed("back"):
-		inventory.hide()
+	if PhaseManager.is_room_phase():
+		if event.is_action_pressed("ui_accept"):
+			show_inventory()
+			
+		if event.is_action_pressed("back"):
+			inventory.hide()

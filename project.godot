@@ -14,6 +14,10 @@ config/name="GWJ77"
 run/main_scene="res://room/room_scene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 
+[audio]
+
+buses/default_bus_layout="res://sounds/default_bus_layout.tres"
+
 [autoload]
 
 Global="*res://globals/global.tscn"

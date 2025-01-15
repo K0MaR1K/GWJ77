@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dxii2akm3hgtv"]
+[gd_scene load_steps=31 format=3 uid="uid://dxii2akm3hgtv"]
 
 [ext_resource type="Script" path="res://room/object_spawner.gd" id="1_6qrsc"]
 [ext_resource type="Shader" path="res://shaders/dither_screen.gdshader" id="1_edsf6"]
@@ -8,8 +8,6 @@
 [ext_resource type="Script" path="res://room/object_handler.gd" id="5_f00bv"]
 [ext_resource type="Texture2D" uid="uid://bxa6wwuddb31b" path="res://resources/fork/fork.png" id="5_poctp"]
 [ext_resource type="PackedScene" uid="uid://bvfo0gqker8uq" path="res://ui/cursor/pointer.tscn" id="5_ue8wk"]
-[ext_resource type="Texture2D" uid="uid://cyjg58erj61fs" path="res://ui/cursor/clicker.png" id="6_lp6by"]
-[ext_resource type="Texture2D" uid="uid://cqd64xmkq78py" path="res://ui/cursor/cursor.png" id="6_ry7wr"]
 [ext_resource type="Texture2D" uid="uid://c8tf5gox5ekin" path="res://room/objects/bb_bg.png" id="7_voa4e"]
 [ext_resource type="Script" path="res://room/objects/boombox.gd" id="8_go4y6"]
 [ext_resource type="Texture2D" uid="uid://2vbhyjspbcj2" path="res://room/objects/bb1_normal.png" id="8_r7cqd"]
@@ -18,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dhoqq10b6wh3g" path="res://room/objects/food_stew.gltf" id="10_oqlib"]
 [ext_resource type="Texture2D" uid="uid://dm8pv1g4wwemk" path="res://room/objects/bb2_pressed.png" id="11_tt0ej"]
 [ext_resource type="Texture2D" uid="uid://cqoossok6ttgn" path="res://room/objects/bb_slider.png" id="12_p2l4c"]
+[ext_resource type="AudioStream" uid="uid://b6jt2x8q3ky5e" path="res://sounds/load_1.wav" id="15_wau6a"]
 
 [sub_resource type="Animation" id="Animation_tmoh1"]
 length = 0.001
@@ -294,6 +293,10 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("12_p2l4c")
 expand_mode = 2
 
+[node name="TestSoundAudio" type="AudioStreamPlayer" parent="CanvasLayer/CloseUps/SubViewport/Boombox"]
+stream = ExtResource("15_wau6a")
+bus = &"Music"
+
 [node name="ModulateRect" type="ColorRect" parent="CanvasLayer/CloseUps/SubViewport"]
 visible = false
 anchors_preset = 15
@@ -316,8 +319,6 @@ mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Pointer" parent="CanvasLayer" instance=ExtResource("5_ue8wk")]
-base_pointer = ExtResource("6_ry7wr")
-select_pointer = ExtResource("6_lp6by")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.985458, 7.42731e-09, -0.169917, 0.169917, -4.30758e-08, 0.985458, 0, -1, -4.37114e-08, 0, 0, 0)
@@ -335,6 +336,7 @@ light_energy = 0.7
 [connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Drawer/Fork" to="ObjectHandler" method="_on_object_mouse_exited"]
 [connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Boombox/TestSound" to="ObjectHandler" method="_on_object_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Boombox/TestSound" to="ObjectHandler" method="_on_object_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/CloseUps/SubViewport/Boombox/TestSound" to="CanvasLayer/CloseUps/SubViewport/Boombox" method="_on_test_sound_pressed"]
 [connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Boombox/BackButton" to="ObjectHandler" method="_on_object_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Boombox/BackButton" to="ObjectHandler" method="_on_object_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/CloseUps/SubViewport/Boombox/BackButton" to="CanvasLayer/CloseUps/SubViewport/Boombox" method="_on_back_button_pressed"]

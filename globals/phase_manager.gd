@@ -22,10 +22,16 @@ var level3 := false
 var human_enemy := false
 
 func _ready() -> void:
-	change_phase(Phase.INTRO)
+	change_phase(Phase.ROOM1)
 
 func next_phase():
 	change_phase(current_phase + 1)
+
+func is_room_phase():
+	return current_phase in [Phase.ROOM1, Phase.ROOM2, Phase.ROOM3,]
+	
+func is_game_phase():
+	return current_phase in [Phase.GAME2, Phase.GAME3]
 
 func change_phase(next_phase: Phase):
 	current_phase = next_phase
@@ -47,7 +53,7 @@ func change_phase(next_phase: Phase):
 	#
 	match current_phase:
 		Phase.INTRO:
-			get_tree().change_scene_to_file.call_deferred("res://ui/main_menu.tscn")
+			get_tree().change_scene_to_file.call_deferred("res://ui/desktop/main_menu.tscn")
 			computer_on = false
 			can_leave_computer = false
 			can_play_game = true
@@ -71,8 +77,7 @@ func change_phase(next_phase: Phase):
 			level3 = false
 			mother_at_door = false
 		Phase.GAME2:
-			get_tree().change_scene_to_file.call_deferred("res://ui/main_menu.tscn")
-			computer_on = false
+			get_tree().change_scene_to_file.call_deferred("res://ui/desktop/main_menu.tscn")
 			can_leave_computer = false
 			plate = false
 			level2 = true
@@ -80,7 +85,7 @@ func change_phase(next_phase: Phase):
 			loading_jingle = LDJ.SAD
 			human_enemy = false
 		Phase.GAME3:
-			get_tree().change_scene_to_file.call_deferred("res://ui/main_menu.tscn")
+			get_tree().change_scene_to_file.call_deferred("res://ui/desktop/main_menu.tscn")
 			computer_on = false
 			can_leave_computer = false
 			plate = false

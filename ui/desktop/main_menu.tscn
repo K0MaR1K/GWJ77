@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cdwy3gkriyhea"]
+[gd_scene load_steps=11 format=3 uid="uid://cdwy3gkriyhea"]
 
 [ext_resource type="PackedScene" uid="uid://yy8eym2333dq" path="res://ui/CRTScreen.tscn" id="1_fndsx"]
 [ext_resource type="Script" path="res://ui/desktop/main_menu.gd" id="2_4c532"]
@@ -6,9 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://coihnxtjlb2g0" path="res://ui/desktop/stars.jpg" id="3_j6gwp"]
 [ext_resource type="PackedScene" uid="uid://bvfo0gqker8uq" path="res://ui/cursor/pointer.tscn" id="4_jk76e"]
 [ext_resource type="Script" path="res://ui/desktop/planet.gd" id="4_lk6ov"]
-[ext_resource type="Texture2D" uid="uid://cyjg58erj61fs" path="res://ui/cursor/clicker.png" id="5_8l7wa"]
 [ext_resource type="Texture2D" uid="uid://kpyl4ea5khmb" path="res://ui/desktop/google-play.png" id="5_flve0"]
-[ext_resource type="Texture2D" uid="uid://cqd64xmkq78py" path="res://ui/cursor/cursor.png" id="5_q4hgv"]
 [ext_resource type="Texture2D" uid="uid://bork6co4p6jry" path="res://ui/desktop/settings.png" id="6_r4sdo"]
 [ext_resource type="Texture2D" uid="uid://bcgkk2t4ds1no" path="res://ui/desktop/power-on.png" id="7_mc13p"]
 [ext_resource type="PackedScene" uid="uid://bxdjihgaivdm6" path="res://ui/desktop/loading_screen.tscn" id="11_2h8ch"]
@@ -28,7 +26,7 @@ scale = Vector2(0.54, 0.54)
 texture = ExtResource("3_fgaae")
 hframes = 50
 vframes = 10
-frame = 354
+frame = 356
 script = ExtResource("4_lk6ov")
 
 [node name="Darken" type="ColorRect" parent="SubViewport/CanvasLayer" index="2"]
@@ -85,9 +83,6 @@ stretch_mode = 4
 
 [node name="Pointer" parent="SubViewport/CanvasLayer" index="6" instance=ExtResource("4_jk76e")]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("5_q4hgv")
-base_pointer = ExtResource("5_q4hgv")
-select_pointer = ExtResource("5_8l7wa")
 
 [node name="MainMenuCamera" type="Camera2D" parent="SubViewport" index="1"]
 position = Vector2(161, 142)

@@ -8,6 +8,9 @@ const TILESET = preload("res://arcade_game/tilesets/tileset.tres")
 var current_tileset = 0
 
 func _ready() -> void:
+	if PhaseManager.is_game_phase():
+		change_tileset()
+		
 	if Global.player_spawn_position == $Level1.global_position:
 		set_enemy_count.call_deferred($EnemyHolder.enemy_count)
 		
@@ -17,11 +20,11 @@ func _ready() -> void:
 
 func change_tileset(tileset: int = -1):
 	if tileset == -1:	
-		TILESET.set_source_id(0, current_tileset+4)
+		TILESET.set_source_id(0, current_tileset+10)
 		TILESET.set_source_id(current_tileset+1, 0)
 		current_tileset = current_tileset+1
 	else:
-		TILESET.set_source_id(0, tileset)
+		TILESET.set_source_id(tileset, 0)
 		current_tileset = tileset
 
 func _input(event: InputEvent) -> void:

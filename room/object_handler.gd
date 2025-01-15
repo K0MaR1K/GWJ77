@@ -44,7 +44,7 @@ func _on_computer_input_event(_camera: Node, event: InputEvent, _event_position:
 		if PhaseManager.can_play_game:
 			PhaseManager.next_phase()
 		else:
-			get_tree().change_scene_to_file.call_deferred("res://ui/main_menu.tscn")
+			get_tree().change_scene_to_file.call_deferred("res://ui/desktop/main_menu.tscn")
 
 
 func _on_drawer_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
