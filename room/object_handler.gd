@@ -13,23 +13,25 @@ func _ready() -> void:
 		object.mouse_entered.connect(_on_object_mouse_entered)
 		object.mouse_exited.connect(_on_object_mouse_exited)
 
-func set_mouse_input(close_up: bool):
+func set_mouse_input(c_up: bool):
 	Global.hide_inventory()
-	$"../CanvasLayer/CloseUps/SubViewport/ModulateRect".visible = close_up
+	$"../CanvasLayer/CloseUps/SubViewport/ModulateRect".visible = c_up
 	pointer.set_base_pointer()
-	sub_viewport.handle_input_locally = close_up
-	self.close_up = close_up
-	if close_up:
+	sub_viewport.handle_input_locally = c_up
+	self.close_up = c_up
+	if c_up:
 		close_ups.mouse_filter = Control.MOUSE_FILTER_STOP
 	else:
 		close_ups.mouse_filter = Control.MOUSE_FILTER_PASS
 	
 
 func _on_object_mouse_entered() -> void:
-	pointer.set_select_pointer()
+	if Global.is_inventory_hidden():
+		pointer.set_select_pointer()
 	
 func _on_object_mouse_exited() -> void:
-	pointer.set_base_pointer()
+	if Global.is_inventory_hidden():
+		pointer.set_base_pointer()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("back"):

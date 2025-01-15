@@ -3,6 +3,8 @@ extends Character
 
 signal game_over
 
+var mother_dead := false
+
 func _ready() -> void:
 	SPEED = 100.0
 	global_position = Global.player_spawn_position
@@ -24,7 +26,11 @@ func _input(event: InputEvent) -> void:
 		
 
 func _process(delta: float) -> void:
-	direction = get_input()
+	if mother_dead:
+		direction = Vector2.ZERO
+	else:
+		direction = get_input()
+		
 	look_at(get_global_mouse_position())
 	
 	super._process(delta)
@@ -36,3 +42,10 @@ func _on_arcade_scene_next_level() -> void:
 
 func _on_arcade_scene_time_out() -> void:
 	super.kill(Vector2.ZERO)
+
+
+func _on_arcade_scene_mother_killed() -> void:
+	$"../Pointer".hide()
+	$"../CanvasLayer".hide()
+	mother_dead = true
+	$"../Camera2D".mother_killed = true

@@ -9,10 +9,6 @@ var spoken : String
 @onready var dialogue: RichTextLabel = $Dialogue
 
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("restart"):
-		mother_speak("AAAAAMOGUNS")
-
 func _process(_delta: float) -> void:
 	if visible_characters != dialogue.visible_characters:
 		visible_characters = dialogue.visible_characters

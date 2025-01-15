@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bmaikduukad0n"]
+[gd_scene load_steps=12 format=3 uid="uid://bmaikduukad0n"]
 
 [ext_resource type="Material" uid="uid://bq2mff8ncyalh" path="res://arcade_game/effects/lighted_only.tres" id="1_i10f6"]
 [ext_resource type="Script" path="res://arcade_game/characters/enemy/enemy.gd" id="1_u4a5m"]
@@ -101,6 +101,9 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_buisg"]
 radius = 120.037
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_tmn27"]
+radius = 7.0
+
 [node name="Enemy" type="CharacterBody2D"]
 z_index = 1
 texture_filter = 1
@@ -151,4 +154,12 @@ debug_color = Color(0.513808, 0.576734, 0, 0.42)
 wait_time = 3.0
 autostart = true
 
+[node name="TouchZone" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TouchZone"]
+shape = SubResource("CircleShape2D_tmn27")
+
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="body_entered" from="TouchZone" to="." method="_on_touch_zone_body_entered"]

@@ -26,7 +26,7 @@ scale = Vector2(0.54, 0.54)
 texture = ExtResource("3_fgaae")
 hframes = 50
 vframes = 10
-frame = 395
+frame = 400
 script = ExtResource("4_lk6ov")
 
 [node name="Darken" type="ColorRect" parent="SubViewport/CanvasLayer" index="2"]

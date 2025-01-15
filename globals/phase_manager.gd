@@ -1,6 +1,6 @@
 extends Node
 
-enum Phase {INTRO, ROOM1_1, ROOM1_2, GAME2, ROOM2_1, GAME3}
+enum Phase {INTRO, ROOM1_1, ROOM1_2, GAME2, ROOM2_1, ROOM2_2, GAME3}
 enum LDJ {HAPPY, SAD, MYSTERIOUS}
 
 var current_phase : Phase
@@ -22,7 +22,7 @@ var level3 := false
 var human_enemy := false
 
 func _ready() -> void:
-	change_phase(Phase.ROOM1_1)
+	change_phase(Phase.GAME3)
 
 func next_phase():
 	change_phase(current_phase + 1)
@@ -65,6 +65,7 @@ func change_phase(next: Phase):
 		Phase.GAME2:
 			get_tree().change_scene_to_file.call_deferred("res://ui/desktop/main_menu.tscn")
 			can_leave_computer = false
+			can_play_game = true
 			plate = false
 			level2 = true
 			level3 = true
@@ -78,11 +79,17 @@ func change_phase(next: Phase):
 			can_play_game = false
 			fork_drawer = true
 			mother_at_door = true
+						
+		Phase.ROOM2_2:
+			plate = true
+			can_leave_computer = true
+			mother_at_door = false
 			
 		Phase.GAME3:
 			get_tree().change_scene_to_file.call_deferred("res://ui/desktop/main_menu.tscn")
 			computer_on = false
 			can_leave_computer = false
+			can_play_game = true
 			plate = false
 			level2 = true
 			level3 = true

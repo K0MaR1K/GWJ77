@@ -112,6 +112,9 @@ script = ExtResource("6_b107c")
 hframes = 4
 base_pointer = ExtResource("8_kowbe")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+
+[connection signal="mother_killed" from="SubViewport/ArcadeScene" to="SubViewport/Player" method="_on_arcade_scene_mother_killed"]
 [connection signal="next_level" from="SubViewport/ArcadeScene" to="SubViewport/Player" method="_on_arcade_scene_next_level"]
 [connection signal="time_out" from="SubViewport/ArcadeScene" to="SubViewport/CanvasLayer/GameOver" method="_on_arcade_scene_time_out"]
 [connection signal="time_out" from="SubViewport/ArcadeScene" to="SubViewport/Player" method="_on_arcade_scene_time_out"]

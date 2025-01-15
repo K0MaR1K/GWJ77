@@ -16,7 +16,7 @@ func reset_spawn_position():
 func _ready() -> void:
 	hide_inventory()
 	inventory.clear()
-	add_to_inventory(preload("res://resources/fork/fork.tres"))
+	#add_to_inventory(preload("res://resources/fork/fork.tres"))
 	
 
 func add_to_inventory(item: Item):

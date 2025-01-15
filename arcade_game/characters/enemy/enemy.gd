@@ -2,6 +2,7 @@ class_name Enemy
 extends Character
 
 signal killed
+signal mother_touched #TODO
 
 const DUMMY = preload("res://arcade_game/characters/enemy/dummy.png")
 const DUMMY_CORPSE = preload("res://arcade_game/characters/enemy/dummy_corpse.png")
@@ -23,6 +24,14 @@ func _ready() -> void:
 		$Torso.texture = HUMAN
 		$DeathSprite.texture = HUMAN_DEAD
 	
+func mother():
+	if PhaseManager.human_enemy:
+		$Legs.texture = MOTHER
+		$Torso.texture = MOTHER
+		$DeathSprite.texture = MOTHER_CORPSE
+		$ShootTimer.wait_time = 1000
+	else:
+		$ShootTimer.wait_time = 1
 
 func kill(knockback: Vector2):
 	super.kill(knockback)
@@ -59,3 +68,8 @@ func _on_shoot_timer_timeout() -> void:
 		bullet.direction = direction
 		$"../..".add_child(bullet)
 		bullet.global_position = global_position
+
+
+func _on_touch_zone_body_entered(body: Node2D) -> void:
+	if $Legs.texture == MOTHER:
+		print("MOTHER'S TOUCH")

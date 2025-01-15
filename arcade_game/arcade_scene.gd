@@ -2,10 +2,14 @@ extends Node2D
 
 signal next_level
 signal time_out
+signal mother_killed
+
 
 const TILESET = preload("res://arcade_game/tilesets/tileset.tres")
 
 var current_tileset = 0
+
+@onready var mother: Enemy = $EnemyHolder3/Mother
 
 func _ready() -> void:
 	GlobalSpeech.clear()
@@ -19,6 +23,15 @@ func _ready() -> void:
 	elif Global.player_spawn_position == $Level2.global_position:
 		set_enemy_count.call_deferred($EnemyHolder2.enemy_count)
 
+	mother.mother()
+	reset()
+	
+func reset():
+	$GroundLayer.show()
+	$DecorationsLayer.show()
+	$CanvasLayer.show()
+	$Spotlight.hide()
+	$DirectionalLight2D.hide()
 
 func change_tileset(tileset: int = -1):
 	if tileset == -1:	
@@ -51,9 +64,27 @@ func _on_next_floor_area_2_body_entered(_body: Node2D) -> void:
 			PhaseManager.next_phase()
 			Global.reset_spawn_position()
 
+
+func _on_next_floor_area_3_body_entered(body: Node2D) -> void:
+	if $CanvasLayer/LevelClear.next_level_enabled:
+		PhaseManager.next_phase()
+		Global.reset_spawn_position()
+
 func _on_timer_time_out() -> void:
 	time_out.emit()
 
 
 func _on_player_game_over() -> void:
 	$CanvasLayer/Timer.pause = true
+
+
+func _on_mother_killed() -> void:
+	if PhaseManager.human_enemy:
+		mother_killed.emit()
+		$Spotlight.global_position = mother.global_position
+		$AnimationPlayer.play("mother_killed")
+		$GroundLayer.hide()
+		$DecorationsLayer.hide()
+		$CanvasLayer.hide()
+		$Spotlight.show()
+		$DirectionalLight2D.show()
