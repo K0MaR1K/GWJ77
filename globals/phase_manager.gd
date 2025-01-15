@@ -1,6 +1,6 @@
 extends Node
 
-enum Phase {INTRO, ROOM1_1, ROOM1_2, ROOM1_3, GAME2, ROOM2_1, GAME3}
+enum Phase {INTRO, ROOM1_1, ROOM1_2, GAME2, ROOM2_1, GAME3}
 enum LDJ {HAPPY, SAD, MYSTERIOUS}
 
 var current_phase : Phase
@@ -28,7 +28,7 @@ func next_phase():
 	change_phase(current_phase + 1)
 
 func is_room_phase():
-	return current_phase in [Phase.ROOM1_1, Phase.ROOM1_2, Phase.ROOM1_3,]
+	return current_phase in [Phase.ROOM1_1, Phase.ROOM1_2,]
 	
 func is_game_phase():
 	return current_phase in [Phase.GAME2, Phase.GAME3]
@@ -48,6 +48,7 @@ func change_phase(next: Phase):
 			level3 = false
 			human_enemy = false
 			loading_jingle = LDJ.HAPPY
+			
 		Phase.ROOM1_1:
 			get_tree().change_scene_to_file.call_deferred("res://room/room_scene.tscn")
 			computer_on = false
@@ -55,13 +56,12 @@ func change_phase(next: Phase):
 			can_play_game = false
 			fork_drawer = true
 			mother_at_door = true
+			
 		Phase.ROOM1_2:
 			plate = true
 			can_leave_computer = true
-			can_play_game = true
-			level2 = true
-			level3 = false
 			mother_at_door = false
+			
 		Phase.GAME2:
 			get_tree().change_scene_to_file.call_deferred("res://ui/desktop/main_menu.tscn")
 			can_leave_computer = false
@@ -70,6 +70,15 @@ func change_phase(next: Phase):
 			level3 = true
 			loading_jingle = LDJ.SAD
 			human_enemy = false
+			
+		Phase.ROOM2_1:
+			get_tree().change_scene_to_file.call_deferred("res://room/room_scene.tscn")
+			computer_on = false
+			can_leave_computer = true
+			can_play_game = false
+			fork_drawer = true
+			mother_at_door = true
+			
 		Phase.GAME3:
 			get_tree().change_scene_to_file.call_deferred("res://ui/desktop/main_menu.tscn")
 			computer_on = false
@@ -77,5 +86,5 @@ func change_phase(next: Phase):
 			plate = false
 			level2 = true
 			level3 = true
-			loading_jingle = LDJ.SAD
+			loading_jingle = LDJ.MYSTERIOUS
 			human_enemy = true

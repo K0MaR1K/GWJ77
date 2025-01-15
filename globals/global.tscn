@@ -1,7 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://f4j5nss52o5x"]
+[gd_scene load_steps=7 format=3 uid="uid://f4j5nss52o5x"]
 
 [ext_resource type="Script" path="res://globals/global.gd" id="1_km2ae"]
+[ext_resource type="Texture2D" uid="uid://ct2u4mreu55w7" path="res://room/room_00.png" id="2_f5qqd"]
 [ext_resource type="Texture2D" uid="uid://bxa6wwuddb31b" path="res://resources/fork/fork.png" id="2_ou674"]
+[ext_resource type="FontFile" uid="uid://dvdxgqhatvjt3" path="res://fonts/NicoClean-Regular.ttf" id="2_xxqly"]
+[ext_resource type="Shader" path="res://shaders/dither_screen.gdshader" id="5_6guos"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7i6x"]
+shader = ExtResource("5_6guos")
+shader_parameter/quantize_size = 2.0
+shader_parameter/handle_scale = true
+shader_parameter/handle_subpixels = true
+shader_parameter/dither_enabled = true
+shader_parameter/bayer_pattern = 3.0
+shader_parameter/divisions = 8.0
+shader_parameter/contrast = 1.409
+shader_parameter/shift = -0.068
+shader_parameter/grayscale = false
+shader_parameter/use_palette = false
 
 [node name="Global" type="Control"]
 layout_mode = 3
@@ -11,16 +27,30 @@ script = ExtResource("1_km2ae")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
 
-[node name="Inventory" type="ItemList" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 visible = false
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -71.5
-offset_bottom = 71.5
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_f5qqd")
+expand_mode = 1
+
+[node name="Inventory" type="ItemList" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.5
+anchor_right = 0.9
+anchor_bottom = 0.5
+offset_top = -68.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_xxqly")
+theme_override_font_sizes/font_size = 20
+allow_reselect = true
 max_text_lines = 2
 auto_height = true
 item_count = 1
@@ -29,5 +59,16 @@ icon_mode = 0
 fixed_icon_size = Vector2i(100, 100)
 item_0/text = "Description"
 item_0/icon = ExtResource("2_ou674")
+
+[node name="DitheringEffect" type="ColorRect" parent="CanvasLayer"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_i7i6x")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
 [connection signal="item_selected" from="CanvasLayer/Inventory" to="." method="_on_inventory_item_selected"]

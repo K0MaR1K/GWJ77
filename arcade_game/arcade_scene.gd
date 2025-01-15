@@ -8,6 +8,7 @@ const TILESET = preload("res://arcade_game/tilesets/tileset.tres")
 var current_tileset = 0
 
 func _ready() -> void:
+	GlobalSpeech.clear()
 	if PhaseManager.is_game_phase():
 		pass
 		#change_tileset()

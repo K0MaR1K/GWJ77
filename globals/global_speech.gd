@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 var useless_item_dialogue := ["I can't use this here.", "No.", "..."]
-var mother_calling_dialogue := ["Mother is calling me.", "I should answer the door.", ""]
+var mother_calling_dialogue := ["Mother is calling me.", "I should answer the door."]
 var visible_characters := 0
 var spoken : String
 
@@ -38,3 +38,6 @@ func mother_at_door():
 
 func useless_item():
 	speak(useless_item_dialogue.pick_random())
+
+func clear():
+	speak("", true)

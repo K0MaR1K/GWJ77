@@ -14,6 +14,7 @@ func _ready() -> void:
 		object.mouse_exited.connect(_on_object_mouse_exited)
 
 func set_mouse_input(close_up: bool):
+	Global.hide_inventory()
 	$"../CanvasLayer/CloseUps/SubViewport/ModulateRect".visible = close_up
 	pointer.set_base_pointer()
 	sub_viewport.handle_input_locally = close_up
@@ -31,7 +32,7 @@ func _on_object_mouse_exited() -> void:
 	pointer.set_base_pointer()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action("back"):
+	if event.is_action_pressed("back"):
 		set_mouse_input(false)
 		for child in sub_viewport.get_children():
 			child.hide()
@@ -40,7 +41,7 @@ func _input(event: InputEvent) -> void:
 		sub_viewport.push_input(event)
 
 func _on_computer_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	if event.is_action("shoot") and not close_up:
+	if event.is_action_pressed("shoot") and not close_up:
 		if PhaseManager.mother_at_door:
 			GlobalSpeech.mother_at_door()
 		else:
@@ -51,7 +52,7 @@ func _on_computer_input_event(_camera: Node, event: InputEvent, _event_position:
 
 
 func _on_drawer_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	if event.is_action("shoot") and not close_up:
+	if event.is_action_pressed("shoot") and not close_up:
 		if PhaseManager.mother_at_door:
 			GlobalSpeech.mother_at_door()
 		else:
@@ -60,7 +61,7 @@ func _on_drawer_input_event(_camera: Node, event: InputEvent, _event_position: V
 
 
 func _on_fork_input_event(event: InputEvent) -> void:
-	if event.is_action("shoot") and close_up:
+	if event.is_action_pressed("shoot") and close_up:
 		if PhaseManager.mother_at_door:
 			GlobalSpeech.mother_at_door()
 		else:
@@ -72,13 +73,13 @@ func _on_fork_input_event(event: InputEvent) -> void:
 
 
 func _on_boombox_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	if event.is_action("shoot") and not close_up:
+	if event.is_action_pressed("shoot") and not close_up:
 		$"../CanvasLayer/CloseUps/SubViewport/Boombox".show()
 		set_mouse_input(true)
 
 
 func _on_door_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	if event.is_action("shoot") and not close_up:
+	if event.is_action_pressed("shoot") and not close_up:
 		if PhaseManager.mother_at_door:
 			PhaseManager.next_phase()
 			update_items.emit()
