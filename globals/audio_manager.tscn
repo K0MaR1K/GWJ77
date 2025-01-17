@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxv0sa43j30hn"]
+
+[ext_resource type="Script" path="res://globals/audio_manager.gd" id="1_mhyts"]
+[ext_resource type="AudioStream" uid="uid://oya53qve2l2n" path="res://sounds/music/Ignorance (Miami Vice).wav" id="2_i02gg"]
+[ext_resource type="AudioStream" uid="uid://cpi788o13sxrb" path="res://sounds/music/Ignorance (Miami Vice 2) (with sweeps).wav" id="3_q8nsn"]
+
+[sub_resource type="Animation" id="Animation_8j0p0"]
+resource_name = "shift_shooter_2-1"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShooterPlayer2:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-20.0, -80.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShooterPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.733333, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-80.0, -10.0, -10.0]
+}
+
+[sub_resource type="Animation" id="Animation_w7jcm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShooterPlayer2:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-20.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShooterPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-80.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y4gfm"]
+_data = {
+"RESET": SubResource("Animation_w7jcm"),
+"shift_shooter_2-1": SubResource("Animation_8j0p0")
+}
+
+[node name="AudioManager" type="Node2D"]
+script = ExtResource("1_mhyts")
+
+[node name="ShooterPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_i02gg")
+volume_db = -80.0
+bus = &"Music"
+
+[node name="ShooterPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_q8nsn")
+volume_db = -20.0
+bus = &"Music"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y4gfm")
+}

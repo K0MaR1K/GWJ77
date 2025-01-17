@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dxii2akm3hgtv"]
+[gd_scene load_steps=38 format=3 uid="uid://dxii2akm3hgtv"]
 
 [ext_resource type="Script" path="res://room/object_spawner.gd" id="1_6qrsc"]
 [ext_resource type="Shader" path="res://shaders/dither_screen.gdshader" id="1_edsf6"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://room/object_handler.gd" id="5_f00bv"]
 [ext_resource type="Texture2D" uid="uid://bxa6wwuddb31b" path="res://resources/fork/fork.png" id="5_poctp"]
 [ext_resource type="PackedScene" uid="uid://bvfo0gqker8uq" path="res://ui/cursor/pointer.tscn" id="5_ue8wk"]
+[ext_resource type="Texture2D" uid="uid://baypf5wjir42c" path="res://note.png" id="7_akif5"]
 [ext_resource type="Texture2D" uid="uid://c8tf5gox5ekin" path="res://room/objects/bb_bg.png" id="7_voa4e"]
 [ext_resource type="Script" path="res://room/objects/boombox.gd" id="8_go4y6"]
 [ext_resource type="Texture2D" uid="uid://2vbhyjspbcj2" path="res://room/objects/bb1_normal.png" id="8_r7cqd"]
@@ -17,9 +18,12 @@
 [ext_resource type="PackedScene" uid="uid://dhoqq10b6wh3g" path="res://room/objects/food_stew.gltf" id="10_oqlib"]
 [ext_resource type="Texture2D" uid="uid://dm8pv1g4wwemk" path="res://room/objects/bb2_pressed.png" id="11_tt0ej"]
 [ext_resource type="Texture2D" uid="uid://cqoossok6ttgn" path="res://room/objects/bb_slider.png" id="12_p2l4c"]
-[ext_resource type="AudioStream" uid="uid://b6jt2x8q3ky5e" path="res://sounds/load_1.wav" id="15_wau6a"]
-[ext_resource type="Texture2D" uid="uid://d1lipitl715sv" path="res://room/arrow_50p.png" id="17_a4e7l"]
-[ext_resource type="Texture2D" uid="uid://b2s2ajsws4r2v" path="res://room/arrow.png" id="19_llgpr"]
+[ext_resource type="AudioStream" uid="uid://b6jt2x8q3ky5e" path="res://sounds/loading/load_1.wav" id="15_wau6a"]
+[ext_resource type="Texture2D" uid="uid://d1lipitl715sv" path="res://room/arrow_20p.png" id="17_a4e7l"]
+[ext_resource type="FontFile" uid="uid://q7jplpg6lwyk" path="res://fonts/Abaddon Bold.ttf" id="18_r0rtu"]
+[ext_resource type="Texture2D" uid="uid://b2s2ajsws4r2v" path="res://room/arrow_50p.png" id="19_llgpr"]
+[ext_resource type="Texture2D" uid="uid://cwqkve1x0gfx0" path="res://room/back-arrow_20p.png" id="21_b4cpt"]
+[ext_resource type="Texture2D" uid="uid://bi6dg4nr1lkkm" path="res://room/back-arrow - Copy.png" id="22_juwpn"]
 
 [sub_resource type="Animation" id="Animation_tmoh1"]
 length = 0.001
@@ -59,7 +63,7 @@ tracks/0/path = NodePath("WorldEnvironment:environment:background_energy_multipl
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1.06667, 1.13333, 1.3, 1.33333, 1.46667, 1.5, 1.7, 1.76667),
+"times": PackedFloat32Array(6.06667, 6.13333, 6.3, 6.33333, 6.46667, 6.5, 6.7, 6.76667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [1.0, 0.5, 0.3, 1.0, 1.0, 0.5, 0.5, 1.0]
@@ -71,7 +75,7 @@ tracks/1/path = NodePath("CanvasLayer/CloseUps/SubViewport/ModulateRect:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.06667, 1.13333, 1.3, 1.33333, 1.46667, 1.5, 1.7, 1.76667),
+"times": PackedFloat32Array(6.06667, 6.13333, 6.3, 6.33333, 6.46667, 6.5, 6.7, 6.76667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.482353), Color(0, 0, 0, 0.666667), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 0.482353), Color(0, 0, 0, 0.482353), Color(0, 0, 0, 0)]
@@ -187,6 +191,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 script = ExtResource("3_qfd25")
 
 [node name="Camera3D" type="Camera3D" parent="CameraHolder"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
 current = true
 fov = 81.7
 
@@ -229,6 +234,17 @@ offset_bottom = 978.622
 rotation = -0.434587
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_poctp")
+
+[node name="Note" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Drawer"]
+modulate = Color(0.73, 0.663813, 0.6059, 1)
+layout_mode = 0
+offset_left = 187.302
+offset_top = 83.282
+offset_right = 987.302
+offset_bottom = 723.282
+rotation = -0.274017
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("7_akif5")
 
 [node name="Boombox" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport"]
 visible = false
@@ -311,13 +327,65 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
+[node name="Note1" type="Control" parent="CanvasLayer/CloseUps/SubViewport"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = -320.0
+offset_bottom = -180.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Note1" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Note1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 800.0
+offset_bottom = 640.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(250, 20)
+texture = ExtResource("7_akif5")
+
+[node name="Label" type="Label" parent="CanvasLayer/CloseUps/SubViewport/Note1"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 189.9
+offset_top = 79.02
+offset_right = 439.9
+offset_bottom = 479.02
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.0349066
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_r0rtu")
+theme_override_font_sizes/font_size = 16
+text = "The dark curtains are working to blot out the sun. When was the last time I left this room? Every day its games and sleep and repeat. I can feel my fingers turning into something else. Maybe I need to take a walk. Clean all these forks I’ve been saving up. Or stay on the computers"
+horizontal_alignment = 1
+autowrap_mode = 3
+clip_text = true
+
 [node name="ArrowLeft" type="TextureButton" parent="CanvasLayer"]
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 128.0
 grow_vertical = 2
 texture_normal = ExtResource("17_a4e7l")
-texture_pressed = ExtResource("19_llgpr")
 texture_hover = ExtResource("19_llgpr")
 stretch_mode = 3
 flip_h = true
@@ -331,9 +399,20 @@ offset_left = -128.0
 grow_horizontal = 0
 grow_vertical = 2
 texture_normal = ExtResource("17_a4e7l")
-texture_pressed = ExtResource("19_llgpr")
 texture_hover = ExtResource("19_llgpr")
 stretch_mode = 3
+
+[node name="ArrowBack" type="TextureButton" parent="CanvasLayer"]
+visible = false
+modulate = Color(0.51, 0.51, 0.51, 1)
+anchors_preset = -1
+anchor_left = 0.9
+anchor_right = 0.9
+offset_left = -128.0
+offset_bottom = 128.0
+grow_horizontal = 0
+texture_normal = ExtResource("21_b4cpt")
+texture_hover = ExtResource("22_juwpn")
 
 [node name="DitheringEffect" type="ColorRect" parent="CanvasLayer"]
 texture_filter = 1
@@ -362,6 +441,9 @@ light_energy = 0.7
 [connection signal="gui_input" from="CanvasLayer/CloseUps/SubViewport/Drawer/Fork" to="ObjectHandler" method="_on_fork_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Drawer/Fork" to="ObjectHandler" method="_on_object_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Drawer/Fork" to="ObjectHandler" method="_on_object_mouse_exited"]
+[connection signal="gui_input" from="CanvasLayer/CloseUps/SubViewport/Drawer/Note" to="ObjectHandler" method="_on_note_gui_input"]
+[connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Drawer/Note" to="ObjectHandler" method="_on_object_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Drawer/Note" to="ObjectHandler" method="_on_object_mouse_exited"]
 [connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Boombox/TestSound" to="ObjectHandler" method="_on_object_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Boombox/TestSound" to="ObjectHandler" method="_on_object_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/CloseUps/SubViewport/Boombox/TestSound" to="CanvasLayer/CloseUps/SubViewport/Boombox" method="_on_test_sound_pressed"]
@@ -379,3 +461,4 @@ light_energy = 0.7
 [connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Boombox/MusicKnob" to="ObjectHandler" method="_on_object_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/ArrowLeft" to="CameraHolder" method="rotate_left"]
 [connection signal="pressed" from="CanvasLayer/ArrowRight" to="CameraHolder" method="rotate_right"]
+[connection signal="pressed" from="CanvasLayer/ArrowBack" to="ObjectHandler" method="go_back"]

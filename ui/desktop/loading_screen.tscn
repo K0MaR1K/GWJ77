@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxdjihgaivdm6"]
+[gd_scene load_steps=10 format=3 uid="uid://bxdjihgaivdm6"]
 
 [ext_resource type="Script" path="res://ui/desktop/loading_screen.gd" id="1_pigt3"]
 [ext_resource type="FontFile" uid="uid://cgfp41w5cas7s" path="res://fonts/NicoClean-Monospaced.ttf" id="2_p3pv5"]
-[ext_resource type="AudioStream" uid="uid://b6jt2x8q3ky5e" path="res://sounds/load_1.wav" id="3_v1oos"]
-[ext_resource type="AudioStream" uid="uid://biofpvw4j8p3d" path="res://sounds/loading_computer.wav" id="4_a8ve5"]
+[ext_resource type="AudioStream" uid="uid://dhrq4d1bd2f6e" path="res://sounds/loading/load_2.wav" id="3_epssp"]
+[ext_resource type="AudioStream" uid="uid://b6jt2x8q3ky5e" path="res://sounds/loading/load_1.wav" id="3_v1oos"]
+[ext_resource type="AudioStream" uid="uid://biofpvw4j8p3d" path="res://sounds/loading/loading_computer.wav" id="4_a8ve5"]
+[ext_resource type="AudioStream" uid="uid://bsqjnbtaqfajb" path="res://sounds/loading/load_3.wav" id="4_qrped"]
 
 [sub_resource type="Animation" id="Animation_volwr"]
 length = 0.001
@@ -167,6 +169,20 @@ tracks/10/keys = {
 "update": 0,
 "values": [0.0, 0.0, -80.0]
 }
+tracks/11/type = "method"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath(".")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(5.03333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_music"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mmg07"]
 _data = {
@@ -183,6 +199,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pigt3")
+load_stream_happy = ExtResource("3_v1oos")
+load_stream_sad = ExtResource("3_epssp")
+load_stream_mysterious = ExtResource("4_qrped")
 
 [node name="BlackBackground" type="ColorRect" parent="."]
 layout_mode = 1
@@ -194,7 +213,6 @@ grow_vertical = 2
 color = Color(0.00908001, 0.0032, 0.02, 1)
 
 [node name="Control" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchor_left = 0.054
 anchor_top = 0.064
@@ -223,6 +241,7 @@ theme_override_font_sizes/font_size = 7
 text = "_"
 
 [node name="Driver" type="Label" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.078
@@ -241,6 +260,7 @@ OTI-94Y JOLLY CD-ROM device driver, Rev D94YV691
 "
 
 [node name="Prepare" type="Label" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.578
@@ -252,6 +272,7 @@ theme_override_font_sizes/font_size = 7
 text = "MODE prepare completed."
 
 [node name="Select" type="Label" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.658

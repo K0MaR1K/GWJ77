@@ -1,9 +1,38 @@
-[gd_scene load_steps=10 format=3 uid="uid://cpes88b8clwam"]
+[gd_scene load_steps=21 format=3 uid="uid://cpes88b8clwam"]
 
 [ext_resource type="Script" path="res://arcade_game/characters/player/player.gd" id="1_plqsk"]
+[ext_resource type="AudioStream" uid="uid://deefb36wvnox" path="res://sounds/gun/gun-fire.wav" id="2_c7w1i"]
 [ext_resource type="Texture2D" uid="uid://ccny0d2p8ayku" path="res://arcade_game/characters/player/cop.png" id="2_t7b2t"]
 [ext_resource type="Texture2D" uid="uid://bdx1ii6nq131" path="res://arcade_game/effects/Light.png" id="3_55h5y"]
+[ext_resource type="AudioStream" uid="uid://bxvqnqm1ocjes" path="res://sounds/footsteps/footsteps 1.wav" id="3_niefa"]
+[ext_resource type="AudioStream" uid="uid://bsk0x7875242k" path="res://sounds/gun/reload.wav" id="3_p34r1"]
+[ext_resource type="AudioStream" uid="uid://fqcknabmqt4j" path="res://sounds/footsteps/footsteps 2.wav" id="4_bnpyb"]
 [ext_resource type="Texture2D" uid="uid://c62l776rxg4g2" path="res://arcade_game/characters/player/cop_dead.png" id="4_evlx7"]
+[ext_resource type="AudioStream" uid="uid://csa6a66orki3h" path="res://sounds/shout/shout-1.wav" id="4_hyahl"]
+[ext_resource type="AudioStream" uid="uid://d0vxhw6mbsssb" path="res://sounds/shout/shout-2.wav" id="5_1rua8"]
+[ext_resource type="AudioStream" uid="uid://pww3gtxv00xu" path="res://sounds/footsteps/footsteps 3.wav" id="5_j6txl"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xvn65"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("3_p34r1")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_p4oms"]
+random_pitch = 1.5
+streams_count = 3
+stream_0/stream = ExtResource("3_niefa")
+stream_1/stream = ExtResource("4_bnpyb")
+stream_2/stream = ExtResource("5_j6txl")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5ra4t"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("2_c7w1i")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y6a15"]
+streams_count = 2
+stream_0/stream = ExtResource("4_hyahl")
+stream_1/stream = ExtResource("5_1rua8")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_41v1l"]
 radius = 5.0
@@ -103,6 +132,10 @@ z_index = 1
 texture_filter = 1
 collision_layer = 2
 script = ExtResource("1_plqsk")
+reload_stream = SubResource("AudioStreamRandomizer_xvn65")
+footsteps = SubResource("AudioStreamRandomizer_p4oms")
+gun_shot_stream = SubResource("AudioStreamRandomizer_5ra4t")
+human_shout = SubResource("AudioStreamRandomizer_y6a15")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_41v1l")
@@ -138,3 +171,5 @@ texture_scale = 2.0
 [node name="DeathSprite" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("4_evlx7")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]

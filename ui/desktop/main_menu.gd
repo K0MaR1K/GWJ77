@@ -22,7 +22,7 @@ func _on_object_mouse_exited() -> void:
 
 func _on_play_button_pressed() -> void:
 	if PhaseManager.can_play_game:
-		get_tree().change_scene_to_file.call_deferred("res://arcade_game/main_scene.tscn")
+		PhaseManager.next_phase()
 	else:
 		GlobalSpeech.speak("I don't want to play right now.")
 

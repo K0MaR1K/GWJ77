@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://lemo73ysf3lo"]
+[gd_scene load_steps=20 format=4 uid="uid://lemo73ysf3lo"]
 
 [ext_resource type="TileSet" uid="uid://bnsia1ygro6ev" path="res://arcade_game/tilesets/tileset.tres" id="1_snsc8"]
 [ext_resource type="Script" path="res://arcade_game/arcade_scene.gd" id="1_w10y0"]
@@ -7,6 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://bmaikduukad0n" path="res://arcade_game/characters/enemy/enemy.tscn" id="5_liu6m"]
 [ext_resource type="FontFile" uid="uid://c58kiqdiy82fw" path="res://fonts/Phased.ttf" id="6_pgdwi"]
 [ext_resource type="Script" path="res://arcade_game/timer.gd" id="7_olfik"]
+[ext_resource type="AudioStream" uid="uid://byxiw5dn7t7gn" path="res://sounds/ticking/tick-1.wav" id="8_f0kl7"]
+[ext_resource type="AudioStream" uid="uid://b3gceiggcrlgn" path="res://sounds/ticking/tick-2.wav" id="9_tlfek"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jc20t"]
+random_pitch = 1.1
+streams_count = 2
+stream_0/stream = ExtResource("8_f0kl7")
+stream_1/stream = ExtResource("9_tlfek")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_akknf"]
 size = Vector2(51.5, 64)
@@ -344,6 +352,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_olfik")
+ticking = SubResource("AudioStreamRandomizer_jc20t")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 

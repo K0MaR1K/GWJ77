@@ -68,6 +68,8 @@ func _on_shoot_timer_timeout() -> void:
 		bullet.direction = direction
 		$"../..".add_child(bullet)
 		bullet.global_position = global_position
+		
+		AudioManager.play_sound_2d(gun_shot_stream, -5, "SFX", global_position)
 
 
 func _on_touch_zone_body_entered(body: Node2D) -> void:

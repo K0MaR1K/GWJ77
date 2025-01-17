@@ -15,12 +15,18 @@ func _ready() -> void:
 
 func set_mouse_input(c_up: bool):
 	Global.hide_inventory()
+	
 	$"../CanvasLayer/CloseUps/SubViewport/ModulateRect".visible = c_up
+	$"../CanvasLayer/ArrowLeft".visible = not c_up
+	$"../CanvasLayer/ArrowRight".visible = not c_up
+	$"../CanvasLayer/ArrowBack".visible = c_up
+	
 	pointer.set_base_pointer()
 	sub_viewport.handle_input_locally = c_up
 	self.close_up = c_up
 	if c_up:
 		close_ups.mouse_filter = Control.MOUSE_FILTER_STOP
+		
 	else:
 		close_ups.mouse_filter = Control.MOUSE_FILTER_PASS
 	
@@ -33,11 +39,19 @@ func _on_object_mouse_exited() -> void:
 	if Global.is_inventory_hidden():
 		pointer.set_base_pointer()
 
+func go_back():
+	if $"../CanvasLayer/CloseUps/SubViewport/Note1".visible:
+		$"../CanvasLayer/CloseUps/SubViewport/Note1".hide()
+		return
+		
+	set_mouse_input(false)
+	for child in sub_viewport.get_children():
+		child.hide()
+	
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("back"):
-		set_mouse_input(false)
-		for child in sub_viewport.get_children():
-			child.hide()
+			go_back()
 			
 	if close_up:
 		sub_viewport.push_input(event)
@@ -85,3 +99,10 @@ func _on_door_input_event(_camera: Node, event: InputEvent, _event_position: Vec
 		if PhaseManager.mother_at_door:
 			PhaseManager.next_phase()
 			update_items.emit()
+
+
+func _on_note_gui_input(event: InputEvent) -> void:
+	if event.is_action_pressed("shoot") and close_up:
+		PhaseManager.note1 = false
+		$"../CanvasLayer/CloseUps/SubViewport/Note1".show()
+		update_items.emit()

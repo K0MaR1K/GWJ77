@@ -1,9 +1,42 @@
-[gd_scene load_steps=12 format=3 uid="uid://bmaikduukad0n"]
+[gd_scene load_steps=24 format=3 uid="uid://bmaikduukad0n"]
 
 [ext_resource type="Material" uid="uid://bq2mff8ncyalh" path="res://arcade_game/effects/lighted_only.tres" id="1_i10f6"]
 [ext_resource type="Script" path="res://arcade_game/characters/enemy/enemy.gd" id="1_u4a5m"]
+[ext_resource type="AudioStream" uid="uid://bxvqnqm1ocjes" path="res://sounds/footsteps/footsteps 1.wav" id="2_1q44f"]
+[ext_resource type="AudioStream" uid="uid://csa6a66orki3h" path="res://sounds/shout/shout-1.wav" id="2_s1nw3"]
+[ext_resource type="AudioStream" uid="uid://deefb36wvnox" path="res://sounds/gun/gun-fire.wav" id="2_tqob3"]
+[ext_resource type="AudioStream" uid="uid://d0vxhw6mbsssb" path="res://sounds/shout/shout-2.wav" id="3_46pke"]
 [ext_resource type="Texture2D" uid="uid://ct5t8nfdc7bif" path="res://arcade_game/characters/enemy/dummy.png" id="3_lo5c3"]
+[ext_resource type="AudioStream" uid="uid://fqcknabmqt4j" path="res://sounds/footsteps/footsteps 2.wav" id="3_t7mfk"]
+[ext_resource type="AudioStream" uid="uid://dwmqjhn0snwhu" path="res://sounds/shout/robot-shout-1.wav" id="4_h1wxg"]
 [ext_resource type="Texture2D" uid="uid://brr2t7f8vy2i8" path="res://arcade_game/characters/enemy/dummy_corpse.png" id="4_hd0ty"]
+[ext_resource type="AudioStream" uid="uid://pww3gtxv00xu" path="res://sounds/footsteps/footsteps 3.wav" id="4_q6tob"]
+[ext_resource type="AudioStream" uid="uid://bmrujg84r8v08" path="res://sounds/shout/robot-shout-2.wav" id="5_0cmi2"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_i1oxl"]
+random_pitch = 1.5
+streams_count = 3
+stream_0/stream = ExtResource("2_1q44f")
+stream_1/stream = ExtResource("3_t7mfk")
+stream_2/stream = ExtResource("4_q6tob")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bcfso"]
+playback_mode = 1
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("2_tqob3")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vss4x"]
+random_pitch = 1.5
+streams_count = 2
+stream_0/stream = ExtResource("2_s1nw3")
+stream_1/stream = ExtResource("3_46pke")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_518x7"]
+random_pitch = 1.5
+streams_count = 2
+stream_0/stream = ExtResource("4_h1wxg")
+stream_1/stream = ExtResource("5_0cmi2")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5hmw0"]
 radius = 5.0
@@ -110,6 +143,10 @@ texture_filter = 1
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("1_u4a5m")
+footsteps = SubResource("AudioStreamRandomizer_i1oxl")
+gun_shot_stream = SubResource("AudioStreamRandomizer_bcfso")
+human_shout = SubResource("AudioStreamRandomizer_vss4x")
+dummy_shout = SubResource("AudioStreamRandomizer_518x7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5hmw0")

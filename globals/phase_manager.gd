@@ -1,6 +1,6 @@
 extends Node
 
-enum Phase {INTRO, ROOM1_1, ROOM1_2, GAME2, ROOM2_1, ROOM2_2, GAME3}
+enum Phase {INTRO, GAME1, ROOM1_1, ROOM1_2, DESKTOP2, GAME2, ROOM2_1, ROOM2_2, DESKTOP3, GAME3}
 enum LDJ {HAPPY, SAD, MYSTERIOUS}
 
 var current_phase : Phase
@@ -15,6 +15,7 @@ var mother_at_door := false
 # objects spawning
 var plate := false
 var fork_drawer := false
+var note1 := true
 
 # levels
 var level2 := false
@@ -22,7 +23,7 @@ var level3 := false
 var human_enemy := false
 
 func _ready() -> void:
-	change_phase(Phase.ROOM1_1)
+	change_phase(Phase.INTRO)
 
 func next_phase():
 	change_phase(current_phase + 1)
@@ -43,14 +44,18 @@ func change_phase(next: Phase):
 			computer_on = false
 			can_leave_computer = false
 			can_play_game = true
-			plate = false
+			loading_jingle = LDJ.HAPPY
+			
+		Phase.GAME1:
+			AudioManager.shift_shooter21()
+			get_tree().change_scene_to_file.call_deferred("res://arcade_game/main_scene.tscn")
 			level2 = true
 			level3 = false
 			human_enemy = false
-			loading_jingle = LDJ.HAPPY
 			
 		Phase.ROOM1_1:
 			get_tree().change_scene_to_file.call_deferred("res://room/room_scene.tscn")
+			AudioManager.music_fade()
 			computer_on = false
 			can_leave_computer = true
 			can_play_game = false
@@ -63,18 +68,22 @@ func change_phase(next: Phase):
 			can_leave_computer = true
 			mother_at_door = false
 			
-		Phase.GAME2:
+		Phase.DESKTOP2:
 			get_tree().change_scene_to_file.call_deferred("res://ui/desktop/main_menu.tscn")
-			can_leave_computer = false
+			#can_leave_computer = false
 			can_play_game = true
-			plate = false
+			loading_jingle = LDJ.SAD
+			
+		Phase.GAME2:
+			AudioManager.shift_shooter21()
+			get_tree().change_scene_to_file.call_deferred("res://arcade_game/main_scene.tscn")
 			level2 = true
 			level3 = true
-			loading_jingle = LDJ.SAD
 			human_enemy = false
 			
 		Phase.ROOM2_1:
 			get_tree().change_scene_to_file.call_deferred("res://room/room_scene.tscn")
+			AudioManager.music_fade()
 			computer_on = false
 			can_leave_computer = true
 			can_play_game = false
@@ -86,13 +95,16 @@ func change_phase(next: Phase):
 			can_leave_computer = true
 			mother_at_door = false
 			
-		Phase.GAME3:
+		Phase.DESKTOP3:
 			get_tree().change_scene_to_file.call_deferred("res://ui/desktop/main_menu.tscn")
 			computer_on = false
 			can_leave_computer = false
 			can_play_game = true
-			plate = false
+			loading_jingle = LDJ.MYSTERIOUS
+			
+		Phase.GAME3:
+			AudioManager.shift_shooter21()
+			get_tree().change_scene_to_file.call_deferred("res://arcade_game/main_scene.tscn")
 			level2 = true
 			level3 = true
-			loading_jingle = LDJ.MYSTERIOUS
 			human_enemy = true

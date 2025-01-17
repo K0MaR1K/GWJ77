@@ -23,6 +23,7 @@ buses/default_bus_layout="res://sounds/default_bus_layout.tres"
 Global="*res://globals/global.tscn"
 PhaseManager="*res://globals/phase_manager.gd"
 GlobalSpeech="*res://globals/global_speech.tscn"
+AudioManager="*res://globals/audio_manager.tscn"
 
 [display]
 

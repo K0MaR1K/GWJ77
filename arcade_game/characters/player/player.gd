@@ -5,6 +5,8 @@ signal game_over
 
 var mother_dead := false
 
+@export var reload_stream : AudioStream
+
 func _ready() -> void:
 	SPEED = 100.0
 	global_position = Global.player_spawn_position
@@ -23,6 +25,8 @@ func _input(event: InputEvent) -> void:
 		bullet.global_position = global_position
 		bullet.direction = Vector2.from_angle(global_rotation)
 		$"..".add_child(bullet)
+		
+		AudioManager.play_sound(gun_shot_stream, 0, "SFX")
 		
 
 func _process(delta: float) -> void:
