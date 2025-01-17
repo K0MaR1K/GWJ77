@@ -29,7 +29,7 @@ func kill(knockback: Vector2):
 	
 	
 	if PhaseManager.human_enemy:
-		AudioManager.play_sound_2d(human_shout, -5, "SFX", global_position)
+		AudioManager.play_sound_2d(human_shout, 5, "SFX", global_position)
 		
 		for i in range(3):
 			var sprite := Sprite2D.new()
@@ -40,9 +40,9 @@ func kill(knockback: Vector2):
 			sprite.global_position = global_position + knockback * randf_range(8, 16) + knockback.rotated(PI/2) * randf_range(-5, 5)
 			
 	elif self.has_method("get_input"):
-		AudioManager.play_sound_2d(human_shout, -5, "SFX", global_position)
+		AudioManager.play_sound_2d(human_shout, 5, "SFX", global_position)
 	else:
-		AudioManager.play_sound_2d(dummy_shout, -5, "SFX", global_position)
+		AudioManager.play_sound_2d(dummy_shout, 5, "SFX", global_position)
 		
 	dead = true
 	set_process(false)

@@ -23,7 +23,7 @@ var level3 := false
 var human_enemy := false
 
 func _ready() -> void:
-	change_phase(Phase.INTRO)
+	change_phase(Phase.GAME1)
 
 func next_phase():
 	change_phase(current_phase + 1)

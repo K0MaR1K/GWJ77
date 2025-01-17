@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cdwy3gkriyhea"]
+[gd_scene load_steps=12 format=3 uid="uid://cdwy3gkriyhea"]
 
 [ext_resource type="PackedScene" uid="uid://yy8eym2333dq" path="res://ui/CRTScreen.tscn" id="1_fndsx"]
 [ext_resource type="Script" path="res://ui/desktop/main_menu.gd" id="2_4c532"]
 [ext_resource type="Texture2D" uid="uid://b0ynivbjwg1nh" path="res://ui/desktop/planet1.png" id="3_fgaae"]
 [ext_resource type="Texture2D" uid="uid://coihnxtjlb2g0" path="res://ui/desktop/stars.jpg" id="3_j6gwp"]
+[ext_resource type="AudioStream" uid="uid://jvdjj3kk20l0" path="res://sounds/mouse click.wav" id="3_tmfmi"]
 [ext_resource type="PackedScene" uid="uid://bvfo0gqker8uq" path="res://ui/cursor/pointer.tscn" id="4_jk76e"]
 [ext_resource type="Script" path="res://ui/desktop/planet.gd" id="4_lk6ov"]
 [ext_resource type="Texture2D" uid="uid://kpyl4ea5khmb" path="res://ui/desktop/google-play.png" id="5_flve0"]
@@ -13,6 +14,7 @@
 
 [node name="MainMenu" instance=ExtResource("1_fndsx")]
 script = ExtResource("2_4c532")
+click_sound = ExtResource("3_tmfmi")
 
 [node name="Stars" type="TextureRect" parent="SubViewport/CanvasLayer" index="0"]
 modulate = Color(0.36, 0.36, 0.36, 1)
@@ -26,7 +28,7 @@ scale = Vector2(0.54, 0.54)
 texture = ExtResource("3_fgaae")
 hframes = 50
 vframes = 10
-frame = 400
+frame = 251
 script = ExtResource("4_lk6ov")
 
 [node name="Darken" type="ColorRect" parent="SubViewport/CanvasLayer" index="2"]

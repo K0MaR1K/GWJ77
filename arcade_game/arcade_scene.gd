@@ -61,7 +61,7 @@ func _on_next_floor_area_2_body_entered(_body: Node2D) -> void:
 			Global.player_spawn_position = $Level3.global_position
 			next_level.emit()
 		else:
-			PhaseManager.next_phase()
+			Transitions.transition(Transitions.DISSOLVE, Transitions.BLINK)
 			Global.reset_spawn_position()
 
 
@@ -83,8 +83,11 @@ func _on_mother_killed() -> void:
 		mother_killed.emit()
 		$Spotlight.global_position = mother.global_position
 		$AnimationPlayer.play("mother_killed")
+		
 		$GroundLayer.hide()
 		$DecorationsLayer.hide()
 		$CanvasLayer.hide()
 		$Spotlight.show()
+		
+		AudioManager.pitch_scale_down(0.01, 3.0)
 		$DirectionalLight2D.show()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4pjwyvaog513"
-path="res://.godot/imported/textbox.png-ce642ba2352e3efa917e621d8d460fbb.ctex"
+uid="uid://dgan0j4efseqj"
+path="res://.godot/imported/blink.png-7696d4caf075671fdfa4839f2c543453.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/textbox.png"
-dest_files=["res://.godot/imported/textbox.png-ce642ba2352e3efa917e621d8d460fbb.ctex"]
+source_file="res://globals/transitions/blink.png"
+dest_files=["res://.godot/imported/blink.png-7696d4caf075671fdfa4839f2c543453.ctex"]
 
 [params]
 

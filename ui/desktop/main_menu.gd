@@ -1,8 +1,13 @@
 extends SubViewportContainer
 
+@export var click_sound : AudioStream
+
 @onready var pointer: Pointer = $SubViewport/CanvasLayer/Pointer
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("shoot"):
+		AudioManager.play_sound(click_sound, 30, "SFX")
+	
 	if event.is_action_pressed("back"):
 		_on_power_button_pressed()
 
@@ -24,11 +29,11 @@ func _on_play_button_pressed() -> void:
 	if PhaseManager.can_play_game:
 		PhaseManager.next_phase()
 	else:
-		GlobalSpeech.speak("I don't want to play right now.")
+		GlobalSpeech.speak("I could eat something.")
 
 
 func _on_power_button_pressed() -> void:
 	if PhaseManager.can_leave_computer:
 		get_tree().change_scene_to_file.call_deferred("res://room/room_scene.tscn")
 	else:
-		GlobalSpeech.speak("Nah, the room is borring.")
+		GlobalSpeech.speak("Not now.")

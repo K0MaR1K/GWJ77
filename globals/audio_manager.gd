@@ -12,18 +12,20 @@ func pitch_scale_up():
 		var tween = get_tree().create_tween()
 		tween.tween_property(shooter_player, "pitch_scale", 1.0, 1.0)
 		
-func pitch_scale_down(): 
+func pitch_scale_down(pitch: float = 0.7, dur: float = 1.0): 
 	if shooter_player:
 		var tween = get_tree().create_tween()
-		tween.tween_property(shooter_player, "pitch_scale", 0.7, 1.0)
+		tween.tween_property(shooter_player, "pitch_scale", pitch, dur)
 
 func start_music():
 	shooter_player_2.play()
 
 func shift_shooter21():
-	if shooter_player_2:
-		shooter_player.play(shooter_player_2.get_playback_position())
-	animation_player.play.call_deferred("shift_shooter_2-1")
+	if not animation_player:
+		await get_tree().create_timer(0.1).timeout
+
+	shooter_player.play(shooter_player_2.get_playback_position())
+	animation_player.play("shift_shooter_2-1")
 	
 func shift_shooter12():
 	animation_player.play("shift_shooter_1-2")
