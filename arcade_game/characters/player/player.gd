@@ -49,3 +49,4 @@ func _on_arcade_scene_mother_killed() -> void:
 	$"../CanvasLayer".hide()
 	mother_dead = true
 	$"../Camera2D".mother_killed = true
+	$"../../AnimationPlayer".play("mother_killed")

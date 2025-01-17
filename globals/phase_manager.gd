@@ -22,7 +22,7 @@ var level3 := false
 var human_enemy := false
 
 func _ready() -> void:
-	change_phase(Phase.GAME3)
+	change_phase(Phase.ROOM1_1)
 
 func next_phase():
 	change_phase(current_phase + 1)
@@ -56,6 +56,7 @@ func change_phase(next: Phase):
 			can_play_game = false
 			fork_drawer = true
 			mother_at_door = true
+			GlobalSpeech.mother_speech(GlobalSpeech.mother_speech_1)
 			
 		Phase.ROOM1_2:
 			plate = true
