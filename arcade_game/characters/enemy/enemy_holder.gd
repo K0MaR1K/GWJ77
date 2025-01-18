@@ -19,6 +19,18 @@ func enemy_killed(score: int):
 		level_clear.emit()
 		
 	arcade_scene.add_score(score)
+	
+	%PopUps.text = get_phrase(score)
+		
+func get_phrase(score: int):
+	if score == 100:
+		return "[rainbow][pulse]PREFIRED!"
+	elif score > 80:
+		return "[shake][pulse]GOOD SHOT!"
+	elif score > 40:
+		return "[wave amp=10][pulse]AIM FASTER"
+	else:
+		return "[pulse]TOO SLOW!"
 		
 
 func _ready() -> void:
