@@ -21,7 +21,7 @@ var footstep_t : int = 0
 func kill(knockback: Vector2):
 	var tween = get_tree().create_tween()
 	tween.parallel().tween_property(self, "global_position", global_position + knockback * KNOCKBACK, 0.3).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.parallel().tween_property(self, "global_rotation", -knockback.angle() + randf_range(-0.5, 0.5) , 0.3).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property($DeathSprite, "global_rotation", -knockback.angle() + randf_range(-0.5, 0.5) , 0.3).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	
 	$Legs.hide()
 	$Torso.hide()
@@ -46,7 +46,7 @@ func kill(knockback: Vector2):
 		
 	dead = true
 	set_process(false)
-	set_physics_process(false)
+	#set_physics_process(false)
 
 func _process(_delta: float) -> void:
 	if direction:

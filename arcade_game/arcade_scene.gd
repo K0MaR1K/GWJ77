@@ -8,6 +8,7 @@ signal mother_killed
 const TILESET = preload("res://arcade_game/tilesets/tileset.tres")
 
 var current_tileset = 0
+var current_score := 0
 
 @onready var mother: Enemy = $EnemyHolder3/Mother
 
@@ -45,6 +46,10 @@ func change_tileset(tileset: int = -1):
 func set_enemy_count(enemy_count: int):
 	%EnemiesLeft.text = "enemies left: " + str(enemy_count)
 
+func add_score(score : int):
+	current_score += score
+	%Score.text = "score: " + str(current_score)
+
 func _on_next_floor_area_body_entered(_body: Node2D) -> void:
 	if $CanvasLayer/LevelClear.next_level_enabled:
 		if PhaseManager.level2:
@@ -52,7 +57,7 @@ func _on_next_floor_area_body_entered(_body: Node2D) -> void:
 			next_level.emit()
 			set_enemy_count.call_deferred($EnemyHolder2.enemy_count)
 		else:
-			PhaseManager.next_phase()
+			Transitions.transition(Transitions.DISSOLVE, Transitions.BLINK)
 			Global.reset_spawn_position()
 
 func _on_next_floor_area_2_body_entered(_body: Node2D) -> void:
@@ -67,7 +72,7 @@ func _on_next_floor_area_2_body_entered(_body: Node2D) -> void:
 
 func _on_next_floor_area_3_body_entered(body: Node2D) -> void:
 	if $CanvasLayer/LevelClear.next_level_enabled:
-		PhaseManager.next_phase()
+		Transitions.transition(Transitions.DISSOLVE, Transitions.BLINK)
 		Global.reset_spawn_position()
 
 func _on_timer_time_out() -> void:

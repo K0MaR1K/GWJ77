@@ -27,7 +27,7 @@ func _on_object_mouse_exited() -> void:
 
 func _on_play_button_pressed() -> void:
 	if PhaseManager.can_play_game:
-		PhaseManager.next_phase()
+		Transitions.transition(Transitions.DISSOLVE, Transitions.DISSOLVE)
 	else:
 		GlobalSpeech.speak("I could eat something.")
 

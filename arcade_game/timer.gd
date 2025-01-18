@@ -16,7 +16,11 @@ func _process(delta: float) -> void:
 		if time_left - 0.3 < floor(t - 0.3):
 			AudioManager.play_sound(ticking, 5, "SFX")
 			
-		$TimeLeft.text = "time left: " + str(roundf(time_left))
+		if time_left < 3:
+			$TimeLeft.text = "time left: [shake][color=red]" + str(roundf(time_left))
+		else:
+			$TimeLeft.text = "time left: " + str(roundf(time_left))
+			
 		if time_left <= 0:
 			pause = true
 			time_out.emit()

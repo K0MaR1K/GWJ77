@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bmaikduukad0n"]
+[gd_scene load_steps=25 format=3 uid="uid://bmaikduukad0n"]
 
 [ext_resource type="Material" uid="uid://bq2mff8ncyalh" path="res://arcade_game/effects/lighted_only.tres" id="1_i10f6"]
 [ext_resource type="Script" path="res://arcade_game/characters/enemy/enemy.gd" id="1_u4a5m"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://brr2t7f8vy2i8" path="res://arcade_game/characters/enemy/dummy_corpse.png" id="4_hd0ty"]
 [ext_resource type="AudioStream" uid="uid://pww3gtxv00xu" path="res://sounds/footsteps/footsteps 3.wav" id="4_q6tob"]
 [ext_resource type="AudioStream" uid="uid://bmrujg84r8v08" path="res://sounds/shout/robot-shout-2.wav" id="5_0cmi2"]
+[ext_resource type="FontFile" uid="uid://c58kiqdiy82fw" path="res://fonts/Phased.ttf" id="13_3ifwt"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_i1oxl"]
 random_pitch = 1.5
@@ -197,6 +198,27 @@ collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TouchZone"]
 shape = SubResource("CircleShape2D_tmn27")
+
+[node name="AddedScore" type="RichTextLabel" parent="."]
+top_level = true
+z_index = 2
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.68
+anchor_top = 0.02
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 58.0
+offset_bottom = -8.0
+size_flags_vertical = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 1
+theme_override_fonts/normal_font = ExtResource("13_3ifwt")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "+100"
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="body_entered" from="TouchZone" to="." method="_on_touch_zone_body_entered"]

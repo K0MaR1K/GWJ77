@@ -69,6 +69,7 @@ func change_phase(next: Phase):
 			mother_at_door = false
 			
 		Phase.DESKTOP2:
+			AudioManager.shift_shooter12()
 			get_tree().change_scene_to_file.call_deferred("res://ui/desktop/main_menu.tscn")
 			#can_leave_computer = false
 			can_play_game = true
@@ -97,6 +98,7 @@ func change_phase(next: Phase):
 			
 		Phase.DESKTOP3:
 			get_tree().change_scene_to_file.call_deferred("res://ui/desktop/main_menu.tscn")
+			AudioManager.shift_shooter12()
 			computer_on = false
 			can_leave_computer = false
 			can_play_game = true
