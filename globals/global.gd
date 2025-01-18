@@ -55,6 +55,7 @@ func _on_inventory_item_selected(index: int) -> void:
 	elif inventory.get_item_text(index) == _requested_item.item.name:
 		if _requested_item.node.has_method("send_item"):
 			_requested_item.node.send_item(_requested_item.item)
+			inventory.remove_item(index)
 	else:
 		GlobalSpeech.speak("Can't use this item here")
 		

@@ -2,6 +2,8 @@ extends Node3D
 
 signal update_items
 
+@export var note_sound : AudioStream
+
 @onready var pointer: Pointer = $"../CanvasLayer/Pointer"
 @onready var sub_viewport: SubViewport = $"../CanvasLayer/CloseUps/SubViewport"
 @onready var close_ups: SubViewportContainer = $"../CanvasLayer/CloseUps"
@@ -69,23 +71,15 @@ func _on_computer_input_event(_camera: Node, event: InputEvent, _event_position:
 
 func _on_drawer_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event.is_action_pressed("shoot") and not close_up:
-		if PhaseManager.mother_at_door:
-			GlobalSpeech.mother_at_door()
-		else:
-			$"../CanvasLayer/CloseUps/SubViewport/Drawer".show()
-			set_mouse_input(true)
+		$"../CanvasLayer/CloseUps/SubViewport/Drawer".show()
+		set_mouse_input(true)
 
 
 func _on_fork_input_event(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot") and close_up:
-		if PhaseManager.mother_at_door:
-			GlobalSpeech.mother_at_door()
-		else:
-			PhaseManager.fork_drawer = false
-			update_items.emit()
-			Global.add_to_inventory(preload("res://resources/fork/fork.tres"))
-
-
+		PhaseManager.fork_drawer = false
+		update_items.emit()
+		Global.add_to_inventory(preload("res://resources/fork/fork.tres"))
 
 
 func _on_boombox_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
@@ -104,5 +98,21 @@ func _on_door_input_event(_camera: Node, event: InputEvent, _event_position: Vec
 func _on_note_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot") and close_up:
 		PhaseManager.note1 = false
-		$"../CanvasLayer/CloseUps/SubViewport/Note1".show()
+		var note = $"../CanvasLayer/CloseUps/SubViewport/Note1"
+		
+		note.position.y = 350
+		var tween = get_tree().create_tween()
+		tween.tween_property(note, "position:y", 0, 0.5).set_trans(Tween.TRANS_CUBIC)
+		
+		note.show()
+		AudioManager.play_sound(note_sound, 10, "SFX")
 		update_items.emit()
+
+
+func _on_boombox_drawer_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if event.is_action_pressed("shoot") and not close_up:
+		GlobalSpeech.speak("Nothing but nick nacks. Wait, is that a little hollow space?")
+
+
+func _on_book_shelf_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	pass #TODO: book moving minigame

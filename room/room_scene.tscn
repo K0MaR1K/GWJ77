@@ -1,10 +1,11 @@
-[gd_scene load_steps=38 format=3 uid="uid://dxii2akm3hgtv"]
+[gd_scene load_steps=40 format=3 uid="uid://dxii2akm3hgtv"]
 
 [ext_resource type="Script" path="res://room/object_spawner.gd" id="1_6qrsc"]
 [ext_resource type="Shader" path="res://shaders/dither_screen.gdshader" id="1_edsf6"]
 [ext_resource type="Texture2D" uid="uid://cniea1u7vuasg" path="res://room/room_01.png" id="1_f3an5"]
 [ext_resource type="Script" path="res://room/camera_3d.gd" id="3_qfd25"]
 [ext_resource type="Texture2D" uid="uid://d0qsvlxj7kdhu" path="res://room/objects/open_drawer.jpg" id="4_1avi3"]
+[ext_resource type="AudioStream" uid="uid://l4smmrogxwwr" path="res://sounds/room/paper_sound.wav" id="4_7c7yd"]
 [ext_resource type="Script" path="res://room/food_stew.gd" id="4_t6cm6"]
 [ext_resource type="Script" path="res://room/object_handler.gd" id="5_f00bv"]
 [ext_resource type="Texture2D" uid="uid://bxa6wwuddb31b" path="res://resources/fork/fork.png" id="5_poctp"]
@@ -24,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://b2s2ajsws4r2v" path="res://room/arrow_50p.png" id="19_llgpr"]
 [ext_resource type="Texture2D" uid="uid://cwqkve1x0gfx0" path="res://room/back-arrow_20p.png" id="21_b4cpt"]
 [ext_resource type="Texture2D" uid="uid://bi6dg4nr1lkkm" path="res://room/back-arrow - Copy.png" id="22_juwpn"]
+[ext_resource type="AudioStream" uid="uid://b85x1qh06pjl0" path="res://sounds/room/amibent_light.wav" id="25_v1yrn"]
 
 [sub_resource type="Animation" id="Animation_tmoh1"]
 length = 0.001
@@ -142,6 +144,7 @@ environment = SubResource("Environment_2maae")
 
 [node name="ObjectHandler" type="Node3D" parent="."]
 script = ExtResource("5_f00bv")
+note_sound = ExtResource("4_7c7yd")
 
 [node name="Computer" type="StaticBody3D" parent="ObjectHandler"]
 
@@ -150,8 +153,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.765988, 0.0846046)
 shape = SubResource("BoxShape3D_7xvbu")
 
 [node name="Drawer" type="StaticBody3D" parent="ObjectHandler"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0896394)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ObjectHandler/Drawer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86838, -2.90576, 1.32593)
+shape = SubResource("BoxShape3D_h1223")
+
+[node name="BoomboxDrawer" type="StaticBody3D" parent="ObjectHandler"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.281153, 1.16918)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObjectHandler/BoomboxDrawer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86838, -2.90576, 1.32593)
 shape = SubResource("BoxShape3D_h1223")
 
@@ -191,7 +202,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 script = ExtResource("3_qfd25")
 
 [node name="Camera3D" type="Camera3D" parent="CameraHolder"]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.992546, 0.121869, 0, -0.121869, 0.992546, 0, 0, 0)
 current = true
 fov = 81.7
 
@@ -432,12 +443,20 @@ transform = Transform3D(0.985458, 7.42731e-09, -0.169917, 0.169917, -4.30758e-08
 light_color = Color(1, 0.9, 0.7, 1)
 light_energy = 0.7
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_v1yrn")
+volume_db = 10.0
+autoplay = true
+bus = &"SFX"
+
 [connection signal="update_items" from="ObjectHandler" to="." method="update"]
 [connection signal="input_event" from="ObjectHandler/Computer" to="ObjectHandler" method="_on_computer_input_event"]
 [connection signal="input_event" from="ObjectHandler/Drawer" to="ObjectHandler" method="_on_drawer_input_event"]
+[connection signal="input_event" from="ObjectHandler/BoomboxDrawer" to="ObjectHandler" method="_on_boombox_drawer_input_event"]
 [connection signal="input_event" from="ObjectHandler/FoodStew" to="ObjectHandler/FoodStew" method="_on_input_event"]
 [connection signal="input_event" from="ObjectHandler/Boombox" to="ObjectHandler" method="_on_boombox_input_event"]
 [connection signal="input_event" from="ObjectHandler/Door" to="ObjectHandler" method="_on_door_input_event"]
+[connection signal="input_event" from="ObjectHandler/BookShelf" to="ObjectHandler" method="_on_book_shelf_input_event"]
 [connection signal="gui_input" from="CanvasLayer/CloseUps/SubViewport/Drawer/Fork" to="ObjectHandler" method="_on_fork_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Drawer/Fork" to="ObjectHandler" method="_on_object_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Drawer/Fork" to="ObjectHandler" method="_on_object_mouse_exited"]

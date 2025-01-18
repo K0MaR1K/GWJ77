@@ -24,3 +24,6 @@ func _on_arcade_scene_time_out() -> void:
 	restart_enabled = true
 	show()
 	$GameOverText/TimeOutText.show()
+
+func start_over():
+	PhaseManager.change_phase(PhaseManager.Phase.INTRO)

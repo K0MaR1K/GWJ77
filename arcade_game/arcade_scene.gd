@@ -4,19 +4,12 @@ signal next_level
 signal time_out
 signal mother_killed
 
-
-const TILESET = preload("res://arcade_game/tilesets/tileset.tres")
-
-var current_tileset = 0
 var current_score := 0
 
 @onready var mother: Enemy = $EnemyHolder3/Mother
 
 func _ready() -> void:
 	GlobalSpeech.clear()
-	if PhaseManager.is_game_phase():
-		pass
-		#change_tileset()
 		
 	if Global.player_spawn_position == $Level1.global_position:
 		set_enemy_count.call_deferred($EnemyHolder.enemy_count)
@@ -33,15 +26,6 @@ func reset():
 	$CanvasLayer.show()
 	$Spotlight.hide()
 	$DirectionalLight2D.hide()
-
-func change_tileset(tileset: int = -1):
-	if tileset == -1:	
-		TILESET.set_source_id(0, current_tileset+10)
-		TILESET.set_source_id(current_tileset+1, 0)
-		current_tileset = current_tileset+1
-	else:
-		TILESET.set_source_id(tileset, 0)
-		current_tileset = tileset
 		
 func set_enemy_count(enemy_count: int):
 	%EnemiesLeft.text = "enemies left: " + str(enemy_count)
@@ -83,11 +67,10 @@ func _on_player_game_over() -> void:
 	$CanvasLayer/Timer.pause = true
 
 
-func _on_mother_killed() -> void:
+func _on_mother_killed(score: int) -> void:
 	if PhaseManager.human_enemy:
 		mother_killed.emit()
 		$Spotlight.global_position = mother.global_position
-		$AnimationPlayer.play("mother_killed")
 		
 		$GroundLayer.hide()
 		$DecorationsLayer.hide()

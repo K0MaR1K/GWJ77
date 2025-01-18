@@ -15,15 +15,19 @@ var enemy_count: int:
 func enemy_killed(score: int):
 	enemy_count -= 1
 	timer.add_time(1)
-	if enemy_count == 0:
-		level_clear.emit()
-		
-	arcade_scene.add_score(score)
 	
 	%PopUps.text = get_phrase(score)
+	
+	if enemy_count == 0:
+		level_clear.emit()	
+	arcade_scene.add_score(score)
 		
 func get_phrase(score: int):
-	if score == 100:
+	if PhaseManager.human_enemy and score > 60 and score < 70:
+		return "[color=red][pulse][shake]NOT HUMAN" 
+	elif enemy_count == 2:
+		return "[color=red][pulse][shake]KILL THEM!"
+	elif score == 100:
 		return "[rainbow][pulse]PREFIRED!"
 	elif score > 80:
 		return "[shake][pulse]GOOD SHOT!"
