@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://ckoarf2ulhkpi"]
+
+[ext_resource type="Texture2D" uid="uid://dvnq8rausdupi" path="res://resources/metal_rod/metal_rod.webp" id="1_xh8bm"]
+[ext_resource type="Script" path="res://resources/item.gd" id="2_5ao47"]
+
+[resource]
+script = ExtResource("2_5ao47")
+name = "Metal Rod"
+picture = ExtResource("1_xh8bm")

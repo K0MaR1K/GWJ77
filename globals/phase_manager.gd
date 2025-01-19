@@ -1,11 +1,12 @@
 extends Node
 
+const METAL_ROD = preload("res://resources/metal_rod/metal_rod.tres")
 const KEY = preload("res://resources/key/key.tres")
 const TILESET = preload("res://arcade_game/tilesets/tileset.tres")
 
 var current_tileset = 0
 
-enum Phase {INTRO, GAME1, ROOM1_1, ROOM1_2, DESKTOP2, GAME2, ROOM2_1, ROOM2_2, DESKTOP3, GAME3, ROOM3_1, ROOM3_2, DESKTOP4, GAME4}
+enum Phase {INTRO, GAME1, ROOM1_1, ROOM1_2, DESKTOP2, GAME2, ROOM2_1, ROOM2_2, DESKTOP3, GAME3, ROOM3_1, ROOM3_2, DESKTOP4, GAME4, FINAL}
 enum LDJ {HAPPY, SAD, MYSTERIOUS}
 
 var current_phase : Phase
@@ -34,7 +35,7 @@ var level3 := false
 var human_enemy := false
 
 func _ready() -> void:
-	change_phase(Phase.ROOM3_1)
+	change_phase(Phase.INTRO)
 
 func next_phase():
 	change_phase(current_phase + 1)
@@ -51,10 +52,24 @@ func change_phase(next: Phase):
 	match current_phase:
 		Phase.INTRO:
 			get_tree().change_scene_to_file.call_deferred("res://ui/desktop/main_menu.tscn")
+
+			plate = false
+			fork_drawer = false
+			fork_cabinet = false
+			fork_bookshelf = false
+			chest = true
+			note1 = false
+			note2 = false
+			note3 = false
+			pvc_pipe = false
+			level2 = false
+			level3 = false
+			human_enemy = false
 			computer_on = false
 			can_leave_computer = false
 			can_play_game = true
 			loading_jingle = LDJ.HAPPY
+			Global.inventory.clear()
 			
 		Phase.GAME1:
 			AudioManager.shift_shooter21()
@@ -138,6 +153,9 @@ func change_phase(next: Phase):
 			can_leave_computer = true
 			can_play_game = false
 			mother_at_door = true
+						
+			await get_tree().create_timer(1.5).timeout
+			Global.add_to_inventory(METAL_ROD)
 											
 		Phase.ROOM3_2:
 			plate = true
@@ -158,6 +176,9 @@ func change_phase(next: Phase):
 			level2 = true
 			level3 = true
 			human_enemy = true
+			
+		Phase.FINAL:
+			get_tree().change_scene_to_file.call_deferred("res://ui/final_screen.tscn")
 
 func change_tileset(tileset: int = -1):
 	if tileset == -1:	
