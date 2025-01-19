@@ -13,6 +13,8 @@ config_version=5
 config/name="GWJ77"
 run/main_scene="res://room/room_scene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/bg_color=Color(0.027451, 0.0156863, 0, 1)
+boot_splash/image="res://ui/scum-splash.png"
 
 [audio]
 

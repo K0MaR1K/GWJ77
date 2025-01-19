@@ -5,6 +5,9 @@ var player_score : int = 0
 var arcade_stage: int = 0
 
 var level1_spawn_position := Vector2(160, 145)
+var level2_spawn_position := Vector2(-181, 361)
+var level3_spawn_position := Vector2(721, 403)
+
 var player_spawn_position: Vector2 = level1_spawn_position
 
 @onready var inventory: ItemList = $CanvasLayer/Inventory
@@ -15,6 +18,8 @@ var _requested_item: Request = null
 
 func reset_spawn_position():
 	player_spawn_position = level1_spawn_position
+	if PhaseManager.current_phase >= PhaseManager.Phase.GAME2:
+		player_spawn_position = level2_spawn_position
 
 func _ready() -> void:
 	hide_inventory()
@@ -30,10 +35,10 @@ func _ready() -> void:
 
 func add_to_inventory(item: Item):
 	inventory.add_item(item.name, item.picture)
-	added_item.position.y = 622.4
-	added_item.texture = item.picture
+	added_item.position.y = 600
+	added_item.set_texture(item.picture)
 	var tween = get_tree().create_tween()
-	tween.tween_property(added_item, "position:y", 750, 1.5).set_trans(Tween.TRANS_EXPO)
+	tween.tween_property(added_item, "position:y", 800, 1.5).set_trans(Tween.TRANS_EXPO)
 
 
 func request_item(item: Item, node: Node):

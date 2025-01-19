@@ -7,8 +7,8 @@
 [ext_resource type="AudioStream" uid="uid://jvdjj3kk20l0" path="res://sounds/mouse click.wav" id="3_tmfmi"]
 [ext_resource type="PackedScene" uid="uid://bvfo0gqker8uq" path="res://ui/cursor/pointer.tscn" id="4_jk76e"]
 [ext_resource type="Script" path="res://ui/desktop/planet.gd" id="4_lk6ov"]
-[ext_resource type="Texture2D" uid="uid://kpyl4ea5khmb" path="res://ui/desktop/google-play.png" id="5_flve0"]
 [ext_resource type="Texture2D" uid="uid://bork6co4p6jry" path="res://ui/desktop/settings.png" id="6_r4sdo"]
+[ext_resource type="Texture2D" uid="uid://snlcqff0csfy" path="res://ui/desktop/ico.png" id="7_gpf8k"]
 [ext_resource type="Texture2D" uid="uid://bcgkk2t4ds1no" path="res://ui/desktop/power-on.png" id="7_mc13p"]
 [ext_resource type="Texture2D" uid="uid://b5hg6iou4ykjw" path="res://ui/desktop/cup.png" id="9_vqlcy"]
 [ext_resource type="PackedScene" uid="uid://bxdjihgaivdm6" path="res://ui/desktop/loading_screen.tscn" id="11_2h8ch"]
@@ -30,7 +30,7 @@ scale = Vector2(0.54, 0.54)
 texture = ExtResource("3_fgaae")
 hframes = 50
 vframes = 10
-frame = 214
+frame = 59
 script = ExtResource("4_lk6ov")
 
 [node name="Darken" type="ColorRect" parent="SubViewport/CanvasLayer" index="2"]
@@ -56,7 +56,7 @@ theme_override_constants/separation = 15
 texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-texture_normal = ExtResource("5_flve0")
+texture_normal = ExtResource("7_gpf8k")
 stretch_mode = 4
 
 [node name="SettingsButton" type="TextureButton" parent="SubViewport/CanvasLayer/VBoxContainer" index="1"]
@@ -67,7 +67,7 @@ texture_normal = ExtResource("6_r4sdo")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="blank1" type="TextureButton" parent="SubViewport/CanvasLayer/VBoxContainer" index="2"]
+[node name="VideoPlayButton" type="TextureButton" parent="SubViewport/CanvasLayer/VBoxContainer" index="2"]
 texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
@@ -121,6 +121,8 @@ position = Vector2(161, 142)
 position_smoothing_enabled = true
 
 [connection signal="pressed" from="SubViewport/CanvasLayer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="SubViewport/CanvasLayer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="SubViewport/CanvasLayer/VBoxContainer/VideoPlayButton" to="." method="_on_video_play_button_pressed"]
 [connection signal="pressed" from="SubViewport/CanvasLayer/VBoxContainer/LeaderboardButton" to="." method="_on_leaderboard_button_pressed"]
 [connection signal="mouse_entered" from="SubViewport/CanvasLayer/PowerButton" to="." method="_on_object_mouse_entered"]
 [connection signal="mouse_exited" from="SubViewport/CanvasLayer/PowerButton" to="." method="_on_object_mouse_exited"]

@@ -37,9 +37,11 @@ func _on_object_mouse_entered() -> void:
 	if Global.is_inventory_hidden():
 		pointer.set_select_pointer()
 	
+	
 func _on_object_mouse_exited() -> void:
 	if Global.is_inventory_hidden():
 		pointer.set_base_pointer()
+
 
 func go_back():
 	if $"../CanvasLayer/CloseUps/SubViewport/Note1".visible:
@@ -48,6 +50,11 @@ func go_back():
 	
 	if $"../CanvasLayer/CloseUps/SubViewport/Note2".visible:
 		$"../CanvasLayer/CloseUps/SubViewport/Note2".hide()
+		return
+		
+	if $"../CanvasLayer/CloseUps/SubViewport/Note3".visible:
+		$"../CanvasLayer/CloseUps/SubViewport/Note3".hide()
+		GlobalSpeech.player_final()
 		return
 		
 	set_mouse_input(false)
@@ -61,6 +68,7 @@ func _input(event: InputEvent) -> void:
 			
 	if close_up:
 		sub_viewport.push_input(event)
+
 
 func _on_computer_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event.is_action_pressed("shoot") and not close_up:
@@ -87,10 +95,13 @@ func _on_fork_input_event(event: InputEvent) -> void:
 			PhaseManager.fork_drawer = false
 			$"../CanvasLayer/CloseUps/SubViewport/Drawer/Fork".hide()
 			GlobalSpeech.speak("[color=purple]Press space to open and close inventory.")
-		else:
+		elif PhaseManager.current_phase in [PhaseManager.Phase.ROOM2_1, PhaseManager.Phase.ROOM2_2]:
 			PhaseManager.fork_cabinet = false
 			$"../CanvasLayer/CloseUps/SubViewport/Cabinet/Fork".hide()
-		
+		else:
+			PhaseManager.fork_bookshelf = false
+			$"../CanvasLayer/CloseUps/SubViewport/Bookshelf/Fork".hide()
+		print("assd")
 		update_items.emit()
 		Global.add_to_inventory(preload("res://resources/fork/fork.tres"))
 
@@ -107,6 +118,7 @@ func _on_door_input_event(_camera: Node, event: InputEvent, _event_position: Vec
 			set_mouse_input(true)
 			$"../CanvasLayer/CloseUps/SubViewport/Door".cutscene()
 
+
 func note_popup(note):
 	note.position.y = 350
 	var tween = get_tree().create_tween()
@@ -114,25 +126,21 @@ func note_popup(note):
 	
 	note.show()
 	AudioManager.play_sound(note_sound, 10, "SFX")
-	update_items.emit()
+
 
 func _on_note_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot") and close_up:
-		PhaseManager.note1 = false
 		note_popup($"../CanvasLayer/CloseUps/SubViewport/Note1")
 
+
 func _on_book_shelf_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	pass #TODO: book moving minigame
-
-
-func _on_bed_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event.is_action_pressed("shoot") and not close_up:
-		GlobalSpeech.speak("What could this be made out of?")
+		$"../CanvasLayer/CloseUps/SubViewport/Bookshelf".show()
+		set_mouse_input(true)
 
 
 func _on_note2_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot") and close_up:
-		PhaseManager.note2 = false
 		note_popup($"../CanvasLayer/CloseUps/SubViewport/Note2")
 
 
@@ -142,3 +150,10 @@ func _on_cabinet_input_event(_camera: Node, event: InputEvent, _event_position: 
 		set_mouse_input(true)
 		if PhaseManager.current_phase in [PhaseManager.Phase.ROOM2_1, PhaseManager.Phase.ROOM2_2]:
 			GlobalSpeech.speak("[wave]There[/wave] you are")
+		elif PhaseManager.current_phase in [PhaseManager.Phase.ROOM3_1, PhaseManager.Phase.ROOM3_2]:
+			GlobalSpeech.speak("Not here [shake]either")
+
+
+func _on_note3_gui_input(event: InputEvent) -> void:
+	if event.is_action_pressed("shoot") and close_up:
+		note_popup($"../CanvasLayer/CloseUps/SubViewport/Note3")

@@ -1,28 +1,22 @@
-[gd_scene load_steps=58 format=3 uid="uid://dxii2akm3hgtv"]
+[gd_scene load_steps=55 format=3 uid="uid://dxii2akm3hgtv"]
 
 [ext_resource type="Script" path="res://room/object_spawner.gd" id="1_6qrsc"]
 [ext_resource type="Shader" path="res://shaders/dither_screen.gdshader" id="1_edsf6"]
-[ext_resource type="Texture2D" uid="uid://bnb0f1h2bcb8b" path="res://room/room_01_shaded.png" id="2_vosug"]
+[ext_resource type="Texture2D" uid="uid://c6p27xxmikm5x" path="res://room/room_00_shaded.png" id="2_h2ldc"]
 [ext_resource type="Script" path="res://room/camera_3d.gd" id="3_qfd25"]
-[ext_resource type="Texture2D" uid="uid://d0qsvlxj7kdhu" path="res://room/objects/open_drawer.jpg" id="4_1avi3"]
 [ext_resource type="AudioStream" uid="uid://l4smmrogxwwr" path="res://sounds/room/paper_sound.wav" id="4_7c7yd"]
 [ext_resource type="Script" path="res://room/food_stew.gd" id="4_t6cm6"]
 [ext_resource type="Script" path="res://room/object_handler.gd" id="5_f00bv"]
 [ext_resource type="Texture2D" uid="uid://bxa6wwuddb31b" path="res://resources/fork/fork.png" id="5_poctp"]
 [ext_resource type="PackedScene" uid="uid://bvfo0gqker8uq" path="res://ui/cursor/pointer.tscn" id="5_ue8wk"]
+[ext_resource type="Script" path="res://room/bed.gd" id="7_3kipp"]
 [ext_resource type="Texture2D" uid="uid://baypf5wjir42c" path="res://note.png" id="7_akif5"]
-[ext_resource type="Texture2D" uid="uid://c8tf5gox5ekin" path="res://room/objects/boombox/bb_bg.png" id="7_voa4e"]
-[ext_resource type="Script" path="res://room/objects/boombox/boombox.gd" id="8_go4y6"]
-[ext_resource type="Texture2D" uid="uid://2vbhyjspbcj2" path="res://room/objects/boombox/bb1_normal.png" id="8_r7cqd"]
-[ext_resource type="Texture2D" uid="uid://cp8bcdvdg2qne" path="res://room/objects/boombox/bb1_pressed.png" id="9_dkstd"]
-[ext_resource type="Texture2D" uid="uid://nr7sa8p1c38r" path="res://room/objects/boombox/bb2_normal.png" id="10_61gfc"]
+[ext_resource type="Texture2D" uid="uid://bcrikut864fly" path="res://room/objects/open_drawer.png" id="9_x1yhf"]
 [ext_resource type="PackedScene" uid="uid://dhoqq10b6wh3g" path="res://room/objects/food_stew.gltf" id="10_oqlib"]
-[ext_resource type="Texture2D" uid="uid://dfpny58lhmtdo" path="res://room/objects/cabinet.webp" id="11_fpf6f"]
-[ext_resource type="Texture2D" uid="uid://dm8pv1g4wwemk" path="res://room/objects/boombox/bb2_pressed.png" id="11_tt0ej"]
 [ext_resource type="Texture2D" uid="uid://c2sxboc0xo4rf" path="res://room/objects/chest.png" id="12_atd8v"]
-[ext_resource type="Texture2D" uid="uid://cqoossok6ttgn" path="res://room/objects/boombox/bb_slider.png" id="12_p2l4c"]
+[ext_resource type="Texture2D" uid="uid://kxq5guefhggk" path="res://room/objects/cabinet.png" id="12_hdkda"]
 [ext_resource type="Script" path="res://room/chest.gd" id="13_xmo16"]
-[ext_resource type="AudioStream" uid="uid://b6jt2x8q3ky5e" path="res://sounds/loading/load_1.wav" id="15_wau6a"]
+[ext_resource type="PackedScene" uid="uid://cel4as11ws2hl" path="res://ui/boombox.tscn" id="15_leu47"]
 [ext_resource type="Texture2D" uid="uid://d1lipitl715sv" path="res://ui/arrow_20p.png" id="17_a4e7l"]
 [ext_resource type="FontFile" uid="uid://q7jplpg6lwyk" path="res://fonts/Abaddon Bold.ttf" id="18_r0rtu"]
 [ext_resource type="Texture2D" uid="uid://b2s2ajsws4r2v" path="res://ui/arrow_50p.png" id="19_llgpr"]
@@ -33,10 +27,13 @@
 [ext_resource type="AudioStream" uid="uid://b3grj21fn3sle" path="res://sounds/room/knock1.wav" id="23_1rolt"]
 [ext_resource type="Texture2D" uid="uid://b7q0vletp12je" path="res://room/objects/door/door_p_open.png" id="23_t71o8"]
 [ext_resource type="Texture2D" uid="uid://buoq2a155b3wf" path="res://room/objects/door/door_p_moth1.png" id="24_51ann"]
+[ext_resource type="Texture2D" uid="uid://vq218fnshl2v" path="res://room/objects/book_shelf.jpg" id="24_emqs0"]
 [ext_resource type="AudioStream" uid="uid://b8aeaal3qb3is" path="res://sounds/room/knock2.wav" id="24_kxfdx"]
 [ext_resource type="Texture2D" uid="uid://d2jliym28xdna" path="res://room/objects/door/door_p_moth2.png" id="25_givuo"]
+[ext_resource type="Texture2D" uid="uid://cgbkvhxyyqek7" path="res://room/objects/kitten.jpg" id="25_ld08l"]
 [ext_resource type="AudioStream" uid="uid://ch1btfplddlgv" path="res://sounds/room/door_window.wav" id="25_rm8r1"]
 [ext_resource type="AudioStream" uid="uid://b85x1qh06pjl0" path="res://sounds/room/amibent_light.wav" id="25_v1yrn"]
+[ext_resource type="Texture2D" uid="uid://cp208vgtsppkl" path="res://room/objects/slam_gun.jpg" id="26_b5b2h"]
 
 [sub_resource type="Animation" id="Animation_tmoh1"]
 length = 0.001
@@ -101,7 +98,7 @@ _data = {
 }
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_thjeg"]
-panorama = ExtResource("2_vosug")
+panorama = ExtResource("2_h2ldc")
 
 [sub_resource type="Sky" id="Sky_exldh"]
 sky_material = SubResource("PanoramaSkyMaterial_thjeg")
@@ -136,60 +133,6 @@ random_pitch = 1.3
 streams_count = 2
 stream_0/stream = ExtResource("23_1rolt")
 stream_1/stream = ExtResource("24_kxfdx")
-
-[sub_resource type="Animation" id="Animation_25wuv"]
-resource_name = "open"
-length = 5.0
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(1.06667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"play_sound_open"
-}]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("WindowOpen:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MotherSide:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 2.9),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("MotherStraight:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 2.56667, 3.06667, 4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [false, true, false, true]
-}
 
 [sub_resource type="Animation" id="Animation_ma6y0"]
 length = 0.001
@@ -228,34 +171,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_r304m"]
-resource_name = "loop"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MotherSide:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MotherStraight:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.466667, 0.966667, 1.9),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_7wiq7"]
@@ -310,6 +225,88 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_r304m"]
+resource_name = "loop"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MotherSide:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MotherStraight:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.466667, 0.966667, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_25wuv"]
+resource_name = "open"
+length = 5.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.06667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_sound_open"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WindowOpen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MotherSide:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MotherStraight:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.56667, 3.06667, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rkl51"]
@@ -402,6 +399,7 @@ shape = SubResource("BoxShape3D_0nbse")
 
 [node name="Bed" type="StaticBody3D" parent="ObjectHandler"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3.93199)
+script = ExtResource("7_3kipp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ObjectHandler/Bed"]
 transform = Transform3D(0.000750437, 0, 1, -0.991379, 0.131028, 0.000743967, -0.131028, -0.991379, 9.83283e-05, 1.30214, -3.04297, 1.37409)
@@ -436,13 +434,14 @@ render_target_update_mode = 4
 
 [node name="Drawer" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport"]
 visible = false
+self_modulate = Color(0.83, 0.83, 0.83, 1)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
-texture = ExtResource("4_1avi3")
+texture = ExtResource("9_x1yhf")
 expand_mode = 1
 
 [node name="Fork" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Drawer"]
@@ -478,7 +477,7 @@ grow_vertical = 2
 scale = Vector2(1.38, 1.38)
 pivot_offset = Vector2(300, 300)
 mouse_filter = 0
-texture = ExtResource("11_fpf6f")
+texture = ExtResource("12_hdkda")
 
 [node name="Fork" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Cabinet"]
 modulate = Color(0.73, 0.663813, 0.6059, 1)
@@ -518,76 +517,8 @@ offset_bottom = 873.855
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("7_akif5")
 
-[node name="Boombox" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport"]
+[node name="Boombox" parent="CanvasLayer/CloseUps/SubViewport" instance=ExtResource("15_leu47")]
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("7_voa4e")
-expand_mode = 1
-script = ExtResource("8_go4y6")
-
-[node name="TestSound" type="TextureButton" parent="CanvasLayer/CloseUps/SubViewport/Boombox"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.78
-anchor_top = 0.102
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.35, 0.35)
-texture_normal = ExtResource("8_r7cqd")
-texture_pressed = ExtResource("9_dkstd")
-
-[node name="BackButton" type="TextureButton" parent="CanvasLayer/CloseUps/SubViewport/Boombox"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.74
-anchor_top = 0.21
-anchor_right = 0.943
-anchor_bottom = 0.215
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.35, 0.35)
-texture_normal = ExtResource("10_61gfc")
-texture_pressed = ExtResource("11_tt0ej")
-
-[node name="MixKnob" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Boombox"]
-layout_mode = 0
-offset_left = 135.42
-offset_top = 63.0
-offset_right = 175.42
-offset_bottom = 103.0
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("12_p2l4c")
-expand_mode = 2
-
-[node name="SfxKnob" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Boombox"]
-layout_mode = 0
-offset_left = 192.915
-offset_top = 63.0
-offset_right = 232.915
-offset_bottom = 103.0
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("12_p2l4c")
-expand_mode = 2
-
-[node name="MusicKnob" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Boombox"]
-layout_mode = 0
-offset_left = 250.685
-offset_top = 63.0
-offset_right = 290.685
-offset_bottom = 103.0
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("12_p2l4c")
-expand_mode = 2
-
-[node name="TestSoundAudio" type="AudioStreamPlayer" parent="CanvasLayer/CloseUps/SubViewport/Boombox"]
-stream = ExtResource("15_wau6a")
-bus = &"Music"
 
 [node name="Door" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport"]
 visible = false
@@ -639,6 +570,73 @@ expand_mode = 1
 libraries = {
 "": SubResource("AnimationLibrary_rkl51")
 }
+
+[node name="Bookshelf" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("24_emqs0")
+
+[node name="Kitten" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Bookshelf"]
+self_modulate = Color(0.79, 0.79, 0.79, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.375
+anchor_top = 0.195
+anchor_right = 0.67
+anchor_bottom = 0.78
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("25_ld08l")
+expand_mode = 1
+
+[node name="SlamGun" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Bookshelf"]
+visible = false
+self_modulate = Color(0.79, 0.79, 0.79, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.375
+anchor_top = 0.195
+anchor_right = 0.67
+anchor_bottom = 0.78
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("26_b5b2h")
+expand_mode = 1
+
+[node name="Fork" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Bookshelf"]
+modulate = Color(0.73, 0.663813, 0.6059, 1)
+offset_left = 166.717
+offset_top = 337.27
+offset_right = 3597.72
+offset_bottom = 1273.27
+rotation = -0.136136
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("5_poctp")
+
+[node name="Note" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Bookshelf"]
+modulate = Color(0.73, 0.663813, 0.6059, 1)
+offset_left = 359.995
+offset_top = 42.702
+offset_right = 1159.99
+offset_bottom = 682.702
+rotation = 0.272271
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("7_akif5")
 
 [node name="Note1" type="Control" parent="CanvasLayer/CloseUps/SubViewport"]
 visible = false
@@ -746,6 +744,60 @@ horizontal_alignment = 1
 autowrap_mode = 3
 clip_text = true
 
+[node name="Note3" type="Control" parent="CanvasLayer/CloseUps/SubViewport"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = -320.0
+offset_bottom = -180.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Note1" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Note3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 800.0
+offset_bottom = 640.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(250, 20)
+texture = ExtResource("7_akif5")
+
+[node name="Label" type="Label" parent="CanvasLayer/CloseUps/SubViewport/Note3"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 189.9
+offset_top = 79.02
+offset_right = 439.9
+offset_bottom = 479.02
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.0349066
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_r0rtu")
+theme_override_font_sizes/font_size = 16
+text = "With this metal rod I understand now what has stood in my way... 
+ rod in rod that can slide. Sulfur from the matches to trigger the slam. Simple. Effective. How long has it taken me to assemble this? Time bleeds away locked in here. No longer. "
+horizontal_alignment = 1
+autowrap_mode = 3
+clip_text = true
+
 [node name="ModulateRect" type="ColorRect" parent="CanvasLayer/CloseUps/SubViewport"]
 visible = false
 anchors_preset = 15
@@ -822,7 +874,7 @@ bus = &"SFX"
 [connection signal="input_event" from="ObjectHandler/Boombox" to="ObjectHandler" method="_on_boombox_input_event"]
 [connection signal="input_event" from="ObjectHandler/Door" to="ObjectHandler" method="_on_door_input_event"]
 [connection signal="input_event" from="ObjectHandler/BookShelf" to="ObjectHandler" method="_on_book_shelf_input_event"]
-[connection signal="input_event" from="ObjectHandler/Bed" to="ObjectHandler" method="_on_bed_input_event"]
+[connection signal="input_event" from="ObjectHandler/Bed" to="ObjectHandler/Bed" method="_on_input_event"]
 [connection signal="gui_input" from="CanvasLayer/CloseUps/SubViewport/Drawer/Fork" to="ObjectHandler" method="_on_fork_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Drawer/Fork" to="ObjectHandler" method="_on_object_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Drawer/Fork" to="ObjectHandler" method="_on_object_mouse_exited"]
@@ -838,22 +890,13 @@ bus = &"SFX"
 [connection signal="gui_input" from="CanvasLayer/CloseUps/SubViewport/Cabinet/Note" to="ObjectHandler" method="_on_note2_gui_input"]
 [connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Cabinet/Note" to="ObjectHandler" method="_on_object_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Cabinet/Note" to="ObjectHandler" method="_on_object_mouse_exited"]
-[connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Boombox/TestSound" to="ObjectHandler" method="_on_object_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Boombox/TestSound" to="ObjectHandler" method="_on_object_mouse_exited"]
-[connection signal="pressed" from="CanvasLayer/CloseUps/SubViewport/Boombox/TestSound" to="CanvasLayer/CloseUps/SubViewport/Boombox" method="_on_test_sound_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Boombox/BackButton" to="ObjectHandler" method="_on_object_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Boombox/BackButton" to="ObjectHandler" method="_on_object_mouse_exited"]
-[connection signal="pressed" from="CanvasLayer/CloseUps/SubViewport/Boombox/BackButton" to="CanvasLayer/CloseUps/SubViewport/Boombox" method="_on_back_button_pressed"]
-[connection signal="gui_input" from="CanvasLayer/CloseUps/SubViewport/Boombox/MixKnob" to="CanvasLayer/CloseUps/SubViewport/Boombox" method="_on_mix_knob_gui_input"]
-[connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Boombox/MixKnob" to="ObjectHandler" method="_on_object_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Boombox/MixKnob" to="ObjectHandler" method="_on_object_mouse_exited"]
-[connection signal="gui_input" from="CanvasLayer/CloseUps/SubViewport/Boombox/SfxKnob" to="CanvasLayer/CloseUps/SubViewport/Boombox" method="_on_sfx_knob_gui_input"]
-[connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Boombox/SfxKnob" to="ObjectHandler" method="_on_object_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Boombox/SfxKnob" to="ObjectHandler" method="_on_object_mouse_exited"]
-[connection signal="gui_input" from="CanvasLayer/CloseUps/SubViewport/Boombox/MusicKnob" to="CanvasLayer/CloseUps/SubViewport/Boombox" method="_on_music_knob_gui_input"]
-[connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Boombox/MusicKnob" to="ObjectHandler" method="_on_object_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Boombox/MusicKnob" to="ObjectHandler" method="_on_object_mouse_exited"]
 [connection signal="animation_finished" from="CanvasLayer/CloseUps/SubViewport/Door/AnimationPlayer" to="CanvasLayer/CloseUps/SubViewport/Door" method="_on_animation_player_animation_finished"]
+[connection signal="gui_input" from="CanvasLayer/CloseUps/SubViewport/Bookshelf/Fork" to="ObjectHandler" method="_on_fork_input_event"]
+[connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Bookshelf/Fork" to="ObjectHandler" method="_on_object_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Bookshelf/Fork" to="ObjectHandler" method="_on_object_mouse_exited"]
+[connection signal="gui_input" from="CanvasLayer/CloseUps/SubViewport/Bookshelf/Note" to="ObjectHandler" method="_on_note3_gui_input"]
+[connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Bookshelf/Note" to="ObjectHandler" method="_on_object_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Bookshelf/Note" to="ObjectHandler" method="_on_object_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/ArrowLeft" to="CameraHolder" method="rotate_left"]
 [connection signal="pressed" from="CanvasLayer/ArrowRight" to="CameraHolder" method="rotate_right"]
 [connection signal="pressed" from="CanvasLayer/ArrowBack" to="ObjectHandler" method="go_back"]

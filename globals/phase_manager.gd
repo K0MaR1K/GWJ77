@@ -1,11 +1,11 @@
 extends Node
 
-
+const KEY = preload("res://resources/key/key.tres")
 const TILESET = preload("res://arcade_game/tilesets/tileset.tres")
 
 var current_tileset = 0
 
-enum Phase {INTRO, GAME1, ROOM1_1, ROOM1_2, DESKTOP2, GAME2, ROOM2_1, ROOM2_2, DESKTOP3, GAME3}
+enum Phase {INTRO, GAME1, ROOM1_1, ROOM1_2, DESKTOP2, GAME2, ROOM2_1, ROOM2_2, DESKTOP3, GAME3, ROOM3_1, ROOM3_2, DESKTOP4, GAME4}
 enum LDJ {HAPPY, SAD, MYSTERIOUS}
 
 var current_phase : Phase
@@ -21,8 +21,12 @@ var mother_at_door := false
 var plate := false
 var fork_drawer := false
 var fork_cabinet := false
+var fork_bookshelf := false
+var chest := true
 var note1 := false
 var note2 := false
+var note3 := false
+var pvc_pipe := false
 
 # levels
 var level2 := false
@@ -30,13 +34,13 @@ var level3 := false
 var human_enemy := false
 
 func _ready() -> void:
-	change_phase(Phase.ROOM1_1)
+	change_phase(Phase.ROOM3_1)
 
 func next_phase():
 	change_phase(current_phase + 1)
 
 func is_room_phase():
-	return current_phase in [Phase.ROOM1_1, Phase.ROOM1_2, Phase.ROOM2_1, Phase.ROOM2_2,]
+	return current_phase in [Phase.ROOM1_1, Phase.ROOM1_2, Phase.ROOM2_1, Phase.ROOM2_2,Phase.ROOM3_1, Phase.ROOM3_2,]
 	
 func is_game_phase():
 	return current_phase in [Phase.GAME2, Phase.GAME3]
@@ -92,17 +96,21 @@ func change_phase(next: Phase):
 		Phase.ROOM2_1:
 			get_tree().change_scene_to_file.call_deferred("res://room/room_scene.tscn")
 			AudioManager.music_fade()
+			GlobalSpeech.speak("[shake]What? I don't remember having this key in my room.")
 			plate = false
+			pvc_pipe = true
 			fork_cabinet = true
 			note2 = true
 			computer_on = false
 			can_leave_computer = true
 			can_play_game = false
 			mother_at_door = true
+			
+			await get_tree().create_timer(1.0).timeout
+			Global.add_to_inventory(KEY)
 											
 		Phase.ROOM2_2:
 			plate = true
-			can_leave_computer = true
 			mother_at_door = false
 			
 		Phase.DESKTOP3:
@@ -114,6 +122,36 @@ func change_phase(next: Phase):
 			loading_jingle = LDJ.MYSTERIOUS
 			
 		Phase.GAME3:
+			AudioManager.shift_shooter21()
+			change_tileset()
+			get_tree().change_scene_to_file.call_deferred("res://arcade_game/main_scene.tscn")
+			level2 = true
+			level3 = true
+			
+		Phase.ROOM3_1:
+			get_tree().change_scene_to_file.call_deferred("res://room/room_scene.tscn")
+			AudioManager.music_fade()
+			plate = false
+			fork_bookshelf = true
+			note3 = true
+			computer_on = false
+			can_leave_computer = true
+			can_play_game = false
+			mother_at_door = true
+											
+		Phase.ROOM3_2:
+			plate = true
+			mother_at_door = false
+			
+		Phase.DESKTOP4:
+			get_tree().change_scene_to_file.call_deferred("res://ui/desktop/main_menu.tscn")
+			AudioManager.shift_shooter12()
+			computer_on = false
+			can_leave_computer = false
+			can_play_game = true
+			loading_jingle = LDJ.MYSTERIOUS
+			
+		Phase.GAME4:
 			AudioManager.shift_shooter21()
 			change_tileset()
 			get_tree().change_scene_to_file.call_deferred("res://arcade_game/main_scene.tscn")

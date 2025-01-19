@@ -22,6 +22,8 @@ func cutscene():
 			GlobalSpeech.mother_speech(GlobalSpeech.mother_speech_1)
 		elif PhaseManager.current_phase == PhaseManager.Phase.ROOM2_1:
 			GlobalSpeech.mother_speech(GlobalSpeech.mother_speech_2)
+		else:
+			GlobalSpeech.mother_speech(GlobalSpeech.mother_speech_3)
 			
 		$AnimationPlayer.play("open")
 
