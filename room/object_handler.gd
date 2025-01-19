@@ -45,6 +45,10 @@ func go_back():
 	if $"../CanvasLayer/CloseUps/SubViewport/Note1".visible:
 		$"../CanvasLayer/CloseUps/SubViewport/Note1".hide()
 		return
+	
+	if $"../CanvasLayer/CloseUps/SubViewport/Note2".visible:
+		$"../CanvasLayer/CloseUps/SubViewport/Note2".hide()
+		return
 		
 	set_mouse_input(false)
 	for child in sub_viewport.get_children():
@@ -77,7 +81,13 @@ func _on_drawer_input_event(_camera: Node, event: InputEvent, _event_position: V
 
 func _on_fork_input_event(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot") and close_up:
-		PhaseManager.fork_drawer = false
+		if PhaseManager.current_phase in [PhaseManager.Phase.ROOM1_1, PhaseManager.Phase.ROOM1_1]:
+			PhaseManager.fork_drawer = false
+			$"../CanvasLayer/CloseUps/SubViewport/Drawer/Fork".hide()
+		else:
+			PhaseManager.fork_cabinet = false
+			$"../CanvasLayer/CloseUps/SubViewport/Cabinet/Fork".hide()
+		
 		update_items.emit()
 		Global.add_to_inventory(preload("res://resources/fork/fork.tres"))
 
@@ -94,25 +104,37 @@ func _on_door_input_event(_camera: Node, event: InputEvent, _event_position: Vec
 			PhaseManager.next_phase()
 			update_items.emit()
 
+func note_popup(note):
+	note.position.y = 350
+	var tween = get_tree().create_tween()
+	tween.tween_property(note, "position:y", 0, 0.5).set_trans(Tween.TRANS_CUBIC)
+	
+	note.show()
+	AudioManager.play_sound(note_sound, 10, "SFX")
+	update_items.emit()
 
 func _on_note_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot") and close_up:
 		PhaseManager.note1 = false
-		var note = $"../CanvasLayer/CloseUps/SubViewport/Note1"
-		
-		note.position.y = 350
-		var tween = get_tree().create_tween()
-		tween.tween_property(note, "position:y", 0, 0.5).set_trans(Tween.TRANS_CUBIC)
-		
-		note.show()
-		AudioManager.play_sound(note_sound, 10, "SFX")
-		update_items.emit()
-
-
-func _on_boombox_drawer_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
-	if event.is_action_pressed("shoot") and not close_up:
-		GlobalSpeech.speak("Nothing but nick nacks. Wait, is that a little hollow space?")
+		note_popup($"../CanvasLayer/CloseUps/SubViewport/Note1")
 
 
 func _on_book_shelf_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	pass #TODO: book moving minigame
+
+
+func _on_bed_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if event.is_action_pressed("shoot") and not close_up:
+		GlobalSpeech.speak("What could this be made out of?")
+
+
+func _on_note2_gui_input(event: InputEvent) -> void:
+	if event.is_action_pressed("shoot") and close_up:
+		PhaseManager.note2 = false
+		note_popup($"../CanvasLayer/CloseUps/SubViewport/Note2")
+
+
+func _on_cabinet_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if event.is_action_pressed("shoot") and not close_up:
+		$"../CanvasLayer/CloseUps/SubViewport/Cabinet".show()
+		set_mouse_input(true)

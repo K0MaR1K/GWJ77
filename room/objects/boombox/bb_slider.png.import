@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl7utme14svab"
-path="res://.godot/imported/back-arrow.png-b4a0f5bb2475f39f2dca11461c48039b.ctex"
+uid="uid://cqoossok6ttgn"
+path="res://.godot/imported/bb_slider.png-20b2ee46870b3f09fa3ab54c421725c6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://room/back-arrow.png"
-dest_files=["res://.godot/imported/back-arrow.png-b4a0f5bb2475f39f2dca11461c48039b.ctex"]
+source_file="res://room/objects/boombox/bb_slider.png"
+dest_files=["res://.godot/imported/bb_slider.png-20b2ee46870b3f09fa3ab54c421725c6.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp8bcdvdg2qne"
-path="res://.godot/imported/bb1_pressed.png-5e2085d4362ae49cd29d4ec75fd1758e.ctex"
+uid="uid://bi6dg4nr1lkkm"
+path="res://.godot/imported/back-arrow - Copy.png-9d23c1e6839317a7aaf3f7f6b9d790b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://room/objects/bb1_pressed.png"
-dest_files=["res://.godot/imported/bb1_pressed.png-5e2085d4362ae49cd29d4ec75fd1758e.ctex"]
+source_file="res://ui/back-arrow - Copy.png"
+dest_files=["res://.godot/imported/back-arrow - Copy.png-9d23c1e6839317a7aaf3f7f6b9d790b6.ctex"]
 
 [params]
 

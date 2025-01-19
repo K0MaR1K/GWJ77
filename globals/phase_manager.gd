@@ -20,7 +20,9 @@ var mother_at_door := false
 # objects spawning
 var plate := false
 var fork_drawer := false
+var fork_cabinet := false
 var note1 := false
+var note2 := false
 
 # levels
 var level2 := false
@@ -97,11 +99,12 @@ func change_phase(next: Phase):
 			get_tree().change_scene_to_file.call_deferred("res://room/room_scene.tscn")
 			AudioManager.music_fade()
 			plate = false
+			fork_cabinet = true
 			computer_on = false
 			can_leave_computer = true
 			can_play_game = false
 			mother_at_door = true
-						
+											
 		Phase.ROOM2_2:
 			plate = true
 			can_leave_computer = true
