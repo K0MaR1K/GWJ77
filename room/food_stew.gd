@@ -12,4 +12,4 @@ func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3,
 
 func send_item(item: Item):
 	if item == FORK:
-		PhaseManager.next_phase()
+		Transitions.transition(Transitions.BLINK, Transitions.DISSOLVE)

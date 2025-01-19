@@ -1,12 +1,19 @@
 extends CanvasLayer
 
-var useless_item_dialogue := ["I can't use this here.", "No.", "..."]
-var mother_calling_dialogue := ["Mother is calling me.", "I should answer the door."]
+signal finished_speech
 
-var mother_speech_1 : Array[String] = ["Gregor? My sweet Gregor?", 
+var useless_item_dialogue := ["I can't use this [wave]here[/wave].", "No.", "[shake]...[/shake]"]
+var mother_calling_dialogue := ["Mother is calling me.", "I should answer [wave]the door[/wave]."]
+
+var mother_speech_1 : Array[String] = ["Gregor? [shake]My sweet Gregor?[/shake]", 
 "Are you up? I have supper here.", 
 "I will leave the plate at your door. You still have the utensils in your desk.",
 "Love you!"]
+
+var mother_speech_2 : Array[String] = ["Good morning.",
+"May I see your conditions?",
+"The sheets expire next week. You haven't been keeping them, have you.",
+"Rather slippery of you."]
 
 var visible_characters := 0
 var spoken : String
@@ -26,6 +33,7 @@ func mother_speech(speech: Array[String]):
 		await get_tree().create_timer(2.0 + 0.1 * line.length()).timeout
 		
 	monologue = false
+	finished_speech.emit()
 
 func _process(_delta: float) -> void:
 	if dialogue.visible_characters >= dialogue.text.length() - 10:

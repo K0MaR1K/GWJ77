@@ -60,6 +60,20 @@ fixed_icon_size = Vector2i(100, 100)
 item_0/text = "Description"
 item_0/icon = ExtResource("2_ou674")
 
+[node name="AddedItem" type="TextureRect" parent="CanvasLayer"]
+custom_minimum_size = Vector2(96.04, 26.955)
+anchors_preset = -1
+anchor_left = 0.056
+anchor_top = 0.92
+anchor_right = 0.056
+anchor_bottom = 0.92
+offset_top = 87.6
+offset_right = 146.624
+offset_bottom = 127.6
+grow_vertical = 0
+texture = ExtResource("2_ou674")
+expand_mode = 3
+
 [node name="DitheringEffect" type="ColorRect" parent="CanvasLayer"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_i7i6x")

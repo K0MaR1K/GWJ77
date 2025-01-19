@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxdjihgaivdm6"]
+[gd_scene load_steps=11 format=3 uid="uid://bxdjihgaivdm6"]
 
 [ext_resource type="Script" path="res://ui/desktop/loading_screen.gd" id="1_pigt3"]
 [ext_resource type="FontFile" uid="uid://cgfp41w5cas7s" path="res://fonts/NicoClean-Monospaced.ttf" id="2_p3pv5"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://b6jt2x8q3ky5e" path="res://sounds/loading/load_1.wav" id="3_v1oos"]
 [ext_resource type="AudioStream" uid="uid://biofpvw4j8p3d" path="res://sounds/loading/loading_computer.wav" id="4_a8ve5"]
 [ext_resource type="AudioStream" uid="uid://bsqjnbtaqfajb" path="res://sounds/loading/load_3.wav" id="4_qrped"]
+[ext_resource type="AudioStream" uid="uid://b747ylyg8o57y" path="res://sounds/loading/error.mp3" id="5_jix44"]
 
 [sub_resource type="Animation" id="Animation_volwr"]
 length = 0.001
@@ -36,7 +37,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_esntq"]
 resource_name = "load"
-length = 10.0
+length = 15.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -44,7 +45,7 @@ tracks/0/path = NodePath("Control/Driver:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 3.73333),
+"times": PackedFloat32Array(0, 6.53333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -68,7 +69,7 @@ tracks/2/path = NodePath("Control/Underscore:anchor_top")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 3.73333),
+"times": PackedFloat32Array(0, 6.53333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0.079, 0.0]
@@ -80,7 +81,7 @@ tracks/3/path = NodePath("Control/Prepare:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 4.73333),
+"times": PackedFloat32Array(0, 7.53333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -92,7 +93,7 @@ tracks/4/path = NodePath("Control/Select:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 5.73333),
+"times": PackedFloat32Array(0, 8.53333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -104,7 +105,7 @@ tracks/5/path = NodePath(".:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 8.06667),
+"times": PackedFloat32Array(0, 10.8667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -116,7 +117,7 @@ tracks/6/path = NodePath("LoadingAudio:playing")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(7.56667),
+"times": PackedFloat32Array(10.3667),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -128,7 +129,7 @@ tracks/7/path = NodePath("Control:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 7),
+"times": PackedFloat32Array(0, 9.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -140,7 +141,7 @@ tracks/8/path = NodePath("BlackBackground:anchor_bottom")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(6.96667, 8.03333),
+"times": PackedFloat32Array(9.76667, 10.8333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [1.0, 0.0]
@@ -164,7 +165,7 @@ tracks/10/path = NodePath("LoadingAudioSFX:volume_db")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0, 6.96667, 10),
+"times": PackedFloat32Array(0, 7.93333, 13.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 0.0, -80.0]
@@ -176,9 +177,12 @@ tracks/11/path = NodePath(".")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(5.03333),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(6.03333, 7.83333),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"login_screen"
+}, {
 "args": [],
 "method": &"start_music"
 }]
@@ -202,6 +206,7 @@ script = ExtResource("1_pigt3")
 load_stream_happy = ExtResource("3_v1oos")
 load_stream_sad = ExtResource("3_epssp")
 load_stream_mysterious = ExtResource("4_qrped")
+error_stream = ExtResource("5_jix44")
 
 [node name="BlackBackground" type="ColorRect" parent="."]
 layout_mode = 1
@@ -215,11 +220,13 @@ color = Color(0.00908001, 0.0032, 0.02, 1)
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
 anchor_left = 0.054
-anchor_top = 0.064
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -3.12
+offset_top = 21.92
+offset_right = 36.88
+offset_bottom = 61.92
+metadata/_edit_lock_ = true
 
 [node name="LoadingSektor" type="Label" parent="Control"]
 layout_mode = 1
@@ -283,6 +290,51 @@ theme_override_fonts/font = ExtResource("2_p3pv5")
 theme_override_font_sizes/font_size = 7
 text = "MODE select completed."
 
+[node name="LoginScreen" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="LineEdit" type="LineEdit" parent="LoginScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.0
+offset_top = -52.0
+offset_right = 97.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(95, 15)
+theme_override_colors/clear_button_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.29, 0.29, 0.29, 1)
+theme_override_fonts/font = ExtResource("2_p3pv5")
+placeholder_text = "Enter Name"
+
+[node name="Submit" type="Button" parent="LoginScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -4.0
+offset_right = 56.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_p3pv5")
+text = "Submit"
+
 [node name="LoadingAnimation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_mmg07")
@@ -295,3 +347,6 @@ bus = &"Music"
 [node name="LoadingAudioSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_a8ve5")
 bus = &"SFX"
+
+[connection signal="text_submitted" from="LoginScreen/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="LoginScreen/Submit" to="." method="_on_submit_pressed"]

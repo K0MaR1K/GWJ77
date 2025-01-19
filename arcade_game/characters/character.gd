@@ -44,6 +44,7 @@ func kill(knockback: Vector2):
 	else:
 		AudioManager.play_sound_2d(dummy_shout, 5, "SFX", global_position)
 		
+	$CollisionShape2D.set_disabled.call_deferred(true)
 	dead = true
 	set_process(false)
 	#set_physics_process(false)

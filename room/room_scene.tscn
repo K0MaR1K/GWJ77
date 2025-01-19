@@ -1,8 +1,8 @@
-[gd_scene load_steps=42 format=3 uid="uid://dxii2akm3hgtv"]
+[gd_scene load_steps=58 format=3 uid="uid://dxii2akm3hgtv"]
 
 [ext_resource type="Script" path="res://room/object_spawner.gd" id="1_6qrsc"]
 [ext_resource type="Shader" path="res://shaders/dither_screen.gdshader" id="1_edsf6"]
-[ext_resource type="Texture2D" uid="uid://cniea1u7vuasg" path="res://room/room_01.png" id="1_f3an5"]
+[ext_resource type="Texture2D" uid="uid://bnb0f1h2bcb8b" path="res://room/room_01_shaded.png" id="2_vosug"]
 [ext_resource type="Script" path="res://room/camera_3d.gd" id="3_qfd25"]
 [ext_resource type="Texture2D" uid="uid://d0qsvlxj7kdhu" path="res://room/objects/open_drawer.jpg" id="4_1avi3"]
 [ext_resource type="AudioStream" uid="uid://l4smmrogxwwr" path="res://sounds/room/paper_sound.wav" id="4_7c7yd"]
@@ -19,13 +19,23 @@
 [ext_resource type="PackedScene" uid="uid://dhoqq10b6wh3g" path="res://room/objects/food_stew.gltf" id="10_oqlib"]
 [ext_resource type="Texture2D" uid="uid://dfpny58lhmtdo" path="res://room/objects/cabinet.webp" id="11_fpf6f"]
 [ext_resource type="Texture2D" uid="uid://dm8pv1g4wwemk" path="res://room/objects/boombox/bb2_pressed.png" id="11_tt0ej"]
+[ext_resource type="Texture2D" uid="uid://c2sxboc0xo4rf" path="res://room/objects/chest.png" id="12_atd8v"]
 [ext_resource type="Texture2D" uid="uid://cqoossok6ttgn" path="res://room/objects/boombox/bb_slider.png" id="12_p2l4c"]
+[ext_resource type="Script" path="res://room/chest.gd" id="13_xmo16"]
 [ext_resource type="AudioStream" uid="uid://b6jt2x8q3ky5e" path="res://sounds/loading/load_1.wav" id="15_wau6a"]
 [ext_resource type="Texture2D" uid="uid://d1lipitl715sv" path="res://ui/arrow_20p.png" id="17_a4e7l"]
 [ext_resource type="FontFile" uid="uid://q7jplpg6lwyk" path="res://fonts/Abaddon Bold.ttf" id="18_r0rtu"]
 [ext_resource type="Texture2D" uid="uid://b2s2ajsws4r2v" path="res://ui/arrow_50p.png" id="19_llgpr"]
 [ext_resource type="Texture2D" uid="uid://cwqkve1x0gfx0" path="res://ui/back-arrow_20p.png" id="21_b4cpt"]
+[ext_resource type="Texture2D" uid="uid://dofo78ultkybf" path="res://room/objects/door/door.png" id="21_ga5qs"]
 [ext_resource type="Texture2D" uid="uid://bi6dg4nr1lkkm" path="res://ui/back-arrow - Copy.png" id="22_juwpn"]
+[ext_resource type="Script" path="res://room/objects/door/door.gd" id="22_vvfpe"]
+[ext_resource type="AudioStream" uid="uid://b3grj21fn3sle" path="res://sounds/room/knock1.wav" id="23_1rolt"]
+[ext_resource type="Texture2D" uid="uid://b7q0vletp12je" path="res://room/objects/door/door_p_open.png" id="23_t71o8"]
+[ext_resource type="Texture2D" uid="uid://buoq2a155b3wf" path="res://room/objects/door/door_p_moth1.png" id="24_51ann"]
+[ext_resource type="AudioStream" uid="uid://b8aeaal3qb3is" path="res://sounds/room/knock2.wav" id="24_kxfdx"]
+[ext_resource type="Texture2D" uid="uid://d2jliym28xdna" path="res://room/objects/door/door_p_moth2.png" id="25_givuo"]
+[ext_resource type="AudioStream" uid="uid://ch1btfplddlgv" path="res://sounds/room/door_window.wav" id="25_rm8r1"]
 [ext_resource type="AudioStream" uid="uid://b85x1qh06pjl0" path="res://sounds/room/amibent_light.wav" id="25_v1yrn"]
 
 [sub_resource type="Animation" id="Animation_tmoh1"]
@@ -91,7 +101,7 @@ _data = {
 }
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_thjeg"]
-panorama = ExtResource("1_f3an5")
+panorama = ExtResource("2_vosug")
 
 [sub_resource type="Sky" id="Sky_exldh"]
 sky_material = SubResource("PanoramaSkyMaterial_thjeg")
@@ -120,6 +130,195 @@ size = Vector3(0.32666, 4.65875, 2.35498)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dpbsj"]
 size = Vector3(0.32666, 2.64511, 6.42296)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2mu1o"]
+random_pitch = 1.3
+streams_count = 2
+stream_0/stream = ExtResource("23_1rolt")
+stream_1/stream = ExtResource("24_kxfdx")
+
+[sub_resource type="Animation" id="Animation_25wuv"]
+resource_name = "open"
+length = 5.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.06667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_sound_open"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WindowOpen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MotherSide:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MotherStraight:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.56667, 3.06667, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_ma6y0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WindowOpen:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MotherSide:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MotherStraight:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_r304m"]
+resource_name = "loop"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MotherSide:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MotherStraight:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.466667, 0.966667, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_7wiq7"]
+resource_name = "close"
+length = 3.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.86667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_sound_open"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WindowOpen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667, 2.53333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MotherSide:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MotherStraight:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.06667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rkl51"]
+_data = {
+"RESET": SubResource("Animation_ma6y0"),
+"close": SubResource("Animation_7wiq7"),
+"loop": SubResource("Animation_r304m"),
+"open": SubResource("Animation_25wuv")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_306u8"]
 shader = ExtResource("1_edsf6")
@@ -290,16 +489,32 @@ offset_right = 3468.03
 offset_bottom = 1236.0
 rotation = -0.106465
 scale = Vector2(0.02, 0.02)
-pivot_offset = Vector2(306.49, 92.315)
+pivot_offset = Vector2(176.475, 97.94)
 texture = ExtResource("5_poctp")
+
+[node name="Chest" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Cabinet"]
+modulate = Color(0.73, 0.663813, 0.6059, 1)
+self_modulate = Color(0.83, 0.83, 0.83, 1)
+layout_mode = 1
+offset_left = 98.995
+offset_top = 259.835
+offset_right = 3530.0
+offset_bottom = 1195.83
+rotation = -0.0174533
+scale = Vector2(0.2, 0.2)
+pivot_offset = Vector2(276.615, 92.315)
+texture = ExtResource("12_atd8v")
+stretch_mode = 2
+flip_h = true
+script = ExtResource("13_xmo16")
 
 [node name="Note" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Cabinet"]
 modulate = Color(0.73, 0.663813, 0.6059, 1)
 layout_mode = 0
-offset_left = 226.167
-offset_top = 329.215
-offset_right = 1026.17
-offset_bottom = 969.215
+offset_left = 221.402
+offset_top = 233.855
+offset_right = 1021.41
+offset_bottom = 873.855
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("7_akif5")
 
@@ -374,15 +589,56 @@ expand_mode = 2
 stream = ExtResource("15_wau6a")
 bus = &"Music"
 
-[node name="ModulateRect" type="ColorRect" parent="CanvasLayer/CloseUps/SubViewport"]
+[node name="Door" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport"]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 0)
+texture = ExtResource("21_ga5qs")
+expand_mode = 1
+script = ExtResource("22_vvfpe")
+knock_sound = SubResource("AudioStreamRandomizer_2mu1o")
+opening_sound = ExtResource("25_rm8r1")
+
+[node name="WindowOpen" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Door"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("23_t71o8")
+expand_mode = 1
+
+[node name="MotherSide" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Door"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("24_51ann")
+expand_mode = 1
+
+[node name="MotherStraight" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Door"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("25_givuo")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/CloseUps/SubViewport/Door"]
+libraries = {
+"": SubResource("AnimationLibrary_rkl51")
+}
 
 [node name="Note1" type="Control" parent="CanvasLayer/CloseUps/SubViewport"]
 visible = false
@@ -490,6 +746,16 @@ horizontal_alignment = 1
 autowrap_mode = 3
 clip_text = true
 
+[node name="ModulateRect" type="ColorRect" parent="CanvasLayer/CloseUps/SubViewport"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
 [node name="ArrowLeft" type="TextureButton" parent="CanvasLayer"]
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -542,7 +808,7 @@ transform = Transform3D(0.985458, 7.42731e-09, -0.169917, 0.169917, -4.30758e-08
 light_color = Color(1, 0.9, 0.7, 1)
 light_energy = 0.7
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("25_v1yrn")
 volume_db = 10.0
 autoplay = true
@@ -566,6 +832,9 @@ bus = &"SFX"
 [connection signal="gui_input" from="CanvasLayer/CloseUps/SubViewport/Cabinet/Fork" to="ObjectHandler" method="_on_fork_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Cabinet/Fork" to="ObjectHandler" method="_on_object_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Cabinet/Fork" to="ObjectHandler" method="_on_object_mouse_exited"]
+[connection signal="gui_input" from="CanvasLayer/CloseUps/SubViewport/Cabinet/Chest" to="CanvasLayer/CloseUps/SubViewport/Cabinet/Chest" method="_on_gui_input"]
+[connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Cabinet/Chest" to="ObjectHandler" method="_on_object_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Cabinet/Chest" to="ObjectHandler" method="_on_object_mouse_exited"]
 [connection signal="gui_input" from="CanvasLayer/CloseUps/SubViewport/Cabinet/Note" to="ObjectHandler" method="_on_note2_gui_input"]
 [connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Cabinet/Note" to="ObjectHandler" method="_on_object_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Cabinet/Note" to="ObjectHandler" method="_on_object_mouse_exited"]
@@ -584,6 +853,7 @@ bus = &"SFX"
 [connection signal="gui_input" from="CanvasLayer/CloseUps/SubViewport/Boombox/MusicKnob" to="CanvasLayer/CloseUps/SubViewport/Boombox" method="_on_music_knob_gui_input"]
 [connection signal="mouse_entered" from="CanvasLayer/CloseUps/SubViewport/Boombox/MusicKnob" to="ObjectHandler" method="_on_object_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/CloseUps/SubViewport/Boombox/MusicKnob" to="ObjectHandler" method="_on_object_mouse_exited"]
+[connection signal="animation_finished" from="CanvasLayer/CloseUps/SubViewport/Door/AnimationPlayer" to="CanvasLayer/CloseUps/SubViewport/Door" method="_on_animation_player_animation_finished"]
 [connection signal="pressed" from="CanvasLayer/ArrowLeft" to="CameraHolder" method="rotate_left"]
 [connection signal="pressed" from="CanvasLayer/ArrowRight" to="CameraHolder" method="rotate_right"]
 [connection signal="pressed" from="CanvasLayer/ArrowBack" to="ObjectHandler" method="go_back"]

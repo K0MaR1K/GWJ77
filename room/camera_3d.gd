@@ -24,4 +24,4 @@ func _input(event):
 		if event is InputEventMouseMotion:
 			rotate_y(-event.relative.x * mouse_sens)
 			camera_3d.rotate_x(-event.relative.y * mouse_sens * 2)
-			camera_3d.rotation.x = clamp(camera_3d.rotation.x, -1.2, 0.1)
+			camera_3d.rotation.x = clamp(camera_3d.rotation.x, -0.7, 0.1)

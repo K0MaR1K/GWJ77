@@ -29,10 +29,6 @@ var level2 := false
 var level3 := false
 var human_enemy := false
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("restart"):
-		change_tileset()
-
 func _ready() -> void:
 	change_phase(Phase.ROOM1_1)
 
@@ -40,14 +36,13 @@ func next_phase():
 	change_phase(current_phase + 1)
 
 func is_room_phase():
-	return current_phase in [Phase.ROOM1_1, Phase.ROOM1_2,]
+	return current_phase in [Phase.ROOM1_1, Phase.ROOM1_2, Phase.ROOM2_1, Phase.ROOM2_2,]
 	
 func is_game_phase():
 	return current_phase in [Phase.GAME2, Phase.GAME3]
 
 func change_phase(next: Phase):
 	current_phase = next
-	print(current_phase)
 
 	match current_phase:
 		Phase.INTRO:
@@ -73,7 +68,6 @@ func change_phase(next: Phase):
 			fork_drawer = true
 			note1 = true
 			mother_at_door = true
-			GlobalSpeech.mother_speech(GlobalSpeech.mother_speech_1)
 			
 		Phase.ROOM1_2:
 			plate = true
@@ -81,9 +75,9 @@ func change_phase(next: Phase):
 			mother_at_door = false
 			
 		Phase.DESKTOP2:
-			AudioManager.shift_shooter12()
+			#AudioManager.shift_shooter12()
 			get_tree().change_scene_to_file.call_deferred("res://ui/desktop/main_menu.tscn")
-			#can_leave_computer = false
+			can_leave_computer = false
 			can_play_game = true
 			loading_jingle = LDJ.SAD
 			
@@ -100,6 +94,7 @@ func change_phase(next: Phase):
 			AudioManager.music_fade()
 			plate = false
 			fork_cabinet = true
+			note2 = true
 			computer_on = false
 			can_leave_computer = true
 			can_play_game = false

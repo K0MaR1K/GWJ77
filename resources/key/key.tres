@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bob07biry4ddw"]
+
+[ext_resource type="Texture2D" uid="uid://cq5b46spql8a4" path="res://resources/key/key.webp" id="1_d16r6"]
+[ext_resource type="Script" path="res://resources/item.gd" id="1_rd8tm"]
+
+[resource]
+script = ExtResource("1_rd8tm")
+name = "Key"
+picture = ExtResource("1_d16r6")

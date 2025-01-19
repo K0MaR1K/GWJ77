@@ -25,6 +25,7 @@ PhaseManager="*res://globals/phase_manager.gd"
 GlobalSpeech="*res://globals/global_speech.tscn"
 AudioManager="*res://globals/audio_manager.tscn"
 Transitions="*res://globals/transitions/transitions.tscn"
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 
 [display]
 
@@ -36,6 +37,7 @@ window/stretch/aspect="keep_width"
 [file_customization]
 
 folder_colors={
+"res://addons/": "teal",
 "res://arcade_game/": "pink",
 "res://fonts/": "yellow",
 "res://globals/": "purple",

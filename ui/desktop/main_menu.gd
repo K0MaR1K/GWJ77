@@ -6,7 +6,7 @@ extends SubViewportContainer
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot"):
-		AudioManager.play_sound(click_sound, 30, "SFX")
+		AudioManager.play_sound(click_sound, 37, "SFX")
 	
 	if event.is_action_pressed("back"):
 		_on_power_button_pressed()
@@ -37,3 +37,7 @@ func _on_power_button_pressed() -> void:
 		get_tree().change_scene_to_file.call_deferred("res://room/room_scene.tscn")
 	else:
 		GlobalSpeech.speak("Not now.")
+
+
+func _on_leaderboard_button_pressed() -> void:
+	$SubViewport/CanvasLayer/Leaderboard.show()

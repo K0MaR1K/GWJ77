@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cdwy3gkriyhea"]
+[gd_scene load_steps=14 format=3 uid="uid://cdwy3gkriyhea"]
 
 [ext_resource type="PackedScene" uid="uid://yy8eym2333dq" path="res://ui/CRTScreen.tscn" id="1_fndsx"]
 [ext_resource type="Script" path="res://ui/desktop/main_menu.gd" id="2_4c532"]
@@ -10,7 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://kpyl4ea5khmb" path="res://ui/desktop/google-play.png" id="5_flve0"]
 [ext_resource type="Texture2D" uid="uid://bork6co4p6jry" path="res://ui/desktop/settings.png" id="6_r4sdo"]
 [ext_resource type="Texture2D" uid="uid://bcgkk2t4ds1no" path="res://ui/desktop/power-on.png" id="7_mc13p"]
+[ext_resource type="Texture2D" uid="uid://b5hg6iou4ykjw" path="res://ui/desktop/cup.png" id="9_vqlcy"]
 [ext_resource type="PackedScene" uid="uid://bxdjihgaivdm6" path="res://ui/desktop/loading_screen.tscn" id="11_2h8ch"]
+[ext_resource type="PackedScene" uid="uid://b2h8ok8yfc7wb" path="res://addons/silent_wolf/Scores/Leaderboard.tscn" id="11_uomkf"]
 
 [node name="MainMenu" instance=ExtResource("1_fndsx")]
 script = ExtResource("2_4c532")
@@ -28,7 +30,7 @@ scale = Vector2(0.54, 0.54)
 texture = ExtResource("3_fgaae")
 hframes = 50
 vframes = 10
-frame = 139
+frame = 214
 script = ExtResource("4_lk6ov")
 
 [node name="Darken" type="ColorRect" parent="SubViewport/CanvasLayer" index="2"]
@@ -65,6 +67,30 @@ texture_normal = ExtResource("6_r4sdo")
 ignore_texture_size = true
 stretch_mode = 4
 
+[node name="blank1" type="TextureButton" parent="SubViewport/CanvasLayer/VBoxContainer" index="2"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+disabled = true
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="blank2" type="TextureButton" parent="SubViewport/CanvasLayer/VBoxContainer" index="3"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+disabled = true
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="LeaderboardButton" type="TextureButton" parent="SubViewport/CanvasLayer/VBoxContainer" index="4"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("9_vqlcy")
+ignore_texture_size = true
+stretch_mode = 4
+
 [node name="PowerButton" type="TextureButton" parent="SubViewport/CanvasLayer" index="4"]
 texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
@@ -83,7 +109,11 @@ stretch_mode = 4
 
 [node name="LoadingScreen" parent="SubViewport/CanvasLayer" index="5" instance=ExtResource("11_2h8ch")]
 
-[node name="Pointer" parent="SubViewport/CanvasLayer" index="6" instance=ExtResource("4_jk76e")]
+[node name="Leaderboard" parent="SubViewport/CanvasLayer" index="6" instance=ExtResource("11_uomkf")]
+visible = false
+scale = Vector2(0.25, 0.25)
+
+[node name="Pointer" parent="SubViewport/CanvasLayer" index="7" instance=ExtResource("4_jk76e")]
 scale = Vector2(0.5, 0.5)
 
 [node name="MainMenuCamera" type="Camera2D" parent="SubViewport" index="1"]
@@ -91,6 +121,7 @@ position = Vector2(161, 142)
 position_smoothing_enabled = true
 
 [connection signal="pressed" from="SubViewport/CanvasLayer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="SubViewport/CanvasLayer/VBoxContainer/LeaderboardButton" to="." method="_on_leaderboard_button_pressed"]
 [connection signal="mouse_entered" from="SubViewport/CanvasLayer/PowerButton" to="." method="_on_object_mouse_entered"]
 [connection signal="mouse_exited" from="SubViewport/CanvasLayer/PowerButton" to="." method="_on_object_mouse_exited"]
 [connection signal="pressed" from="SubViewport/CanvasLayer/PowerButton" to="." method="_on_power_button_pressed"]

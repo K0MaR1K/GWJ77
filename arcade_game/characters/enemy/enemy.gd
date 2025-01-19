@@ -2,7 +2,6 @@ class_name Enemy
 extends Character
 
 signal killed(score: int)
-signal mother_touched #TODO
 
 const DUMMY = preload("res://arcade_game/characters/enemy/dummy.png")
 const DUMMY_CORPSE = preload("res://arcade_game/characters/enemy/dummy_corpse.png")
@@ -82,8 +81,3 @@ func _on_shoot_timer_timeout() -> void:
 		bullet.global_position = global_position
 		
 		AudioManager.play_sound_2d(gun_shot_stream, -5, "SFX", global_position)
-
-
-func _on_touch_zone_body_entered(body: Node2D) -> void:
-	if $Legs.texture == MOTHER:
-		print("MOTHER'S TOUCH")

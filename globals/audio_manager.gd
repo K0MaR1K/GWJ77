@@ -28,6 +28,10 @@ func shift_shooter21():
 	animation_player.play("shift_shooter_2-1")
 	
 func shift_shooter12():
+	if not animation_player:
+		await get_tree().create_timer(0.1).timeout
+		
+	shooter_player_2.play(shooter_player.get_playback_position())
 	animation_player.play("shift_shooter_1-2")
 
 func music_fade():
@@ -44,9 +48,9 @@ func play_sound(stream: AudioStream, volume: float, bus: StringName):
 	instance.play()
 	instance.finished.connect(remove_stream.bind(instance))
 	
-func play_sound_2d(stream: AudioStream, volume: float, bus: StringName, position: Vector2):
+func play_sound_2d(stream: AudioStream, volume: float, bus: StringName, pos: Vector2):
 	instance2D = AudioStreamPlayer2D.new()
-	instance2D.global_position = position
+	instance2D.global_position = pos
 	instance2D.stream = stream
 	instance2D.volume_db = volume
 	instance2D.bus = bus
