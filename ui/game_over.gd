@@ -26,5 +26,4 @@ func _on_arcade_scene_time_out() -> void:
 	$GameOverText/TimeOutText.show()
 
 func start_over():
-	SilentWolf.Scores.save_score(Global.player_name, Global.player_score)
-	PhaseManager.change_phase(PhaseManager.Phase.INTRO)
+	PhaseManager.next_phase()

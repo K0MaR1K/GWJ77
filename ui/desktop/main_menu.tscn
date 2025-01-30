@@ -30,7 +30,7 @@ scale = Vector2(0.54, 0.54)
 texture = ExtResource("3_fgaae")
 hframes = 50
 vframes = 10
-frame = 59
+frame = 489
 script = ExtResource("4_lk6ov")
 
 [node name="Darken" type="ColorRect" parent="SubViewport/CanvasLayer" index="2"]
@@ -111,6 +111,7 @@ stretch_mode = 4
 
 [node name="Leaderboard" parent="SubViewport/CanvasLayer" index="6" instance=ExtResource("11_uomkf")]
 visible = false
+position = Vector2(0, 32.165)
 scale = Vector2(0.25, 0.25)
 
 [node name="Pointer" parent="SubViewport/CanvasLayer" index="7" instance=ExtResource("4_jk76e")]

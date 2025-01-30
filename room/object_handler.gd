@@ -54,7 +54,6 @@ func go_back():
 		
 	if $"../CanvasLayer/CloseUps/SubViewport/Note3".visible:
 		$"../CanvasLayer/CloseUps/SubViewport/Note3".hide()
-		GlobalSpeech.player_final()
 		return
 		
 	set_mouse_input(false)
@@ -101,7 +100,6 @@ func _on_fork_input_event(event: InputEvent) -> void:
 		else:
 			PhaseManager.fork_bookshelf = false
 			$"../CanvasLayer/CloseUps/SubViewport/Bookshelf/Fork".hide()
-		print("assd")
 		update_items.emit()
 		Global.add_to_inventory(preload("res://resources/fork/fork.tres"))
 

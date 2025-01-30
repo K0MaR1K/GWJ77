@@ -27,6 +27,7 @@ func _ready() -> void:
 		$Torso.texture = HUMAN
 		$DeathSprite.texture = HUMAN_DEAD
 		$ShootTimer.wait_time = 1000000
+		$ShootTimer.start()
 	
 func mother():
 	if PhaseManager.human_enemy:

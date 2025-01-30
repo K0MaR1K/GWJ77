@@ -44,7 +44,7 @@ func _on_leaderboard_button_pressed() -> void:
 
 
 func _on_settings_button_pressed() -> void:
-	GlobalSpeech.speak("Setting will be available later in the game by clicking the boombox. [shake]Sorry.")
+	GlobalSpeech.speak("Settings will be available later in the game by clicking the boombox. [shake]Sorry.")
 
 
 func _on_video_play_button_pressed() -> void:

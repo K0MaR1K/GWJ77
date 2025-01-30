@@ -48,7 +48,10 @@ func is_game_phase():
 
 func change_phase(next: Phase):
 	current_phase = next
-
+	
+	if is_game_phase():
+		Global.hide_inventory()
+	
 	match current_phase:
 		Phase.INTRO:
 			get_tree().change_scene_to_file.call_deferred("res://ui/desktop/main_menu.tscn")
@@ -160,6 +163,7 @@ func change_phase(next: Phase):
 		Phase.ROOM3_2:
 			plate = true
 			mother_at_door = false
+			GlobalSpeech.player_final()
 			
 		Phase.DESKTOP4:
 			get_tree().change_scene_to_file.call_deferred("res://ui/desktop/main_menu.tscn")

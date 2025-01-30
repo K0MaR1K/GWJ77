@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="GWJ77"
+config/name="MiamiVice"
 run/main_scene="res://room/room_scene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/bg_color=Color(0.027451, 0.0156863, 0, 1)

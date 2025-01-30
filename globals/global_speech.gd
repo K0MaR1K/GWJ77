@@ -35,10 +35,8 @@ func player_final():
 		if not monologue:
 			break
 
-		speak(line)
+		speak(line, true)
 		await get_tree().create_timer(2.0 + 0.1 * line.length()).timeout
-		
-	finished_speech.emit()
 
 
 func mother_speech(speech: Array[String]):

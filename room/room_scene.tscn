@@ -620,6 +620,7 @@ expand_mode = 1
 
 [node name="Fork" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Bookshelf"]
 modulate = Color(0.73, 0.663813, 0.6059, 1)
+layout_mode = 0
 offset_left = 166.717
 offset_top = 337.27
 offset_right = 3597.72
@@ -630,6 +631,7 @@ texture = ExtResource("5_poctp")
 
 [node name="Note" type="TextureRect" parent="CanvasLayer/CloseUps/SubViewport/Bookshelf"]
 modulate = Color(0.73, 0.663813, 0.6059, 1)
+layout_mode = 0
 offset_left = 359.995
 offset_top = 42.702
 offset_right = 1159.99
