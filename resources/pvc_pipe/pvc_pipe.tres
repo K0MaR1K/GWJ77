@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dur3so4w4rqly"]
-
-[ext_resource type="Texture2D" uid="uid://cib3pw6mf2iay" path="res://resources/pvc_pipe/pvc_pipe.webp" id="1_s0ily"]
-[ext_resource type="Script" path="res://resources/item.gd" id="2_fg5fx"]
-
-[resource]
-script = ExtResource("2_fg5fx")
-name = "PVC Pipe"
-picture = ExtResource("1_s0ily")

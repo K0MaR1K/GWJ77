@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cdhft66a3twal"]
-
-[ext_resource type="Texture2D" uid="uid://bxa6wwuddb31b" path="res://resources/fork/fork.png" id="1_1lmqk"]
-[ext_resource type="Script" path="res://resources/item.gd" id="1_e0qqc"]
-
-[resource]
-script = ExtResource("1_e0qqc")
-name = "Fork"
-picture = ExtResource("1_1lmqk")

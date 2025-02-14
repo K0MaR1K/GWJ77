@@ -11,22 +11,18 @@ config_version=5
 [application]
 
 config/name="MiamiVice"
-run/main_scene="res://room/room_scene.tscn"
+run/main_scene="res://ui/desktop/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-boot_splash/bg_color=Color(0.027451, 0.0156863, 0, 1)
-boot_splash/image="res://ui/scum-splash.png"
+boot_splash/bg_color=Color(0, 0, 0, 1)
 
 [audio]
 
-buses/default_bus_layout="res://sounds/default_bus_layout.tres"
+buses/default_bus_layout=""
 
 [autoload]
 
 Global="*res://globals/global.tscn"
-PhaseManager="*res://globals/phase_manager.gd"
-GlobalSpeech="*res://globals/global_speech.tscn"
 AudioManager="*res://globals/audio_manager.tscn"
-Transitions="*res://globals/transitions/transitions.tscn"
 SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 
 [display]
@@ -36,16 +32,18 @@ window/size/viewport_height=720
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/script-ide/plugin.cfg", "res://addons/silent_wolf/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
 "res://addons/": "teal",
-"res://arcade_game/": "pink",
 "res://fonts/": "yellow",
 "res://globals/": "purple",
-"res://resources/": "red",
-"res://room/": "orange",
 "res://shaders/": "blue",
+"res://shooter/": "pink",
 "res://sounds/": "green",
 "res://ui/": "gray"
 }
@@ -82,7 +80,7 @@ restart={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":82,"key_label":0,"unicode":114,"location":0,"echo":false,"script":null)
 ]
 }
-back={
+secondary={
 "deadzone": 0.5,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(84, 21),"global_position":Vector2(84, 47),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]

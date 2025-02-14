@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c0wrq3db6vosn"]
-
-[ext_resource type="Texture2D" uid="uid://rdstrc70i88u" path="res://resources/matches/matches.png" id="1_wvw04"]
-[ext_resource type="Script" path="res://resources/item.gd" id="2_xb3l4"]
-
-[resource]
-script = ExtResource("2_xb3l4")
-name = "Matches"
-picture = ExtResource("1_wvw04")

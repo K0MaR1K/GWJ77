@@ -1,0 +1,213 @@
+[gd_scene load_steps=24 format=3 uid="uid://bmaikduukad0n"]
+
+[ext_resource type="Material" uid="uid://bq2mff8ncyalh" path="res://shooter/effects/lighted_only.tres" id="1_i10f6"]
+[ext_resource type="Script" path="res://shooter/characters/enemy/enemy.gd" id="1_u4a5m"]
+[ext_resource type="AudioStream" uid="uid://bxvqnqm1ocjes" path="res://sounds/footsteps/footsteps 1.wav" id="2_1q44f"]
+[ext_resource type="AudioStream" uid="uid://csa6a66orki3h" path="res://sounds/shout/shout-1.wav" id="2_s1nw3"]
+[ext_resource type="AudioStream" uid="uid://deefb36wvnox" path="res://sounds/gun/gun-fire.wav" id="2_tqob3"]
+[ext_resource type="AudioStream" uid="uid://d0vxhw6mbsssb" path="res://sounds/shout/shout-2.wav" id="3_46pke"]
+[ext_resource type="Texture2D" path="res://arcade_game/characters/enemy/dummy.png" id="3_lo5c3"]
+[ext_resource type="AudioStream" uid="uid://fqcknabmqt4j" path="res://sounds/footsteps/footsteps 2.wav" id="3_t7mfk"]
+[ext_resource type="AudioStream" path="res://sounds/shout/robot-shout-1.wav" id="4_h1wxg"]
+[ext_resource type="Texture2D" path="res://arcade_game/characters/enemy/dummy_corpse.png" id="4_hd0ty"]
+[ext_resource type="AudioStream" uid="uid://pww3gtxv00xu" path="res://sounds/footsteps/footsteps 3.wav" id="4_q6tob"]
+[ext_resource type="AudioStream" path="res://sounds/shout/robot-shout-2.wav" id="5_0cmi2"]
+[ext_resource type="FontFile" uid="uid://c58kiqdiy82fw" path="res://fonts/Phased.ttf" id="13_3ifwt"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_i1oxl"]
+random_pitch = 1.5
+streams_count = 3
+stream_0/stream = ExtResource("2_1q44f")
+stream_1/stream = ExtResource("3_t7mfk")
+stream_2/stream = ExtResource("4_q6tob")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bcfso"]
+playback_mode = 1
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("2_tqob3")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vss4x"]
+random_pitch = 1.5
+streams_count = 2
+stream_0/stream = ExtResource("2_s1nw3")
+stream_1/stream = ExtResource("3_46pke")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_518x7"]
+random_pitch = 1.5
+streams_count = 2
+stream_0/stream = ExtResource("4_h1wxg")
+stream_1/stream = ExtResource("5_0cmi2")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5hmw0"]
+radius = 5.0
+
+[sub_resource type="Animation" id="Animation_047tf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Torso:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Legs:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bwi51"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Torso:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Legs:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_iq2yp"]
+resource_name = "walking"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Torso:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(0, 2), Vector2i(0, 3), Vector2i(0, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Legs:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(2, 1), Vector2i(2, 2), Vector2i(2, 3), Vector2i(2, 4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n1ga6"]
+_data = {
+"RESET": SubResource("Animation_047tf"),
+"idle": SubResource("Animation_bwi51"),
+"walking": SubResource("Animation_iq2yp")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_buisg"]
+radius = 120.037
+
+[node name="Enemy" type="CharacterBody2D"]
+z_index = 1
+texture_filter = 1
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_u4a5m")
+footsteps = SubResource("AudioStreamRandomizer_i1oxl")
+gun_shot_stream = SubResource("AudioStreamRandomizer_bcfso")
+human_shout = SubResource("AudioStreamRandomizer_vss4x")
+dummy_shout = SubResource("AudioStreamRandomizer_518x7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5hmw0")
+
+[node name="Legs" type="Sprite2D" parent="."]
+texture_filter = 1
+material = ExtResource("1_i10f6")
+texture = ExtResource("3_lo5c3")
+hframes = 3
+vframes = 5
+frame = 2
+
+[node name="Torso" type="Sprite2D" parent="."]
+texture_filter = 1
+material = ExtResource("1_i10f6")
+texture = ExtResource("3_lo5c3")
+hframes = 3
+vframes = 5
+
+[node name="DeathSprite" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+material = ExtResource("1_i10f6")
+texture = ExtResource("4_hd0ty")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_n1ga6")
+}
+
+[node name="VisibilityZone" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisibilityZone"]
+shape = SubResource("CircleShape2D_buisg")
+debug_color = Color(0.513808, 0.576734, 0, 0.42)
+
+[node name="PlayerEnemyLine" type="RayCast2D" parent="."]
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="AddedScore" type="RichTextLabel" parent="."]
+top_level = true
+z_index = 2
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.68
+anchor_top = 0.02
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 58.0
+offset_bottom = -8.0
+size_flags_vertical = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 1
+theme_override_fonts/normal_font = ExtResource("13_3ifwt")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "+100"
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
